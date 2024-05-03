@@ -1,0 +1,1595 @@
+/*Main ----------------------------------------------------*/
+
+.rectangle1{
+    position: absolute;
+    width: 1903px;
+    height: 2362px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(143.87deg, rgb(255, 218, 185) 4.09%,rgb(240, 172, 112) 95.45%);
+    z-index: -1;
+}
+
+/*Main Menu ----------------------------------------------------*/
+
+.rectangle3{
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    left: 375px;
+    right: -215px;
+    top: 67px;
+    bottom: -67px;
+    border-radius: 13px;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.32);
+    background: rgb(0, 0, 0);
+    z-index: 0 ;
+}
+
+.logoText {
+    position: absolute;
+    width: 41px;
+    height: 23px;
+    left: 382px;
+    top: 83px;
+    z-index: 1;
+    font-family: Montserrat,sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    color: #FFFFFF;
+}
+.line3{
+    position: absolute;
+    width: 1901px;
+    height: 0;
+    left: 0;
+    top: 39.5px;
+    border: 1px solid rgb(0, 0, 0);
+}
+.line2{
+    position: absolute;
+    width: 1901px;
+    height: 0;
+    left: 0;
+    top: 150.5px;
+    border: 1px solid rgb(0, 0, 0);
+}
+.logoName{
+    position: absolute;
+    width: 144px;
+    height: 23px;
+    left: 446px;
+    right: -375px;
+    top: 83px;
+    bottom: -51px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat B, sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 23px;
+    text-align: left;
+}
+.mainP{
+    position: absolute;
+    width: 80.74px;
+    height: 23px;
+    left: 675px;
+    right: 115.26px;
+    top: 82px;
+    bottom: -58px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 23px;
+    text-align: left;
+}
+.line1{
+    position: absolute;
+    width: 81px;
+    height: 0;
+    left: 674px;
+    top: 105.5px;
+    border: 1px solid rgba(0, 0, 0, 0.34);
+}
+.events{
+    position: absolute;
+    width: 71.66px;
+    height: 23px;
+    left: 829.42px;
+    right: -30.08px;
+    top: 83px;
+    bottom: -59px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.associations{
+    position: absolute;
+    width: 68.63px;
+    height: 23px;
+    left: 974.76px;
+    right: -172.39px;
+    top: 83px;
+    bottom: -59px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.about{
+    position: absolute;
+    width: 110.01px;
+    height: 23px;
+    left: 1117.06px;
+    right: -356.08px;
+    top: 83px;
+    bottom: -59px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat,sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+
+    text-align: left;
+}
+.users{
+    position: absolute;
+    width: 122.12px;
+    height: 23px;
+    left: 1300.75px;
+    right: -551.88px;
+    top: 82px;
+    bottom: -58px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat,sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+
+.logIn{
+    position: absolute;
+    width: 47.44px;
+    height: 47px;
+    left: 1497.56px;
+    right: -674px;
+    top: 71px;
+    bottom: -71px;
+    transition: .5s;
+}
+.logIn:hover{
+    rotate: -15deg;
+}
+
+
+/*Offer ----------------------------------------------------*/
+
+.offer{
+    position: absolute;
+    width: 389px;
+    height: 98px;
+    left: 375px;
+    right: 507px;
+    top: 413px;
+    bottom: 223px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat B,sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 49px;
+    text-align: left;
+}
+.descriptor{
+    position: absolute;
+    width: 350px;
+    height: 23px;
+    left: 375px;
+    right: 546px;
+    top: 536px;
+    bottom: 175px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat,sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.button{
+    position: absolute;
+    width: 300px;
+    height: 82px;
+    left: 375px;
+    right: -375px;
+    top: 584px;
+    bottom: -584px;
+    border-radius: 50px;
+    box-shadow: 0 4px 35px 0 rgb(242, 61, 64);
+    background: linear-gradient(142.05deg, rgb(246, 61, 61) 11.253%,rgb(112, 120, 47) 91.02%);
+}
+.textOnButton{
+    position: absolute;
+    width: 211px;
+    height: 23px;
+    left: 420px;
+    right: -331px;
+    top: 613px;
+    bottom: -554px;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat B, sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 23px;
+    text-align: left;
+}
+.offerPic{
+    position: absolute;
+    width: 871px;
+    height: 734px;
+    left: 775px;
+    right: -375px;
+    top: 178px;
+    bottom: -178px;
+    border-radius: 241px;
+}
+
+
+/*Features ----------------------------------------------------*/
+
+.features{
+    position: absolute;
+    width: 480px;
+    height: 37px;
+    left: 375px;
+    right: 315px;
+    top: 1024px;
+    bottom: -731px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat B, sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 37px;
+    text-align: left;
+}
+.div1{
+    position: absolute;
+    width: 114px;
+    height: 114px;
+    left: 375px;
+    right: 681px;
+    top: 1086px;
+    bottom: -870px;
+    border-radius: 32px;
+    background: rgb(255, 255, 255);
+}
+.div2{
+    position: absolute;
+    width: 114px;
+    height: 114px;
+    left: 775px;
+    right: 281px;
+    top: 1086px;
+    bottom: -870px;
+    border-radius: 32px;
+    background: rgb(255, 255, 255);
+}
+.div3{
+    position: absolute;
+    width: 114px;
+    height: 114px;
+    left: 1196px;
+    right: -140px;
+    top: 1086px;
+    bottom: -870px;
+    border-radius: 32px;
+    background: rgb(255, 255, 255);
+}
+.div4{
+    position: absolute;
+    width: 114px;
+    height: 114px;
+    left: 375px;
+    right: 681px;
+    top: 1240px;
+    bottom: -1024px;
+    border-radius: 32px;
+    background: rgb(255, 255, 255);
+}
+.div5{
+    position: absolute;
+    width: 114px;
+    height: 114px;
+    left: 775px;
+    right: 281px;
+    top: 1240px;
+    bottom: -1024px;
+    border-radius: 32px;
+    background: rgb(255, 255, 255);
+}
+.div6{
+    position: absolute;
+    width: 114px;
+    height: 114px;
+    left: 1196px;
+    right: -140px;
+    top: 1240px;
+    bottom: -1024px;
+    border-radius: 32px;
+    background: rgb(255, 255, 255);
+}
+.div1T{
+    position: absolute;
+    width: 195px;
+    height: 23px;
+    left: 510px;
+    right: 465px;
+    top: 1092px;
+    bottom: -785px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat B, sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 23px;
+    text-align: left;
+}
+.div2T{
+    position: absolute;
+    width: 212px;
+    height: 23px;
+    left: 924px;
+    right: 34px;
+    top: 1092px;
+    bottom: -785px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat B,sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 23px;
+    text-align: left;
+}
+.div3T{
+    position: absolute;
+    width: 134px;
+    height: 23px;
+    left: 1345px;
+    right: -307px;
+    top: 1092px;
+    bottom: -785px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat B, sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 23px;
+    text-align: left;
+}
+.div4T{
+    position: absolute;
+    width: 223px;
+    height: 23px;
+    left: 510px;
+    right: 437px;
+    top: 1246px;
+    bottom: -939px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat B,sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 23px;
+    text-align: left;
+}
+.div5T{
+    position: absolute;
+    width: 257px;
+    height: 23px;
+    left: 924px;
+    right: -11px;
+    top: 1246px;
+    bottom: -939px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat B,sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 23px;
+    text-align: left;
+}
+.div6T{
+    position: absolute;
+    width: 141px;
+    height: 23px;
+    left: 1345px;
+    right: -316px;
+    top: 1246px;
+    bottom: -939px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat B,sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 23px;
+    text-align: left;
+}
+.div1P{
+    position: absolute;
+    width: 85px;
+    height: 85px;
+    left: 390px;
+    right: 695px;
+    top: 1104px;
+    bottom: -859px;
+}
+.div2P{
+    position: absolute;
+    width: 85px;
+    height: 85px;
+    left: 789px;
+    right: 296px;
+    top: 1100px;
+    bottom: -855px;
+}
+.div3P{
+    position: absolute;
+    width: 85px;
+    height: 85px;
+    left: 1210px;
+    right: -125px;
+    top: 1100px;
+    bottom: -855px;
+}
+.div4P{
+    position: absolute;
+    width: 85px;
+    height: 85px;
+    left: 390px;
+    right: 695px;
+    top: 1254px;
+    bottom: -1009px;
+}
+.div5P{
+    position: absolute;
+    width: 85px;
+    height: 85px;
+    left: 790px;
+    right: 295px;
+    top: 1254px;
+    bottom: -1009px;
+}
+.div6P{
+    position: absolute;
+    width: 85px;
+    height: 85px;
+    left: 1210px;
+    right: -125px;
+    top: 1254px;
+    bottom: -1009px;
+}
+.div1DT{
+    position: absolute;
+    width: 207px;
+    height: 60px;
+    left: 510px;
+    right: 453px;
+    top: 1133px;
+    bottom: -863px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+}
+.div2DT{
+    position: absolute;
+    width: 214px;
+    height: 60px;
+    left: 924px;
+    right: 32px;
+    top: 1133px;
+    bottom: -863px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+}
+.div3DT{
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    left: 1345px;
+    right: -375px;
+    top: 1133px;
+    bottom: -863px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+}
+.div4DT{
+    position: absolute;
+    width: 197px;
+    height: 60px;
+    left: 510px;
+    right: 463px;
+    top: 1287px;
+    bottom: -1017px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+}
+.div5DT{
+    position: absolute;
+    width: 255px;
+    height: 60px;
+    left: 924px;
+    right: -9px;
+    top: 1287px;
+    bottom: -1017px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+}
+.div6DT{
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    left: 1345px;
+    right: -375px;
+    top: 1287px;
+    bottom: -1017px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+}
+
+/* About us ------------------------------------------------------------- */
+
+.aboutP{
+    position: absolute;
+    width: 1901px;
+    height: 636px;
+    left: 0;
+    right: 0;
+    top: 1414px;
+    bottom: -1414px;
+    background: rgb(255, 255, 255);
+    z-index: 0;
+    border: 1px solid rgb(0, 0, 0);
+}
+.aboutT{
+    position: absolute;
+    width: 301px;
+    height: 37px;
+    left: 376px;
+    right: -108px;
+    top: 1466px;
+    bottom: -975px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat B, sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 37px;
+    text-align: left;
+}
+.aboutUs{
+    position: absolute;
+    width: 569px;
+    height: 466px;
+    left: 376px;
+    top: 1528px;
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: left;
+}
+.aboutP2{
+    position: absolute;
+    width: 570px;
+    height: 381px;
+    left: 1075px;
+    right: 274px;
+    top: 1541px;
+    bottom: -1286px;
+}
+
+
+/* Add menu bar------------------------------------------------------------- */
+
+.eventsBar{
+    position: absolute;
+    width: 245px;
+    height: 67px;
+    left: 375px;
+    right: 425px;
+    top: 2117px;
+    bottom: -2117px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px 0 rgb(0, 0, 0);
+    background: rgb(0, 0, 0);
+}
+.associationsBar{
+    position: absolute;
+    width: 245px;
+    height: 67px;
+    left: 775px;
+    right: 25px;
+    top: 2117px;
+    bottom: -2117px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px 0 rgb(0, 0, 0);
+    background: rgb(0, 0, 0);
+}
+.usersBar{
+    position: absolute;
+    width: 245px;
+    height: 67px;
+    left: 1175px;
+    right: -375px;
+    top: 2117px;
+    bottom: -2117px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px 0 rgb(0, 0, 0);
+    background: rgb(0, 0, 0);
+}
+.arrowBar{
+    position: absolute;
+    width: 71px;
+    height: 67px;
+    left: 1475px;
+    right: 374px;
+    top: 2117px;
+    bottom: 178px;
+    border-radius: 13px;
+    box-shadow: 0 4px 20px 0 rgb(0, 0, 0);
+    background: rgb(0, 0, 0);
+}
+.arrow {
+    position: absolute;
+    width: 13px;
+    height: 32px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+}
+.eventsText{
+    position: absolute;
+    width: 102px;
+    height: 30px;
+    left: 447px;
+    right: 497px;
+    top: 2136px;
+    bottom: -2099px;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat B,sans-serif;
+    font-size: 25px;
+    font-weight: 900;
+    line-height: 30px;
+    text-align: left;
+}
+.associationsText{
+    position: absolute;
+    width: 98px;
+    height: 30px;
+    left: 850px;
+    right: 98px;
+    top: 2136px;
+    bottom: -2099px;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat B, sans-serif;
+    font-size: 25px;
+    font-weight: 900;
+    line-height: 30px;
+    text-align: left;
+}
+.usersText{
+    position: absolute;
+    width: 174px;
+    height: 30px;
+    left: 1212px;
+    right: -340px;
+    top: 2136px;
+    bottom: -2099px;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat B, sans-serif;
+    font-size: 25px;
+    font-weight: 900;
+    line-height: 30px;
+    text-align: left;
+}
+
+
+/*Footer -------------------------------------------------------------*/
+
+.footer{
+    position: absolute;
+    width: 1903px;
+    height: 110px;
+    left: 0;
+    right: 0;
+    top: 2252px;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+}
+.footerLogoText{
+    position: absolute;
+    width: 144px;
+    height: 23px;
+    left: 447px;
+    right: -376px;
+    top: 2295px;
+    bottom: -2263px;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat B,sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 23px;
+    text-align: left;
+}
+.footerLogoSquare{
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    left: 376px;
+    right: -216px;
+    top: 2279px;
+    bottom: -2279px;
+    border-radius: 13px;
+    box-shadow: 0 5px 20px 0 rgba(255, 255, 255, 0.32);
+    background: rgb(0, 0, 0);
+}
+.footerLogoSquareText{
+    position: absolute;
+    width: 41px;
+    height: 23px;
+    left: 383px;
+    right: -209px;
+    top: 2295px;
+    bottom: -2263px;
+    font-family: Montserrat,sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    color: #FFFFFF;
+}
+.footerInfo{
+    position: absolute;
+    width: 263px;
+    height: 23px;
+    left: 812px;
+    right: 845px;
+    top: 2295px;
+    bottom: 44px;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.footerMail{
+    position: absolute;
+    width: 250px;
+    height: 23px;
+    left: 1296px;
+    right: 374px;
+    top: 2295px;
+    bottom: 44px;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+
+/*Log In --------------------------------------------*/
+
+.input1{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 807px;
+    right: 808px;
+    top: 480px;
+    bottom: 559px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.input2{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 807px;
+    right: 808px;
+    top: 549px;
+    bottom: 490px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.form {
+    position: absolute;
+    width: 404px;
+    height: 387px;
+    left: 50%;
+    top: 50%;
+    margin-left: -202px;
+    margin-top: -193.5px;
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 33px;
+    background: rgb(255, 255, 255);
+}
+.formLogin{
+    position: absolute;
+    width: 59px;
+    height: 23px;
+    left: 922px;
+    right: 922px;
+    top: 452px;
+    bottom: 605px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.formPassword{
+    position: absolute;
+    width: 81px;
+    height: 18px;
+    left: 911px;
+    right: 911px;
+    top: 526px;
+    bottom: 536px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.buttonlogin{
+    position: absolute;
+    width: 122px;
+    height: 38px;
+    left: 890px;
+    right: 891px;
+    top: 612px;
+    bottom: 430px;
+    border-radius: 84px;
+    box-shadow: 0 4px 35px 0 rgba(245, 62, 61, 0.51);
+    background: linear-gradient(to left, rgb(246, 61, 61),rgb(112, 120, 47),rgb(246, 61, 61));
+    border: 0;
+    cursor: pointer;
+    transition: 0.5s;
+    background-size: 200%;
+}
+.buttonlogin:hover{
+    background-position: right;
+
+}
+.textOnButtonLogin{
+    width: 71px;
+    height: 23px;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.loginLogo{
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    left: 844px;
+    right: -684px;
+    top: 303px;
+    bottom: -303px;
+    border-radius: 13px;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.32);
+    background: rgb(0, 0, 0);
+}
+.loginText{
+    position: absolute;
+    width: 41px;
+    height: 23px;
+    left: 851px;
+    right: -677px;
+    top: 319px;
+    bottom: -287px;
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    color: white;
+}
+.loginTextLogo{
+    position: absolute;
+    width: 144px;
+    height: 23px;
+    left: 915px;
+    right: -844px;
+    top: 319px;
+    bottom: -287px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 23px;
+    text-align: left;
+}
+.back{
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    left: 924px;
+    right: 924px;
+    top: 701px;
+    bottom: 324px;
+    z-index: 1;
+    transform: rotate(180deg);
+    transition: 0.5s;
+}
+.back:hover{
+    rotate: -15deg;
+}
+.register{
+    position: absolute;
+    width: 169px;
+    height: 23px;
+    left: 975px;
+    right: 759px;
+    top: 675px;
+    bottom: 382px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    cursor: pointer;
+    text-decoration: none;
+}
+.register:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.5s;
+}
+
+.register:hover:after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px;
+    background-color: black;
+    transition: width 0.5s;
+}
+/*Header Triangle -------------------------------------*/
+.triangle{
+    width: 0;
+    height: 0;
+    border-left: 12.5px solid transparent;
+    border-right: 12.5px solid transparent;
+    border-top: 12px solid black;
+    position: absolute;
+    left: 1512px;
+    top: 90px;
+    cursor: pointer;
+    transition: all 228ms ease;
+    transform-origin: center;
+
+}
+
+.triangle.rotated {
+    transform: rotate(15deg);
+}
+.dropdown-menu {
+    position: absolute;
+    top: 118px;
+    left: 1521px;
+    padding: 10px;
+    z-index: 999;
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 18px;
+    box-shadow: 0 4px 19.4px 0 rgba(0, 0, 0, 0.25);
+    background: rgb(255, 255, 255);
+}
+
+.dropdown-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu li {
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+
+    padding: 10px 0;
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: #000;
+    position: relative;
+}
+
+.dropdown-menu li a:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.5s;
+}
+
+.dropdown-menu li a:hover:after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px;
+    background-color: black;
+    transition: width 0.5s;
+}
+.dropdown-menu ul li a.disabled {
+    pointer-events: none;
+    color: #ccc;
+}
+
+/*LogOut ---------------------------------------------- + Modal*/
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    z-index: 999;
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 35px;
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 0, 0);
+    width: 219px;
+    height: 153px;
+    text-align: center;
+    display: block;
+
+}
+.confirmation{
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+}
+.modal-content button {
+    margin: 5px;
+    width: 64px;
+    height: 20px;
+    border-radius: 84px;
+    border: none;
+    background: rgb(245, 62, 61);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.modal-content button:hover {
+    background-color: rgb(249, 168, 167);
+}
+
+
+
+/* Registration -------------------------------------- */
+
+.formRe{
+    position: absolute;
+    width: 834px;
+    height: 625px;
+    left: 50%;
+    top: 50%;
+    margin-left: -417px;
+    margin-top: -312.5px;
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 33px;
+    background: rgb(255, 255, 255);
+}
+.loginLogoRe{
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    left: 840px;
+    right: -680px;
+    top: 184px;
+    bottom: -184px;
+    border-radius: 13px;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.32);
+    background: rgb(0, 0, 0);
+}
+.loginTextRe{
+    position: absolute;
+    width: 41px;
+    height: 23px;
+    left: 847px;
+    right: -673px;
+    top: 200px;
+    bottom: -168px;
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    color: #FFFFFF;
+}
+.loginTextLogoRe{
+    position: absolute;
+    width: 144px;
+    height: 23px;
+    left: 911px;
+    right: -840px;
+    top: 200px;
+    bottom: -168px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 23px;
+    text-align: left;
+}
+.formLoginRe{
+    position: absolute;
+    width: 59px;
+    height: 23px;
+    left: 732px;
+    right: 43px;
+    top: 333px;
+    bottom: 269px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.input1Re{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 617px;
+    right: -71px;
+    top: 364px;
+    bottom: 220px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.formPasswordRe{
+    position: absolute;
+    width: 81px;
+    height: 18px;
+    left: 721px;
+    right: 32px;
+    top: 413px;
+    bottom: 194px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.input2Re{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 617px;
+    right: -71px;
+    top: 439px;
+    bottom: 145px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.formEmailRe{
+    position: absolute;
+    width: 63px;
+    height: 18px;
+    left: 730px;
+    right: 41px;
+    top: 488px;
+    bottom: 119px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+
+}
+.input3Re{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 617px;
+    right: -71px;
+    top: 514px;
+    bottom: 70px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.formFirstNameRe{
+    position: absolute;
+    width: 43px;
+    height: 18px;
+    left: 1123px;
+    right: -332px;
+    top: 333px;
+    bottom: 274px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.input4Re{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 997px;
+    right: -451px;
+    top: 364px;
+    bottom: 220px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.formLastNameRe{
+    position: absolute;
+    width: 103px;
+    height: 18px;
+    left: 1093px;
+    right: -362px;
+    top: 413px;
+    bottom: 194px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.input5Re{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 997px;
+    right: -451px;
+    top: 439px;
+    bottom: 145px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.formCountryRe{
+    position: absolute;
+    width: 73px;
+    height: 18px;
+    left: 1108px;
+    right: -347px;
+    top: 488px;
+    bottom: 119px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.input6Re{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 997px;
+    right: -451px;
+    top: 514px;
+    bottom: 70px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.formAgeRe{
+    position: absolute;
+    width: 35px;
+    height: 18px;
+    left: 744px;
+    right: 55px;
+    top: 563px;
+    bottom: 44px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.input7Re{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 617px;
+    right: -71px;
+    top: 589px;
+    bottom: -5px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+
+.formTelephoneRe{
+    position: absolute;
+    width: 94px;
+    height: 18px;
+    left: 1097px;
+    right: -357px;
+    top: 563px;
+    bottom: 44px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.input8Re{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 997px;
+    right: -451px;
+    top: 589px;
+    bottom: -5px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+
+.buttonloginRe{
+    position: absolute;
+    width: 143px;
+    height: 45px;
+    left: 880px;
+    right: -189px;
+    top: 687px;
+    bottom: -107px;
+    border-radius: 84px;
+    box-shadow: 0 4px 35px 0 rgba(245, 62, 61, 0.51);
+    background: linear-gradient(to left, rgb(246, 61, 61),rgb(112, 120, 47),rgb(246, 61, 61));
+    border: 0;
+    cursor: pointer;
+    transition: 0.5s;
+    background-size: 200%;
+}
+.buttonloginRe:hover{
+    background-position: right;
+
+}
+.backRe{
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    left: 924px;
+    right: 924px;
+    top: 809px;
+    bottom: 446px;
+    z-index: 1;
+    transform: rotate(180deg);
+    transition: 0.5s;
+}
+.backRe:hover{
+    rotate: -15deg;
+}
+.star1{
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    left: 787px;
+    right: 1106px;
+    top: 326px;
+    bottom: 967px;
+    color: rgb(255, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 30px;
+    text-align: left;
+    z-index: 999;
+}
+.star2{
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    left: 797px;
+    right: 1096px;
+    top: 406px;
+    bottom: 887px;
+    color: rgb(255, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 30px;
+    text-align: left;
+    z-index: 999;
+}
+.star3{
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    left: 788px;
+    right: 1105px;
+    top: 481px;
+    bottom: 812px;
+    color: rgb(255, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 30px;
+    text-align: left;
+    z-index: 999;
+}
+.star4{
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    left: 777px;
+    right: 1119px;
+    top: 556px;
+    bottom: 737px;
+    color: rgb(255, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 30px;
+    text-align: left;
+    z-index: 999;
+}
+.star5{
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    left: 1176px;
+    right: 717px;
+    top: 481px;
+    bottom: 812px;
+    color: rgb(255, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 30px;
+    text-align: left;
+    z-index: 999;
+}
+
+/*Profile ------------------------------------------*/
+
+.mainProfileP{
+    position: absolute;
+    width: 80.74px;
+    height: 23px;
+    left: 675px;
+    right: 115.26px;
+    top: 82px;
+    bottom: -58px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.line1Profile{
+    opacity: 0;
+}

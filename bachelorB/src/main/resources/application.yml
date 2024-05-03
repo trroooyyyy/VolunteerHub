@@ -1,0 +1,13 @@
+spring:
+    application:
+        name: bachelor
+    datasource:
+        url: jdbc:mysql://localhost:3306/bachelor
+        username: root
+        password: "06062023"
+    jpa:
+        hibernate:
+            ddl-auto: update
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        show-sql: true
