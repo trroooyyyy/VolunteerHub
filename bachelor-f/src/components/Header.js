@@ -11,7 +11,8 @@ const Header = () => {
     const [isActiveProfile, setIsActiveProfile] = useState(false);
 
     useEffect(() => {
-        setIsActiveProfile(window.location.pathname === '/profile');
+        const isProfilePath = window.location.pathname.startsWith('/profile');
+        setIsActiveProfile(isProfilePath);
     }, []);
 
     const toggleMenu = () => {
@@ -43,7 +44,7 @@ const Header = () => {
     };
     return (
         <div>
-            <div className = "rectangle1"></div>
+            <div className = {isActiveProfile ? 'rectangle1Profile' : 'rectangle1'}></div>
             <div className="rectangle3"></div>
             <div className="logoText">V&amp;<span style={{ color: '#FFDAB9' }}>H</span></div>
             <div className="line3"></div>

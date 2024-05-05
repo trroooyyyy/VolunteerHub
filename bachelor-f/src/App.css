@@ -11,6 +11,17 @@
     background: linear-gradient(143.87deg, rgb(255, 218, 185) 4.09%,rgb(240, 172, 112) 95.45%);
     z-index: -1;
 }
+.rectangle1Profile{
+    position: absolute;
+    width: 1903px;
+    height: 1004px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(143.87deg, rgb(255, 218, 185) 4.09%,rgb(240, 172, 112) 95.45%);
+    z-index: -1;
+}
 
 /*Main Menu ----------------------------------------------------*/
 
@@ -731,6 +742,16 @@
     bottom: 0;
     background: rgb(0, 0, 0);
 }
+.footerProfile{
+    position: absolute;
+    width: 1903px;
+    height: 110px;
+    left: 0;
+    right: 0;
+    top: 894px;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+}
 .footerLogoText{
     position: absolute;
     width: 144px;
@@ -739,6 +760,21 @@
     right: -376px;
     top: 2295px;
     bottom: -2263px;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat B,sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 23px;
+    text-align: left;
+}
+.footerLogoTextProfile{
+    position: absolute;
+    width: 144px;
+    height: 23px;
+    left: 447px;
+    right: -376px;
+    top: 937px;
+    bottom: -905px;
     color: rgb(255, 255, 255);
     font-family: Montserrat B,sans-serif;
     font-size: 19px;
@@ -758,6 +794,18 @@
     box-shadow: 0 5px 20px 0 rgba(255, 255, 255, 0.32);
     background: rgb(0, 0, 0);
 }
+.footerLogoSquareProfile{
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    left: 376px;
+    right: -216px;
+    top: 921px;
+    bottom: -921px;
+    border-radius: 13px;
+    box-shadow: 0 5px 20px 0 rgba(255, 255, 255, 0.32);
+    background: rgb(0, 0, 0);
+}
 .footerLogoSquareText{
     position: absolute;
     width: 41px;
@@ -766,6 +814,21 @@
     right: -209px;
     top: 2295px;
     bottom: -2263px;
+    font-family: Montserrat,sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    color: #FFFFFF;
+}
+.footerLogoSquareTextProfile{
+    position: absolute;
+    width: 41px;
+    height: 23px;
+    left: 383px;
+    right: -209px;
+    top: 937px;
+    bottom: -905px;
     font-family: Montserrat,sans-serif;
     font-size: 19px;
     font-weight: 400;
@@ -788,6 +851,36 @@
     line-height: 23px;
     text-align: left;
 }
+.footerInfo{
+    position: absolute;
+    width: 263px;
+    height: 23px;
+    left: 812px;
+    right: 845px;
+    top: 2295px;
+    bottom: 44px;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.footerInfoProfile{
+    position: absolute;
+    width: 263px;
+    height: 23px;
+    left: 812px;
+    right: 845px;
+    top: 937px;
+    bottom: 44px;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
 .footerMail{
     position: absolute;
     width: 250px;
@@ -795,6 +888,21 @@
     left: 1296px;
     right: 374px;
     top: 2295px;
+    bottom: 44px;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.footerMailProfile{
+    position: absolute;
+    width: 250px;
+    height: 23px;
+    left: 1296px;
+    right: 374px;
+    top: 937px;
     bottom: 44px;
     color: rgb(255, 255, 255);
     font-family: Montserrat, sans-serif;
@@ -1592,4 +1700,289 @@
 }
 .line1Profile{
     opacity: 0;
+}
+
+
+.profileBox{
+    position: absolute;
+    width: 1170px;
+    height: 555px;
+    left: 375px;
+    top: 245px;
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 74px;
+    background: rgb(255, 255, 255);
+}
+.avatarDefault{
+    position: absolute;
+    width: 207px;
+    height: 207px;
+    left: 457px;
+    right: 1256px;
+    top: 300px;
+    bottom: 497px;
+    border-radius: 48px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.profileLogin{
+    position: absolute;
+    width: 178px;
+    height: 37px;
+    left: 687px;
+    right: 1055px;
+    top: 324px;
+    bottom: 643px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat B, sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 37px;
+    text-align: left;
+}
+.profileFirstName{
+    position: absolute;
+    width: 399px;
+    height: 23px;
+    left: 687px;
+    right: 1192px;
+    top: 379px;
+    bottom: 602px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.profileLastName{
+    position: absolute;
+    width: 400px;
+    height: 23px;
+    left: 687px;
+    right: 833px;
+    top: 420px;
+    bottom: 561px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.profileEmail{
+    position: absolute;
+    width: 400px;
+    height: 23px;
+    left: 687px;
+    right: 1169px;
+    top: 461px;
+    bottom: 520px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.profileAge{
+    position: absolute;
+    width: 400px;
+    height: 23px;
+    left: 687px;
+    right: 1198px;
+    top: 502px;
+    bottom: 479px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.profileCountry{
+    position: absolute;
+    width: 400px;
+    height: 23px;
+    left: 687px;
+    right: 1162px;
+    top: 543px;
+    bottom: 438px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.profileTelephone{
+    position: absolute;
+    width: 400px;
+    height: 23px;
+    left: 687px;
+    right: 1143px;
+    top: 584px;
+    bottom: 397px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.profileDesc{
+    position: absolute;
+    width: 57px;
+    height: 23px;
+    left: 687px;
+    right: 1176px;
+    top: 625px;
+    bottom: 356px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+}
+.profileDescBox{
+    position: absolute;
+    width: 581px;
+    height: 79px;
+    left: 687px;
+    right: 652px;
+    top: 666px;
+    bottom: 259px;
+    border-radius: 22px;
+    box-shadow: 0 0 4px 0 rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
+}
+.profileDescText{
+    position: absolute;
+    width: 547px;
+    height: 58px;
+    left: 704px;
+    right: 669px;
+    top: 676px;
+    bottom: 270px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+}
+.logoInst{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    left: 543px;
+    right: 1342px;
+    top: 525px;
+    bottom: 444px;
+    transition: .5s;
+    cursor: pointer;
+}
+.logoInst:hover{
+    rotate: -30deg;
+}
+.logoFaceBook{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    left: 602px;
+    right: 1283px;
+    top: 525px;
+    bottom: 444px;
+    transition: .5s;
+    cursor: pointer;
+}
+.logoFaceBook:hover{
+    rotate: -30deg;
+}
+.logoTg{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    left: 484px;
+    right: 1401px;
+    top: 525px;
+    bottom: 444px;
+    transition: .5s;
+    cursor: pointer;
+}
+.logoTg:hover{
+    rotate: -30deg;
+}
+.trash{
+    position: absolute;
+    width: 39px;
+    height: 39px;
+    left: 1424px;
+    right: 457px;
+    top: 324px;
+    bottom: 641px;
+    transition: .5s;
+    cursor: pointer;
+}
+.trashForUser{
+    position: absolute;
+    width: 39px;
+    height: 39px;
+    left: 1424px;
+    right: 457px;
+    top: 324px;
+    bottom: 641px;
+    transition: .5s;
+    cursor: pointer;
+    opacity: 0;
+    z-index: -1;
+}
+.trash:hover{
+    rotate: -30deg;
+}
+.dateOfReg{
+    position: absolute;
+    width: 107px;
+    height: 46px;
+    left: 1356px;
+    right: 457px;
+    top: 667px;
+    bottom: 291px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+}
+.dateOfRegValue{
+    position: absolute;
+    width: 108px;
+    height: 23px;
+    left: 1355px;
+    right: 457px;
+    top: 722px;
+    bottom: 259px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+}
+.loading{
+    position: absolute;
+    width: 239px;
+    height: 55px;
+    left: 50%;
+    top: 50%;
+    margin-left: -119.5px;
+    margin-top: -27.5px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 45px;
+    font-weight: 900;
+    line-height: 55px;
+    text-align: left;
 }

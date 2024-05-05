@@ -75,6 +75,8 @@ public class UserServiceImpl implements IUserService {
         return repository.save(existingUser);
     }
 
+
+
     private boolean isLoginPresent(String login){
         return this.getUserByLogin(login).isPresent();
     }

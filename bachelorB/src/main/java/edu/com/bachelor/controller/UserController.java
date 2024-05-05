@@ -2,6 +2,7 @@ package edu.com.bachelor.controller;
 
 import edu.com.bachelor.model.User;
 import edu.com.bachelor.service.user.impls.UserServiceImpl;
+import edu.com.bachelor.token.TokenService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -9,12 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user")
 @AllArgsConstructor
 public class UserController {
     private final UserServiceImpl service;
+    private final TokenService tokenService;
 
     @GetMapping("/")
     public ResponseEntity<List<User>> getAllUsers() {
@@ -28,6 +31,7 @@ public class UserController {
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") Long id) {
+        tokenService.deleteAllTokensByUser(id);
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -54,6 +58,15 @@ public class UserController {
     @GetMapping("/hello")
     String sayHelloAnonymous() {
         return "Hello anonymous!!!";
+    }
+
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @GetMapping("/t")
+    public ResponseEntity<User> getCurrentUser(@RequestHeader("Authorization") String tokenHeader) {
+        String jwt = tokenHeader.substring(7);
+
+        Optional<User> userOptional = tokenService.getUserByToken(jwt);
+        return userOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 

@@ -29,8 +29,8 @@ function App() {
               }></Route>
               <Route path="/login" element={token ? <Navigate to="/profile" /> : <LogIn />} />
               <Route path="/register" element={token ? <Navigate to="/profile" /> : <Register />}></Route>
-              <Route path="/profile" element={!token ? <Navigate to="/login" /> : <><Profile/><Header/></>}></Route>
-
+              <Route path="/profile" element={!token ? <Navigate to="/login" /> : <><Profile/><Header/><Footer/></>}></Route>
+              <Route path="/profile/:userId" element={!token ? <Navigate to="/login" /> : <><Profile/><Header/><Footer/></>}></Route>
           </Routes>
       </Router>
   );
