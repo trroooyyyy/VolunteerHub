@@ -62,9 +62,9 @@ const Profile = () => {
                 }
             });
             console.log('User deleted:', response.data);
-            console.log(viewer.firstName)
-            console.log(user.firstName)
-            if(viewer.firstName === user.firstName){
+            console.log(viewer.login)
+            console.log(user.login)
+            if(viewer.login === user.login){
                 localStorage.removeItem('token');
                 setUser(null);
             }

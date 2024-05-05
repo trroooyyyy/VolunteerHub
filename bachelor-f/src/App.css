@@ -1925,19 +1925,6 @@
     transition: .5s;
     cursor: pointer;
 }
-.trashForUser{
-    position: absolute;
-    width: 39px;
-    height: 39px;
-    left: 1424px;
-    right: 457px;
-    top: 324px;
-    bottom: 641px;
-    transition: .5s;
-    cursor: pointer;
-    opacity: 0;
-    z-index: -1;
-}
 .trash:hover{
     rotate: -30deg;
 }
