@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 
 const Profile = () => {
     const token = localStorage.getItem('token');
@@ -8,6 +8,8 @@ const Profile = () => {
     const [viewer, setViewer] = useState(null);
     const a = "—";
     const { userId } = useParams();
+    const [showModal, setShowModal] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getUser = async () => {
@@ -53,8 +55,14 @@ const Profile = () => {
             getViewer()
         }
     }, [token, userId]);
+    const handleConfirmation = (event) => {
+        event.preventDefault();
+        setShowModal(true);
+
+    };
 
     const handleDeleteUser = async () => {
+        setShowModal(false)
         try {
             const response = await axios.delete(`http://localhost:8080/api/user/${user.id}`, {
                 headers: {
@@ -64,6 +72,7 @@ const Profile = () => {
             console.log('User deleted:', response.data);
             console.log(viewer.login)
             console.log(user.login)
+            navigate('/users')
             if(viewer.login === user.login){
                 localStorage.removeItem('token');
                 setUser(null);
@@ -97,9 +106,19 @@ const Profile = () => {
                     <div><img className="logoFaceBook" src="/images/Facebook_Logo_2023.png" alt="Instagram" /></div>
                     <div><img className="logoTg" src="/images/Telegram_alternative_logo.svg.png" alt="Telegram" /></div>
                     {viewer && viewer.role === "ROLE_ADMIN" && (
-                        <div><img onClick={handleDeleteUser} className="trash" src="/images/3687412.png" alt="Delete" />
+                        <div><img onClick={handleConfirmation} className="trash" src="/images/3687412.png" alt="Delete" />
                         </div>
                     )}
+                    {showModal && (
+                        <div className="modal">
+                            <div className="modal-content">
+                                <p className="confirmation">Ви впевнені, що хочете видалити цей аккаунт?</p>
+                                <button onClick={handleDeleteUser}>Так</button>
+                                <button onClick={() => setShowModal(false)}>Ні</button>
+                            </div>
+                        </div>
+                    )}
+
                     {viewer && (
                         <div>
                             <img

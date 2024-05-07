@@ -41,6 +41,8 @@ const Header = () => {
             .then(response => {
                 localStorage.clear();
                 navigate('/');
+                setIsActiveUsers(false)
+                setIsActiveProfile(false)
                 console.log('Logout successful');
             })
             .catch(error => {
@@ -56,11 +58,11 @@ const Header = () => {
             <div className="line2"></div>
             <div className={isActiveProfile ? 'line1Profile' : isActiveUsers ? 'line1Users' : 'line1'}></div>
             <div className="logoName">VolunteerHub</div>
-            <div className={isActiveProfile ? 'mainProfileP' : isActiveUsers ? 'mainProfileP' : 'mainP'}>Головна</div>
+            <div className={isActiveProfile ? 'mainProfileP' : isActiveUsers ? 'mainProfileP' : 'mainP'}><a href="/">Головна</a></div>
             <div className="events">Заходи</div>
             <div className="associations">Спілки</div>
             <div className="about">Про сервіс</div>
-            <div className={isActiveUsers ? 'usersP' : 'users'}>Користувачі</div>
+            <div className={isActiveUsers ? 'usersP' : 'users'}><a href="/users">Користувачі</a></div>
             {token ? (
                 <div className={`triangle ${isArrowRotated ? 'rotated' : ''}`} onClick={toggleMenu}></div>
             ) : (

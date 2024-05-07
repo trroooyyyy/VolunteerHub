@@ -1,4 +1,8 @@
 /*Main ----------------------------------------------------*/
+a{
+    text-decoration: none;
+    color: #000;
+}
 
 .rectangle1{
     position: absolute;
@@ -176,6 +180,30 @@
     font-weight: 400;
     line-height: 23px;
     text-align: left;
+    cursor: pointer;
+}
+.users:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.5s;
+}
+
+.users:hover:after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px;
+    background-color: black;
+    transition: width 0.5s;
 }
 .usersP{
     position: absolute;
@@ -191,6 +219,7 @@
     font-weight: 600;
     line-height: 23px;
     text-align: left;
+
 }
 
 .logIn{
@@ -1722,6 +1751,29 @@
     line-height: 23px;
     text-align: left;
 }
+.mainProfileP:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.5s;
+}
+
+.mainProfileP:hover:after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px;
+    background-color: black;
+    transition: width 0.5s;
+}
 
 .line1Profile{
     opacity: 0;
@@ -2127,14 +2179,24 @@
     height: 25px;
     margin-top: 82px;
     margin-left: 238px;
+    transition: .5s;
 
 }
+.instagramUsers:hover{
+    rotate: -30deg;
+
+}
+
 .telegramUsers{
     position: absolute;
     width: 25px;
     height: 25px;
     margin-left: 203px;
     margin-top: 82px;
+    transition: .5s;
+}
+.telegramUsers:hover{
+    rotate: -30deg;
 }
 .facebookUsers{
     position: absolute;
@@ -2142,5 +2204,9 @@
     height: 25px;
     margin-top: 82px;
     margin-left: 273px;
+    transition: .5s;
 
+}
+.facebookUsers:hover{
+    rotate: -30deg;
 }
