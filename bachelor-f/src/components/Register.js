@@ -90,7 +90,7 @@ const Register = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         className="input3Re"
                         required
-                        maxLength="27"
+                        maxLength="24"
                     />
                 </div>
                 <div>

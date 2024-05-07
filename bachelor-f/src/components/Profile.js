@@ -72,6 +72,10 @@ const Profile = () => {
             console.error('Error deleting user:', error);
         }
     };
+    const handleEditUser = async () => {
+
+    }
+
 
     return (
         <div>
@@ -93,7 +97,18 @@ const Profile = () => {
                     <div><img className="logoFaceBook" src="/images/Facebook_Logo_2023.png" alt="Instagram" /></div>
                     <div><img className="logoTg" src="/images/Telegram_alternative_logo.svg.png" alt="Telegram" /></div>
                     {viewer && viewer.role === "ROLE_ADMIN" && (
-                        <div><img onClick={handleDeleteUser} className="trash" src="/images/3687412.png" alt="Delete" /></div>
+                        <div><img onClick={handleDeleteUser} className="trash" src="/images/3687412.png" alt="Delete" />
+                        </div>
+                    )}
+                    {viewer && (
+                        <div>
+                            <img
+                                onClick={handleEditUser}
+                                className={viewer.role === "ROLE_USER" && viewer.login===user.login ? 'userEdit' : viewer.role==="ROLE_ADMIN" ? 'edit' : 'noedit'}
+                                src="/images/8862294.png"
+                                alt="Edit"
+                            />
+                        </div>
                     )}
                     <div className="dateOfReg">Дата реєстрації:</div>
                     <div className="dateOfRegValue">{user.createdAt.slice(0,10)}</div>

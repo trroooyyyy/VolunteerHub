@@ -9,10 +9,15 @@ const Header = () => {
     const [isArrowRotated, setIsArrowRotated] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [isActiveProfile, setIsActiveProfile] = useState(false);
+    const [isActiveUsers, setIsActiveUsers] = useState(false);
 
     useEffect(() => {
         const isProfilePath = window.location.pathname.startsWith('/profile');
         setIsActiveProfile(isProfilePath);
+    }, []);
+    useEffect(() => {
+        const isProfilePath = window.location.pathname.startsWith('/users');
+        setIsActiveUsers(isProfilePath);
     }, []);
 
     const toggleMenu = () => {
@@ -49,13 +54,13 @@ const Header = () => {
             <div className="logoText">V&amp;<span style={{ color: '#FFDAB9' }}>H</span></div>
             <div className="line3"></div>
             <div className="line2"></div>
-            <div className={isActiveProfile ? 'line1Profile' : 'line1'}></div>
+            <div className={isActiveProfile ? 'line1Profile' : isActiveUsers ? 'line1Users' : 'line1'}></div>
             <div className="logoName">VolunteerHub</div>
-            <div className={isActiveProfile ? 'mainProfileP' : 'mainP'}>Головна</div>
+            <div className={isActiveProfile ? 'mainProfileP' : isActiveUsers ? 'mainProfileP' : 'mainP'}>Головна</div>
             <div className="events">Заходи</div>
             <div className="associations">Спілки</div>
             <div className="about">Про сервіс</div>
-            <div className="users">Користувачі</div>
+            <div className={isActiveUsers ? 'usersP' : 'users'}>Користувачі</div>
             {token ? (
                 <div className={`triangle ${isArrowRotated ? 'rotated' : ''}`} onClick={toggleMenu}></div>
             ) : (
@@ -75,7 +80,7 @@ const Header = () => {
             {isMenuOpen && token && (
                 <div className="dropdown-menu">
                     <ul>
-                        <li><a className={isActiveProfile ? 'disabled' : ''} title="Profile" href="/profile">Профіль</a></li>
+                        <li><a title="Profile" href="/profile">Профіль</a></li>
                         <li><a onClick={handleLogout} title="LogOut" href="/">Вийти</a></li>
                     </ul>
                 </div>

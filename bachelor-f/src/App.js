@@ -9,6 +9,7 @@ import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom
 import LogIn from "./components/LogIn";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
+import Users from "./components/Users";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
               <Route path="/register" element={token ? <Navigate to="/profile" /> : <Register />}></Route>
               <Route path="/profile" element={!token ? <Navigate to="/login" /> : <><Profile/><Header/><Footer/></>}></Route>
               <Route path="/profile/:userId" element={!token ? <Navigate to="/login" /> : <><Profile/><Header/><Footer/></>}></Route>
+              <Route path="/users" element={!token ? <Navigate to="/login" /> : <><Header/><Users/></>}></Route>
           </Routes>
       </Router>
   );
