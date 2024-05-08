@@ -36,9 +36,15 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/")
-    public ResponseEntity<User> updateUser(@Valid @RequestBody User user) {
-        return new ResponseEntity<>(service.update(user), HttpStatus.OK);
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @Valid @RequestBody User user) {
+        user.setId(id);
+        User updatedUser = service.update(user);
+        if (updatedUser != null) {
+            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/")

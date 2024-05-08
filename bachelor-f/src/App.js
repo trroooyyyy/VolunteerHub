@@ -10,6 +10,7 @@ import LogIn from "./components/LogIn";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
 import Users from "./components/Users";
+import EditUser from "./components/EditUser";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
               <Route path="/profile" element={!token ? <Navigate to="/login" /> : <><Profile/><Header/><Footer/></>}></Route>
               <Route path="/profile/:userId" element={!token ? <Navigate to="/login" /> : <><Profile/><Header/><Footer/></>}></Route>
               <Route path="/users" element={!token ? <Navigate to="/login" /> : <><Header/><Users/></>}></Route>
+              <Route path="/edit/:userId" element={!token ? <Navigate to="/login" /> : <EditUser/>}></Route>
           </Routes>
       </Router>
   );

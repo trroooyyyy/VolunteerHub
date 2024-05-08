@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
@@ -19,6 +20,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserServiceImpl implements IUserService {
     private UserRepository repository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public User save(User user) {
@@ -61,16 +63,22 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User update(User user) {
         User existingUser = repository.findById(user.getId()).orElseThrow(NoSuchElementException::new);
+
+
+        if (!existingUser.getLogin().equals(user.getLogin()) && isLoginPresent(user.getLogin())) {
+            throw new IllegalArgumentException("Login is already in use");
+        }
+
         existingUser.setLogin(user.getLogin());
-        existingUser.setPassword(user.getPassword());
+        existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
         existingUser.setEmail(user.getEmail());
-        existingUser.setRole(user.getRole());
         existingUser.setFirstName(user.getFirstName());
         existingUser.setLastName(user.getLastName());
         existingUser.setAvatarUrl(user.getAvatarUrl());
         existingUser.setCountry(user.getCountry());
         existingUser.setDescription(user.getDescription());
         existingUser.setAge(user.getAge());
+        existingUser.setTelephone(user.getTelephone());
         existingUser.setUpdatedAt(LocalDateTime.now());
         return repository.save(existingUser);
     }

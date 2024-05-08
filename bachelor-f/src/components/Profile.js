@@ -82,7 +82,7 @@ const Profile = () => {
         }
     };
     const handleEditUser = async () => {
-
+        navigate(`/edit/${user.id}`)
     }
 
 
