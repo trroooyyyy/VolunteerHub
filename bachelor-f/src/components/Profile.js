@@ -102,9 +102,9 @@ const Profile = () => {
                     <div className="profileDesc">Опис:</div>
                     <div className="profileDescBox"></div>
                     <div className="profileDescText">{user.description}</div>
-                    <div><img className="logoInst" src="/images/Instagram_icon.png.webp" alt="Instagram" /></div>
-                    <div><img className="logoFaceBook" src="/images/Facebook_Logo_2023.png" alt="Instagram" /></div>
-                    <div><img className="logoTg" src="/images/Telegram_alternative_logo.svg.png" alt="Telegram" /></div>
+                    <div><a href={user.instagram}><img className="logoInst" src="/images/Instagram_icon.png.webp" alt="Instagram" /></a></div>
+                    <div><a href={user.facebook}><img className="logoFaceBook" src="/images/Facebook_Logo_2023.png" alt="Facebook" /></a></div>
+                    <div><a href={user.telegram}><img className="logoTg" src="/images/Telegram_alternative_logo.svg.png" alt="Telegram" /></a></div>
                     {viewer && viewer.role === "ROLE_ADMIN" && (
                         <div><img onClick={handleConfirmation} className="trash" src="/images/3687412.png" alt="Delete" />
                         </div>

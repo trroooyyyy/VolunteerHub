@@ -35,6 +35,9 @@ public class User implements UserDetails {
     private String description;
     private Integer age;
     private String telephone;
+    private String instagram;
+    private String telegram;
+    private String facebook;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 

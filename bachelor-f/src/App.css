@@ -1314,11 +1314,11 @@ a{
 
 .formRe{
     position: absolute;
-    width: 834px;
+    width: 794px;
     height: 625px;
     left: 50%;
     top: 50%;
-    margin-left: -417px;
+    margin-left: -402px;
     margin-top: -312.5px;
     box-sizing: border-box;
     border: 1px solid rgb(0, 0, 0);
@@ -2209,4 +2209,510 @@ a{
 }
 .facebookUsers:hover{
     rotate: -30deg;
+}
+
+/* EDITING ------------------------------------ */
+
+.formEdit{
+    position: absolute;
+    width: 794px;
+    height: 951px;
+    left: 50%;
+    top: 50%;
+    margin-left: -402px;
+    margin-top: -475.5px;
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 33px;
+    background: rgb(255, 255, 255);
+}
+.loginLogoEdit{
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    left: 841px;
+    right: -681px;
+    top: 17px;
+    bottom: -17px;
+    border-radius: 13px;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.32);
+    background: rgb(0, 0, 0);
+}
+.loginTextEdit{
+    position: absolute;
+    width: 41px;
+    height: 23px;
+    left: 848px;
+    right: -674px;
+    top: 33px;
+    bottom: -1px;
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    color: white;
+}
+.loginTextLogoEdit{
+    position: absolute;
+    width: 144px;
+    height: 23px;
+    left: 912px;
+    right: -841px;
+    top: 33px;
+    bottom: -1px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 23px;
+    text-align: left;
+}
+.userLoginEdit{
+    position: absolute;
+    width: 59px;
+    height: 23px;
+    left: 733px;
+    right: 2px;
+    top: 166px;
+    bottom: 762px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.editLoginBox{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 618px;
+    right: -112px;
+    top: 197px;
+    bottom: 713px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.userFirstNameEdit{
+    position: absolute;
+    width: 43px;
+    height: 18px;
+    left: 1124px;
+    right: -373px;
+    top: 166px;
+    bottom: 767px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.editFirstNameBox{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 998px;
+    right: -492px;
+    top: 197px;
+    bottom: 713px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.userPasswordEdit{
+    position: absolute;
+    width: 81px;
+    height: 18px;
+    left: 722px;
+    right: -9px;
+    top: 246px;
+    bottom: 687px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.editPasswordBox{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 618px;
+    right: -112px;
+    top: 272px;
+    bottom: 638px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.userLastNameEdit{
+    position: absolute;
+    width: 103px;
+    height: 18px;
+    left: 1094px;
+    right: -403px;
+    top: 246px;
+    bottom: 687px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.editLastNameBox{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 998px;
+    right: -492px;
+    top: 272px;
+    bottom: 638px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+
+}
+.userEmailEdit{
+    position: absolute;
+    width: 63px;
+    height: 18px;
+    left: 731px;
+    right: 0;
+    top: 321px;
+    bottom: 612px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.editEmailBox{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 618px;
+    right: -112px;
+    top: 347px;
+    bottom: 563px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.userCountryEdit{
+    position: absolute;
+    width: 73px;
+    height: 18px;
+    left: 1109px;
+    right: -388px;
+    top: 321px;
+    bottom: 612px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.userAgeEdit{
+    position: absolute;
+    width: 35px;
+    height: 18px;
+    left: 745px;
+    right: 14px;
+    top: 396px;
+    bottom: 537px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.userTelephoneEdit{
+    position: absolute;
+    width: 94px;
+    height: 18px;
+    left: 1098px;
+    right: -398px;
+    top: 396px;
+    bottom: 537px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.editCountryBox{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 998px;
+    right: -492px;
+    top: 347px;
+    bottom: 563px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.editAgeBox{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 618px;
+    right: -112px;
+    top: 422px;
+    bottom: 488px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.editTelephoneBox{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 998px;
+    right: -492px;
+    top: 422px;
+    bottom: 488px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.userDescEdit{
+    position: absolute;
+    width: 57px;
+    height: 23px;
+    left: 924px;
+    right: 922px;
+    top: 476px;
+    bottom: 811px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.editDescriptionBox{
+    position: absolute;
+    width: 581px;
+    height: 79px;
+    left: 662px;
+    right: -449px;
+    top: 507px;
+    bottom: 365px;
+    border-radius: 22px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+
+}
+.userInstagramEdit{
+    position: absolute;
+    width: 141px;
+    height: 23px;
+    left: 882px;
+    right: 880px;
+    top: 609px;
+    bottom: 678px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.userTelegramEdit{
+    position: absolute;
+    width: 132px;
+    height: 23px;
+    left: 886px;
+    right: 885px;
+    top: 689px;
+    bottom: 598px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.userFacebookEdit{
+    position: absolute;
+    width: 136px;
+    height: 23px;
+    left: 884px;
+    right: 883px;
+    top: 769px;
+    bottom: 518px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.userIdEdit{
+    position: absolute;
+    width: 186px;
+    height: 23px;
+    left: 618px;
+    right: 1101px;
+    top: 922px;
+    bottom: 365px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 23px;
+    text-align: left;
+}
+.editInstagramBox{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 808px;
+    right: -302px;
+    top: 640px;
+    bottom: 270px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.editTelegramBox{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 808px;
+    right: -302px;
+    top: 720px;
+    bottom: 190px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.editFacebookBox{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    left: 808px;
+    right: -302px;
+    top: 800px;
+    bottom: 110px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.buttonEdit{
+    position: absolute;
+    width: 122px;
+    height: 38px;
+    left: 891px;
+    right: 890px;
+    top: 870px;
+    bottom: 399px;
+    border-radius: 84px;
+    box-shadow: 0 4px 35px 0 rgba(245, 62, 61, 0.51);
+    background: linear-gradient(to left, rgb(246, 61, 61),rgb(112, 120, 47),rgb(246, 61, 61));
+    border: 0;
+    cursor: pointer;
+    transition: 0.5s;
+    background-size: 200%;
+}
+.buttonEdit:hover{
+    background-position: right;
+
+}
+.textOnButtonEdit{
+    width: 71px;
+    height: 23px;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.logoInstEdit{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    left: 766px;
+    right: 1102px;
+    top: 645px;
+    bottom: 630px;
+}
+.logoTgEdit{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    left: 766px;
+    right: 1102px;
+    top: 725px;
+    bottom: 550px;
+
+}
+.logoFaceBookEdit{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    left: 766px;
+    right: 1102px;
+    top: 805px;
+    bottom: 470px;
 }

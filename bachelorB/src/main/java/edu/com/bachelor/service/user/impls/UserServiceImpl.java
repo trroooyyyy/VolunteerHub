@@ -79,6 +79,9 @@ public class UserServiceImpl implements IUserService {
         existingUser.setDescription(user.getDescription());
         existingUser.setAge(user.getAge());
         existingUser.setTelephone(user.getTelephone());
+        existingUser.setInstagram(user.getInstagram());
+        existingUser.setTelegram(user.getTelegram());
+        existingUser.setFacebook(user.getFacebook());
         existingUser.setUpdatedAt(LocalDateTime.now());
         return repository.save(existingUser);
     }

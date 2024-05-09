@@ -144,7 +144,7 @@ const Register = () => {
                         value={telephone}
                         onChange={(e) => setTelephone(e.target.value)}
                         className="input8Re"
-                        maxLength="27"
+                        maxLength="13"
                     />
                 </div>
                 <button type="submit" className="buttonloginRe"><span className="textOnButtonLogin">Реєстрація</span></button>

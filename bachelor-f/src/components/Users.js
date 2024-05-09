@@ -38,9 +38,9 @@ const Users = () => {
                     <p className="phoneUsers123">Телефон:<br />{user.telephone ? user.telephone : a}</p>
                     <img className="imageUsers" src="/images/avatar_empty@2x.png" alt="" />
                     <p className="loginUsers">{user.login}</p>
-                    <img className="instagramUsers" src="/images/Instagram_icon.png.webp" alt="Instagram" />
-                    <img className="facebookUsers" src="/images/Facebook_Logo_2023.png" alt="Instagram" />
-                    <img className="telegramUsers" src="/images/Telegram_alternative_logo.svg.png" alt="Telegram" />
+                    <a href={user.instagram}><img className="instagramUsers" src="/images/Instagram_icon.png.webp" alt="Instagram" /></a>
+                    <a href={user.facebook}><img className="facebookUsers" src="/images/Facebook_Logo_2023.png" alt="Instagram" /></a>
+                    <a href={user.telegram}><img className="telegramUsers" src="/images/Telegram_alternative_logo.svg.png" alt="Telegram" /></a>
                 </div>
             ))}
         </div>
