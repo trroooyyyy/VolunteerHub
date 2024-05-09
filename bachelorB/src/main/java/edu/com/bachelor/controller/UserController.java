@@ -35,9 +35,26 @@ public class UserController {
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @Valid @RequestBody User user) {
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @Valid @RequestBody User user, @RequestHeader("Authorization") String tokenHeader) {
+        String jwt = tokenHeader.substring(7);
+
+        Optional<User> userOptional = tokenService.getUserByToken(jwt);
+        if (userOptional.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+        User existingUser = service.getOneById(id);
+        if (existingUser == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        if (!userOptional.get().getRole().name().equals("ROLE_ADMIN")) {
+            if (!userOptional.get().getId().equals(existingUser.getId())) {
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
+        }
+
         user.setId(id);
         User updatedUser = service.update(user);
         if (updatedUser != null) {

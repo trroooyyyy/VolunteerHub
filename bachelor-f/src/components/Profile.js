@@ -75,6 +75,7 @@ const Profile = () => {
             navigate('/users')
             if(viewer.login === user.login){
                 localStorage.removeItem('token');
+                navigate('/')
                 setUser(null);
             }
         } catch (error) {

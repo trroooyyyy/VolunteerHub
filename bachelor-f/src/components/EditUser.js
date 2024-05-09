@@ -18,7 +18,10 @@ const EditUser = () => {
     const [instagram, setInstagram] = useState("");
     const [telegram, setTelegram] = useState("");
     const [facebook, setFacebook] = useState("");
+    const [param, setParam] = useState(false);
     const navigate = useNavigate();
+    const [loginChanged, setLoginChanged] = useState(false);
+    const [loginViewer, setLoginViewer] = useState("");
 
     useEffect(() => {
         const getUser = async () => {
@@ -29,7 +32,10 @@ const EditUser = () => {
                     }
                 });
                 if(responseCheck.data.id!==userId && responseCheck.data.role!=="ROLE_ADMIN"){
-                    navigate(`/edit/${responseCheck.data.id}`)
+                    navigate(`/edit/${responseCheck.data.id}`, { replace: true });
+                }
+                if(responseCheck.data.role==="ROLE_ADMIN"){
+                    setLoginViewer(responseCheck.data.login);
                 }
                 if (userId) {
                     const response = await axios.get(`http://localhost:8080/api/user/${userId}`, {
@@ -37,10 +43,15 @@ const EditUser = () => {
                             Authorization: `Bearer ${token}`
                         }
                     });
-                    console.log("Fetching super");
+                    if(responseCheck.data.login===response.data.login){
+                        setParam(true);
+                        setPassword("");
+                    }
+                    else{
+                        setPassword(response.data.password);
+                    }
                     setId(response.data.id);
                     setLogin(response.data.login);
-                    setPassword(response.data.password);
                     setEmail(response.data.email);
                     setFirstName(response.data.firstName);
                     setLastName(response.data.lastName);
@@ -57,8 +68,7 @@ const EditUser = () => {
             }
         };
         getUser();
-    }, [token, userId, navigate]);
-
+    }, [token, userId, navigate, param, loginViewer]);
 
 
     const handleSubmit = async (e) => {
@@ -84,7 +94,14 @@ const EditUser = () => {
                     Authorization: `Bearer ${token}`
                 }
             });
+            console.log(loginChanged)
             console.log("Editing super");
+            if (loginChanged) {
+                localStorage.removeItem('token');
+                navigate('/');
+            } else {
+                navigate(`/profile/${id}`);
+            }
         } catch (error) {
             console.error('Error updating user:', error);
         }
@@ -95,6 +112,10 @@ const EditUser = () => {
         switch (name) {
             case 'login':
                 setLogin(value);
+                if (!loginChanged && param===true) {
+                    alert("Якщо ви зміните свій логін, буде необхідно перезайти в систему.");
+                    setLoginChanged(true);
+                }
                 break;
             case 'password':
                 setPassword(value);
@@ -187,7 +208,9 @@ const EditUser = () => {
                         onChange={handleChange}
                         maxLength={27}
                         required
+                        value={password}
                         className="editPasswordBox"
+                        disabled={!param}
                     />
                 </div>
                 <div>
@@ -246,7 +269,7 @@ const EditUser = () => {
                         name="telephone"
                         value={telephone}
                         onChange={handleChange}
-                        maxLength={13}
+                        maxLength={14}
                         className="editTelephoneBox"
                     />
                 </div>
