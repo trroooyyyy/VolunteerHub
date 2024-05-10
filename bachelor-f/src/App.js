@@ -11,6 +11,7 @@ import Register from "./components/Register";
 import Profile from "./components/Profile";
 import Users from "./components/Users";
 import EditUser from "./components/EditUser";
+import Associations from "./components/Associations";
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
               <Route path="/profile/:userId" element={!token ? <Navigate to="/login" /> : <><Profile/><Header/><Footer/></>}></Route>
               <Route path="/users" element={!token ? <Navigate to="/login" /> : <><Header/><Users/></>}></Route>
               <Route path="/edit/:userId" element={!token ? <Navigate to="/login" /> : <EditUser/>}></Route>
+              <Route path="/associations/" element={!token ? <Navigate to="/login" /> : <><Header/><Associations/></>}></Route>
           </Routes>
       </Router>
   );

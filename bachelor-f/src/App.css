@@ -120,6 +120,14 @@ a{
     top: 105.5px;
     border: 1px solid rgba(0, 0, 0, 0.34);
 }
+.line1Associations{
+    position: absolute;
+    width: 69px;
+    height: 0;
+    left: 974px;
+    top: 105.5px;
+    border: 1px solid rgba(0, 0, 0, 0.34);
+}
 .events{
     position: absolute;
     width: 71.66px;
@@ -149,6 +157,44 @@ a{
     font-weight: 400;
     line-height: 23px;
     text-align: left;
+}
+.associationsP{
+    position: absolute;
+    width: 68.63px;
+    height: 23px;
+    left: 974.76px;
+    right: -172.39px;
+    top: 83px;
+    bottom: -59px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 23px;
+    text-align: left;
+}
+.associations:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.5s;
+}
+
+.associations:hover:after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px;
+    background-color: black;
+    transition: width 0.5s;
 }
 .about{
     position: absolute;
@@ -1264,7 +1310,18 @@ a{
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-
+    z-index: 999;
+}
+.modalAssociation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
 }
 
@@ -1275,6 +1332,17 @@ a{
     border: 1px solid rgb(0, 0, 0);
     width: 219px;
     height: 153px;
+    text-align: center;
+    display: block;
+
+}
+.modal-contentAssociation {
+    background-color: #fff;
+    border-radius: 35px;
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 0, 0);
+    width: 670px;
+    height: 469px;
     text-align: center;
     display: block;
 
@@ -1290,6 +1358,104 @@ a{
     justify-content: center;
     align-items: center;
     padding: 10px;
+}
+.confirmationAssociation{
+    position: absolute;
+    width: 186px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 23px;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 244.5px;
+}
+.nameAssociation{
+    position: absolute;
+    width: 64px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-top: 102px;
+    margin-left: 303px;
+}
+.placeAssociation{
+    position: absolute;
+    width: 63px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-left: 303px;
+    margin-top: 186px;
+}
+.descAssociation{
+    position: absolute;
+    width: 57px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-left: 307px;
+    margin-top: 270px;
+}
+.nameAssociationInput{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    margin-top: 135px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-left: -144px;
+}
+.descriptionAssociationInput{
+    position: absolute;
+    width: 581px;
+    height: 79px;
+    border-radius: 22px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background: rgb(217, 217, 217);
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-top: 303px;
+    margin-left: -290.5px;
+}
+.placeAssociationInput{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    margin-top: 219px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-left: -144px;
 
 }
 .modal-content button {
@@ -1300,6 +1466,9 @@ a{
     border: none;
     background: rgb(245, 62, 61);
     color: #fff;
+    font-family: Montserrat, sans-serif;
+    text-align: center;
+    font-weight: 400;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -1307,7 +1476,48 @@ a{
 .modal-content button:hover {
     background-color: rgb(249, 168, 167);
 }
-
+.buttonAssociationYes{
+    position: absolute;
+    width: 85px;
+    border: none;
+    height: 26px;
+    border-radius: 84px;
+    box-shadow: 0 4px 35px 0 rgba(245, 62, 61, 0.51);
+    background: rgb(245, 62, 61);
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: -87.5px;
+    margin-top: 415px;
+}
+.buttonAssociationNo{
+    position: absolute;
+    width: 85px;
+    border: none;
+    height: 26px;
+    border-radius: 84px;
+    box-shadow: 0 4px 35px 0 rgba(245, 62, 61, 0.51);
+    background: rgb(245, 62, 61);
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: -82.5px;
+    margin-top: 415px;
+}
+.buttonAssociationYes:hover {
+    background-color: rgb(249, 168, 167);
+}
+.buttonAssociationNo:hover {
+    background-color: rgb(249, 168, 167);
+}
 
 
 /* Registration -------------------------------------- */
@@ -2715,4 +2925,36 @@ a{
     right: 1102px;
     top: 805px;
     bottom: 470px;
+}
+
+/* ASSOCIATIONS ------------------------ */
+
+.buttonCreateAssociation{
+    position: absolute;
+    width: 147px;
+    height: 47px;
+    left: 50%;
+    margin-left: -73.5px;
+    top: 194px;
+    border-radius: 50px;
+    background: rgb(0, 0, 0);
+    transition: .5s ease;
+    cursor: pointer;
+}
+.textOnCreateAssociation{
+    width: 80px;
+    height: 39px;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    text-align: center;
+}
+.buttonCreateAssociation:hover{
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.64);
+    background: rgb(255, 255, 255);
+}
+.buttonCreateAssociation:hover .textOnCreateAssociation {
+    color: black;
 }

@@ -1,6 +1,7 @@
 package edu.com.bachelor.service.association.impls;
 
 import edu.com.bachelor.model.Association;
+import edu.com.bachelor.model.User;
 import edu.com.bachelor.repository.AssociationRepository;
 import edu.com.bachelor.service.association.IAssociationService;
 import lombok.AllArgsConstructor;
@@ -16,10 +17,14 @@ public class AssociationServiceImpl implements IAssociationService {
 
     @Override
     public Association save(Association association) {
-        if(association.getId() != null){
+        if (association.getId() != null) {
             return null;
         }
         association.setCreatedAt(LocalDateTime.now());
+
+        User owner = association.getOwner();
+        association.getUsers().add(owner);
+
         return repository.save(association);
     }
 

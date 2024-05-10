@@ -36,7 +36,7 @@ public class AssociationController {
     public ResponseEntity<Association> updateAssociation(@Valid @RequestBody Association association) {
         return new ResponseEntity<>(service.update(association), HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @PostMapping("/")
     public ResponseEntity<Association> saveAssociation(@RequestBody Association association)  {
         Association savedAssociation = service.save(association);

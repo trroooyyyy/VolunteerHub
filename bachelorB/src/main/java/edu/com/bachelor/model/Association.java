@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,12 +21,15 @@ public class Association {
     private String name;
     private String description;
     private String place;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User owner;
     @ManyToMany
     @JoinTable(
             name = "association_user",
             joinColumns = @JoinColumn(name = "association_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> users;
+    private List<User> users = new ArrayList<>();
     @OneToMany
     @JoinColumn(name = "association_id")
     private List<Event> events;
