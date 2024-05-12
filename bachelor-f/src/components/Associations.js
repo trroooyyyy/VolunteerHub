@@ -8,24 +8,34 @@ const Associations = () => {
     const [description, setDescription] = useState('');
     const token = localStorage.getItem('token');
     const [user, setUser] = useState({});
-
+    const [associations, setAssociations] = useState([]);
 
     useEffect(() => {
-        const getUser = async () => {
+        const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/user/t', {
+                const associationResponse = await axios.get('http://localhost:8080/api/association/', {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
-                setUser(response.data);
+                setAssociations(associationResponse.data);
+                console.log("Getting");
+                const userResponse = await axios.get('http://localhost:8080/api/user/t', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                setUser(userResponse.data);
             } catch (error) {
-                console.error('Error fetching user:', error);
+                console.error('Error fetching data:', error);
             }
         };
 
-        getUser();
+        if (token) {
+            fetchData();
+        }
     }, [token]);
+
 
     const openModal = () => {
         setName('');
@@ -64,12 +74,30 @@ const Associations = () => {
     };
 
 
+    function handleDelete() {
+
+    }
+
+    function handleEdit() {
+
+    }
 
     return (
         <div>
             <button className="buttonCreateAssociation" onClick={openModal}><span className="textOnCreateAssociation">Створити спілку</span></button>
-
-
+            <div className="mainTableAssociations">
+            {associations.map(association => (
+                <div key={association.id} className="relativeDivAssociations">
+                    <p className="associationName">{association.name}</p>
+                    {(user.role === "ROLE_ADMIN" || user.id === association.owner.id) && (
+                        <div>
+                            <img onClick={handleDelete} className="trashAssociation" src="/images/3687412.png" alt="Delete" />
+                            <img onClick={handleEdit} className="editAssociation" src="/images/8862294.png" alt="Edit"/>
+                        </div>
+                    )}
+                </div>
+            ))}
+            </div>
             {showModal && (
                 <div className="modalAssociation">
                     <div className="modal-contentAssociation">
@@ -114,7 +142,6 @@ const Associations = () => {
                         <button className="buttonAssociationYes" onClick={createAssociation}>Save</button>
                         <button className="buttonAssociationNo" onClick={closeModal}>Exit</button>
                     </div>
-
                 </div>
             )}
 

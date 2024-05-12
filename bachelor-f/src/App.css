@@ -2959,4 +2959,65 @@ a{
     color: black;
 }
 
-
+.mainTableAssociations{
+    position: absolute;
+    width: 1170px;
+    height: 1455px;
+    left: 50%;
+    top: 284px;
+    padding-top: 38px;
+    margin-left: -585px;
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 38px;
+    box-shadow: 0 4px 36px 0 rgba(0, 0, 0, 0.55);
+    background: rgb(255, 255, 255);
+}
+.relativeDivAssociations{
+    position: relative;
+    width: 1168px;
+    height: 273px;
+    box-sizing: border-box;
+    border-top: 1px solid rgb(0, 0, 0);
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
+}
+.associationName{
+    position: absolute;
+    width: 345px;
+    height: 23px;
+    margin-top: 20px;
+    margin-left: 419px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 23px;
+    text-align: center;
+}
+.trashAssociation{
+    position: absolute;
+    width: 31px;
+    height: 31px;
+    margin-top: 18px;
+    margin-left: 1037px;
+    transition: .5s;
+    cursor: pointer;
+}
+.trashAssociation:hover{
+    rotate: -30deg;
+}
+.editAssociation{
+    position: absolute;
+    width: 31px;
+    height: 31px;
+    margin-top: 18px;
+    margin-left: 1000px;
+    transition: .5s;
+    cursor: pointer;
+}
+.editAssociation:hover{
+    rotate: -30deg;
+}
