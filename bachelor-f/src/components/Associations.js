@@ -37,6 +37,10 @@ const Associations = () => {
     }, [token]);
 
 
+    const isMember = (association) => {
+        return association.users.some(member => member.id === user.id);
+    };
+
     const openModal = () => {
         setName('');
         setPlace('');
@@ -68,6 +72,7 @@ const Associations = () => {
                 }
             });
             closeModal();
+            window.location.reload();
         } catch (error) {
             console.error('Error updating user:', error);
         }
@@ -79,6 +84,14 @@ const Associations = () => {
     }
 
     function handleEdit() {
+
+    }
+
+    function handleJoin() {
+
+    }
+
+    function handleExit() {
 
     }
 
@@ -95,6 +108,17 @@ const Associations = () => {
                             <img onClick={handleEdit} className="editAssociation" src="/images/8862294.png" alt="Edit"/>
                         </div>
                     )}
+                    <p className="creatorAssociation"><u style={{ fontWeight: 600 }}>Засновник:</u><br/><a href={`/profile/${association.owner.id}`}>{association.owner.login}</a></p>
+                    <p className="descriptionAssociation"><u style={{ fontWeight: 600 }}>Опис:</u><br/>{association.description}</p>
+                    <p className="userAssociation"><u style={{ fontWeight: 600 }}>Користувачі</u></p>
+                    <p className="eventAssociation"><u style={{ fontWeight: 600 }}>Заходи</u></p>
+                    {isMember(association) ? (
+                        <img onClick={() => handleExit(association.id)} className="exitAssociation" src="/images/free-icon-remove-1828843.png" alt="Вийти" />
+                    ) : (
+                        <img onClick={() => handleJoin(association.id)} className="joinAssociation" src="/images/free-icon-check-mark-4225683.png" alt="Приєднатися" />
+                    )}
+                    <img className="positionLocate" src="/images/free-icon-location-pin-1201684.png" alt="Position" />
+                    <p className="positionAssociationLocate">{association.place}</p>
                 </div>
             ))}
             </div>
@@ -123,7 +147,7 @@ const Associations = () => {
                                 onChange={(e) => setPlace(e.target.value)}
                                 className="placeAssociationInput"
                                 required
-                                maxLength="27"
+                                maxLength="21"
                             />
                         </div>
                         <p className="descAssociation">Опис:</p>
@@ -134,7 +158,7 @@ const Associations = () => {
                                 name="description"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
-                                maxLength={183}
+                                maxLength={133}
                                 className="descriptionAssociationInput"
                                 required
                             />

@@ -2989,7 +2989,8 @@ a{
     width: 345px;
     height: 23px;
     margin-top: 20px;
-    margin-left: 419px;
+    left: 50%;
+    margin-left: -172.5px;
     color: rgb(0, 0, 0);
     font-family: Montserrat, sans-serif;
     font-size: 19px;
@@ -3020,4 +3021,109 @@ a{
 }
 .editAssociation:hover{
     rotate: -30deg;
+}
+
+.creatorAssociation{
+    position: absolute;
+    width: 249px;
+    height: 46px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    margin-top: 98px;
+    margin-left: 100px;
+}
+.descriptionAssociation{
+    position: absolute;
+    width: 418px;
+    height: 92px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-top: 98px;
+    left: 50%;
+    margin-left: -209px;
+}
+.userAssociation{
+    position: absolute;
+    width: 121px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    margin-top: 98px;
+    margin-left: 947px;
+}
+.eventAssociation{
+    position: absolute;
+    width: 71px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    margin-left: 972px;
+    margin-top: 167px;
+}
+.joinAssociation{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    margin-top: 218px;
+    left: 50%;
+    margin-left: -17.5px;
+    transition: .5s;
+    cursor: pointer;
+}
+.joinAssociation:hover{
+    rotate: -30deg;
+}
+.exitAssociation{
+    position: absolute;
+    width: 31px;
+    height: 31px;
+    margin-top: 220px;
+    left: 50%;
+    margin-left: -15.5px;
+    transition: .5s;
+    cursor: pointer;
+}
+.exitAssociation:hover{
+    rotate: -30deg;
+}
+.positionLocate{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    margin-left: 100px;
+    margin-top: 223px;
+    transition: .5s;
+    cursor: pointer;
+}
+.positionLocate:hover{
+    rotate: -30deg;
+}
+.positionAssociationLocate{
+    position: absolute;
+    width: 237px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    margin-top:230px;
+    margin-left: 130px;
 }
