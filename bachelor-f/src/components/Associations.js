@@ -9,6 +9,8 @@ const Associations = () => {
     const token = localStorage.getItem('token');
     const [user, setUser] = useState({});
     const [associations, setAssociations] = useState([]);
+    const [showModalDelete, setShowModalDelete] = useState(false);
+    const [idDeleted, setIdDeleted] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -39,6 +41,15 @@ const Associations = () => {
 
     const isMember = (association) => {
         return association.users.some(member => member.id === user.id);
+    };
+
+    const openModalDelete = (idDeleted) => {
+        setShowModalDelete(true);
+        setIdDeleted(idDeleted)
+    };
+
+    const closeModalDelete = () => {
+        setShowModalDelete(false);
     };
 
     const openModal = () => {
@@ -79,20 +90,68 @@ const Associations = () => {
     };
 
 
-    function handleDelete() {
+    function handleDelete(associationId) {
+        const deleteAssociation = async () => {
+            try {
+                const response = await axios.delete(`http://localhost:8080/api/association/${associationId}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                console.log(response);
+                window.location.reload();
+            } catch (error) {
+                console.error('Помилка при видаленні спілки:', error);
+            }
+        };
 
+        deleteAssociation();
     }
+
 
     function handleEdit() {
 
     }
 
-    function handleJoin() {
+    function handleJoin(associationId) {
 
+        const joinAssociation = async () => {
+            try {
+                const response = await axios.post(`http://localhost:8080/api/association/${associationId}/join`, {id: user.id, login: user.login, role: user.role}, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                console.log(response)
+                window.location.reload();
+
+            } catch (error) {
+                console.error('Помилка при приєднанні до спілки:', error);
+            }
+        };
+
+        joinAssociation();
     }
 
-    function handleExit() {
 
+    function handleExit(associationId) {
+
+        const exitAssociation = async () => {
+            try {
+                const response = await axios.post(`http://localhost:8080/api/association/${associationId}/exit`, {id: user.id, login: user.login, role: user.role}, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                console.log(response)
+                window.location.reload();
+
+            } catch (error) {
+                console.error('Помилка при виході зі спілки:', error);
+            }
+        };
+
+        exitAssociation();
     }
 
     return (
@@ -101,10 +160,11 @@ const Associations = () => {
             <div className="mainTableAssociations">
             {associations.map(association => (
                 <div key={association.id} className="relativeDivAssociations">
+
                     <p className="associationName">{association.name}</p>
                     {(user.role === "ROLE_ADMIN" || user.id === association.owner.id) && (
                         <div>
-                            <img onClick={handleDelete} className="trashAssociation" src="/images/3687412.png" alt="Delete" />
+                            <img onClick={() => openModalDelete(association.id)} className="trashAssociation" src="/images/3687412.png" alt="Delete" />
                             <img onClick={handleEdit} className="editAssociation" src="/images/8862294.png" alt="Edit"/>
                         </div>
                     )}
@@ -120,8 +180,18 @@ const Associations = () => {
                     <img className="positionLocate" src="/images/free-icon-location-pin-1201684.png" alt="Position" />
                     <p className="positionAssociationLocate">{association.place}</p>
                 </div>
+
             ))}
             </div>
+            {showModalDelete && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <p className="confirmation">Ви впевнені, що хочете видалити цю спілку?</p>
+                        <button onClick={() => handleDelete(idDeleted)}>Так</button>
+                        <button onClick={closeModalDelete}>Ні</button>
+                    </div>
+                </div>
+            )}
             {showModal && (
                 <div className="modalAssociation">
                     <div className="modal-contentAssociation">
@@ -168,6 +238,7 @@ const Associations = () => {
                     </div>
                 </div>
             )}
+
 
         </div>
     );
