@@ -3,6 +3,7 @@ import axios from "axios";
 
 const Associations = () => {
     const [showModal, setShowModal] = useState(false);
+    const [showModalEdit, setShowModalEdit] = useState(false);
     const [name, setName] = useState('');
     const [place, setPlace] = useState('');
     const [description, setDescription] = useState('');
@@ -11,6 +12,13 @@ const Associations = () => {
     const [associations, setAssociations] = useState([]);
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [idDeleted, setIdDeleted] = useState(0);
+    const [showModalExit, setShowModalExit] = useState(false);
+    const [exitFrom, setExitFrom] = useState(0);
+    const [idEdit, setIdEdit] = useState(0);
+    const [nameEdit, setNameEdit] = useState("");
+    const [placeEdit, setPlaceEdit] = useState("");
+    const [descriptionEdit, setDescriptionEdit] = useState("");
+    const [usersEdit, setUsersEdit] = useState([{}]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -52,6 +60,14 @@ const Associations = () => {
         setShowModalDelete(false);
     };
 
+    const openModalExit = (exitFrom) => {
+        setShowModalExit(true);
+        setExitFrom(exitFrom);
+    }
+    const closeModalExit = () => {
+        setShowModalExit(false);
+    }
+
     const openModal = () => {
         setName('');
         setPlace('');
@@ -60,9 +76,29 @@ const Associations = () => {
     };
 
 
+    const closeModalEdit = () => {
+        setShowModalEdit(false);
+    };
+    const openModalEdit = (association) => {
+        setIdEdit(association.id);
+        setNameEdit(association.name);
+        setPlaceEdit(association.place);
+        setDescriptionEdit(association.description);
+        setUsersEdit(association.users.map(user => ({
+            id: user.id,
+            login: user.login,
+            role: user.role
+        })));
+        setShowModalEdit(true);
+    };
+
+
+
+
     const closeModal = () => {
         setShowModal(false);
     };
+
 
     const createAssociation= async (e) => {
         e.preventDefault();
@@ -109,9 +145,28 @@ const Associations = () => {
     }
 
 
-    function handleEdit() {
-
-    }
+    const handleEdit = async (e) => {
+        e.preventDefault();
+        const userData = {
+            id: idEdit,
+            name: nameEdit,
+            place: placeEdit,
+            description: descriptionEdit,
+            users: usersEdit
+        };
+        try {
+            await axios.put(`http://localhost:8080/api/association/${idEdit}`, userData, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            console.log("Editing super");
+            setShowModalEdit(false);
+            window.location.reload();
+        } catch (error) {
+            console.error('Error updating associations:', error);
+        }
+    };
 
     function handleJoin(associationId) {
 
@@ -154,6 +209,7 @@ const Associations = () => {
         exitAssociation();
     }
 
+
     return (
         <div>
             <button className="buttonCreateAssociation" onClick={openModal}><span className="textOnCreateAssociation">Створити спілку</span></button>
@@ -165,21 +221,22 @@ const Associations = () => {
                     {(user.role === "ROLE_ADMIN" || user.id === association.owner.id) && (
                         <div>
                             <img onClick={() => openModalDelete(association.id)} className="trashAssociation" src="/images/3687412.png" alt="Delete" />
-                            <img onClick={handleEdit} className="editAssociation" src="/images/8862294.png" alt="Edit"/>
+                            <img onClick={() => openModalEdit(association)} className="editAssociation" src="/images/8862294.png" alt="Edit"/>
                         </div>
                     )}
-                    <p className="creatorAssociation"><u style={{ fontWeight: 600 }}>Засновник:</u><br/><a href={`/profile/${association.owner.id}`}>{association.owner.login}</a></p>
+                    <p className="creatorAssociation"><u style={{ fontWeight: 600 }}>Засновник:</u><br/><a className="ownerideffect" href={`/profile/${association.owner.id}`}>{association.owner.login}</a></p>
                     <p className="descriptionAssociation"><u style={{ fontWeight: 600 }}>Опис:</u><br/>{association.description}</p>
-                    <p className="userAssociation"><u style={{ fontWeight: 600 }}>Користувачі</u></p>
+                    <p className="userAssociation"><u style={{ fontWeight: 600 }}><a href={`/associations/${association.id}/users`}>Користувачі</a></u></p>
                     <p className="eventAssociation"><u style={{ fontWeight: 600 }}>Заходи</u></p>
                     {isMember(association) ? (
-                        <img onClick={() => handleExit(association.id)} className="exitAssociation" src="/images/free-icon-remove-1828843.png" alt="Вийти" />
+                        <img onClick={user.id === association.owner.id ? () => openModalExit(association.id) : () => handleExit(association.id)} className="exitAssociation" src="/images/free-icon-remove-1828843.png" alt="Вийти" />
                     ) : (
                         <img onClick={() => handleJoin(association.id)} className="joinAssociation" src="/images/free-icon-check-mark-4225683.png" alt="Приєднатися" />
                     )}
                     <img className="positionLocate" src="/images/free-icon-location-pin-1201684.png" alt="Position" />
                     <p className="positionAssociationLocate">{association.place}</p>
                 </div>
+
 
             ))}
             </div>
@@ -189,6 +246,15 @@ const Associations = () => {
                         <p className="confirmation">Ви впевнені, що хочете видалити цю спілку?</p>
                         <button onClick={() => handleDelete(idDeleted)}>Так</button>
                         <button onClick={closeModalDelete}>Ні</button>
+                    </div>
+                </div>
+            )}
+            {showModalExit && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <p className="confirmation">Якщо ви покинете спілку, то вона буде видалена.</p>
+                        <button onClick={() => handleExit(exitFrom)}>Ок</button>
+                        <button onClick={closeModalExit}>Вийти</button>
                     </div>
                 </div>
             )}
@@ -235,6 +301,52 @@ const Associations = () => {
                         </div>
                         <button className="buttonAssociationYes" onClick={createAssociation}>Save</button>
                         <button className="buttonAssociationNo" onClick={closeModal}>Exit</button>
+                    </div>
+                </div>
+            )}
+            {showModalEdit && (
+                <div className="modalAssociation">
+                    <div className="modal-contentAssociation">
+                        <p className="confirmationAssociation">Редагування спілки ID{idEdit}</p>
+                        <p className="nameAssociation">Назва:</p>
+                        <div>
+                            <input
+                                type="text"
+                                id="name"
+                                value={nameEdit}
+                                onChange={(e) => setNameEdit(e.target.value)}
+                                className="nameAssociationInput"
+                                required
+                                maxLength="50"
+                            />
+                        </div>
+                        <p className="placeAssociation">Місце:</p>
+                        <div>
+                            <input
+                                type="text"
+                                id="place"
+                                value={placeEdit}
+                                onChange={(e) => setPlaceEdit(e.target.value)}
+                                className="placeAssociationInput"
+                                required
+                                maxLength="21"
+                            />
+                        </div>
+                        <p className="descAssociation">Опис:</p>
+                        <div>
+                            <input
+                                type="text"
+                                id="description"
+                                name="description"
+                                value={descriptionEdit}
+                                maxLength={133}
+                                onChange={(e) => setDescriptionEdit(e.target.value)}
+                                className="descriptionAssociationInput"
+                                required
+                            />
+                        </div>
+                        <button className="buttonAssociationYes" onClick={handleEdit}>Save</button>
+                        <button className="buttonAssociationNo" onClick={closeModalEdit}>Exit</button>
                     </div>
                 </div>
             )}

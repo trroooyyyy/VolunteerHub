@@ -95,5 +95,6 @@ public class UserServiceImpl implements IUserService {
     public Optional<User> getUserByLogin(String login) throws UsernameNotFoundException {
         return repository.findByLogin(login);
     }
+
 }
 

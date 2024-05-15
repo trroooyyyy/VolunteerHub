@@ -3,6 +3,7 @@ package edu.com.bachelor.controller;
 import edu.com.bachelor.model.Association;
 import edu.com.bachelor.model.User;
 import edu.com.bachelor.service.association.impls.AssociationServiceImpl;
+import edu.com.bachelor.service.user.impls.UserServiceImpl;
 import edu.com.bachelor.token.TokenService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -19,10 +20,17 @@ import java.util.Optional;
 public class AssociationController {
     private final AssociationServiceImpl service;
     private final TokenService tokenService;
+    private final UserServiceImpl userService;
 
     @GetMapping("/")
     public ResponseEntity<List<Association>> getAllAssociations() {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/users")
+    public ResponseEntity<List<User>> getUsersByAssociationId(@PathVariable("id") Long associationId) {
+        List<User> users = service.getUsersByAssociationId(associationId);
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -53,11 +61,36 @@ public class AssociationController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/")
-    public ResponseEntity<Association> updateAssociation(@Valid @RequestBody Association association) {
-        return new ResponseEntity<>(service.update(association), HttpStatus.OK);
+    @PutMapping("/{id}")
+    public ResponseEntity<Association> updateAssociation(@PathVariable Long id, @Valid @RequestBody Association association, @RequestHeader("Authorization") String tokenHeader) {
+        String jwt = tokenHeader.substring(7);
+
+        Optional<User> userOptional = tokenService.getUserByToken(jwt);
+        if (userOptional.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+        Association existingAssociation = service.getOneById(id);
+        if (existingAssociation == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        User currentUser = userOptional.get();
+        if (!currentUser.getRole().name().equals("ROLE_ADMIN")) {
+            if (!currentUser.getId().equals(existingAssociation.getOwner().getId())) {
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
+        }
+
+        association.setId(id);
+        Association updatedAssociation = service.update(association);
+        if (updatedAssociation != null) {
+            return new ResponseEntity<>(updatedAssociation, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
+
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @PostMapping("/")
     public ResponseEntity<Association> saveAssociation(@RequestBody Association association)  {
@@ -92,6 +125,37 @@ public class AssociationController {
                 return new ResponseEntity<>(updatedAssociation, HttpStatus.OK);
             }
         }
+    }
+    @DeleteMapping("/{id}/user/{userId}")
+    public ResponseEntity<HttpStatus> deleteUserFromAssociation(@PathVariable Long id, @PathVariable Long userId, @RequestHeader("Authorization") String tokenHeader) {
+        String jwt = tokenHeader.substring(7);
+
+        Optional<User> userOptional = tokenService.getUserByToken(jwt);
+        if (userOptional.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+        Association existingAssociation = service.getOneById(id);
+        if (existingAssociation == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        if (!userOptional.get().getRole().name().equals("ROLE_ADMIN")) {
+            if (!userOptional.get().getId().equals(existingAssociation.getOwner().getId())) {
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
+        }
+
+
+        User userToDelete = userService.getOneById(userId);
+        if (userToDelete == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        existingAssociation.getUsers().removeIf(u -> u.getId().equals(userToDelete.getId()));
+        service.update(existingAssociation);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

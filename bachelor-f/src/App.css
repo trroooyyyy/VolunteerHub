@@ -2372,6 +2372,17 @@ a{
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 
 }
+.imageUsersIfNotOwner{
+    position: absolute;
+    width: 39px;
+    height: 39px;
+    margin-left: 31px;
+    margin-top: 46px;
+    transition: .5s;
+}
+.imageUsersIfNotOwner:hover{
+    rotate: -15deg;
+}
 .loginUsers{
     position: absolute;
     width: 102px;
@@ -2384,6 +2395,10 @@ a{
     font-weight: 600;
     line-height: 23px;
     text-align: left;
+    transition: all .3s ease-in-out;
+}
+.loginUsers:hover{
+    color: rgb(244, 67, 54);
 }
 .instagramUsers{
     position: absolute;
@@ -3060,7 +3075,20 @@ a{
     text-align: left;
     margin-top: 98px;
     margin-left: 947px;
+    transition: all 0.3s ease-in-out;
 }
+.userAssociation:hover{
+    rotate: -5deg;
+
+}
+.ownerideffect{
+    transition: all .5s ease-in-out;
+}
+.ownerideffect:hover {
+    color: rgb(244, 67, 54);
+}
+
+
 .eventAssociation{
     position: absolute;
     width: 71px;

@@ -54,4 +54,7 @@ public class AssociationServiceImpl implements IAssociationService {
         existingAssociation.setUpdatedAt(LocalDateTime.now());
         return repository.save(existingAssociation);
     }
+    public List<User> getUsersByAssociationId(Long associationId) {
+        return repository.findUsersByAssociationId(associationId);
+    }
 }

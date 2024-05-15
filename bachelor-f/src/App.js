@@ -37,6 +37,7 @@ function App() {
               <Route path="/users" element={!token ? <Navigate to="/login" /> : <><Header/><Users/></>}></Route>
               <Route path="/edit/:userId" element={!token ? <Navigate to="/login" /> : <EditUser/>}></Route>
               <Route path="/associations/" element={!token ? <Navigate to="/login" /> : <><Header/><Associations/></>}></Route>
+              <Route path="associations/:associationId/users" element={!token ? <Navigate to="/login" /> : <><Header/><Users/></>}></Route>
           </Routes>
       </Router>
   );
