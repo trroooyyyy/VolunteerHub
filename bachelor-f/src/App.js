@@ -12,6 +12,7 @@ import Profile from "./components/Profile";
 import Users from "./components/Users";
 import EditUser from "./components/EditUser";
 import Associations from "./components/Associations";
+import Events from "./components/Events";
 
 
 function App() {
@@ -37,7 +38,8 @@ function App() {
               <Route path="/users" element={!token ? <Navigate to="/login" /> : <><Header/><Users/></>}></Route>
               <Route path="/edit/:userId" element={!token ? <Navigate to="/login" /> : <EditUser/>}></Route>
               <Route path="/associations/" element={!token ? <Navigate to="/login" /> : <><Header/><Associations/></>}></Route>
-              <Route path="associations/:associationId/users" element={!token ? <Navigate to="/login" /> : <><Header/><Users/></>}></Route>
+              <Route path="/associations/:associationId/users" element={!token ? <Navigate to="/login" /> : <><Header/><Users/></>}></Route>
+              <Route path="/events" element={!token ? <Navigate to="/login" /> : <><Header/><Events/></>}></Route>
           </Routes>
       </Router>
   );

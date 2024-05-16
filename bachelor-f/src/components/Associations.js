@@ -19,6 +19,7 @@ const Associations = () => {
     const [placeEdit, setPlaceEdit] = useState("");
     const [descriptionEdit, setDescriptionEdit] = useState("");
     const [usersEdit, setUsersEdit] = useState([{}]);
+    const [showZapovnPolya, setShowZapovnPolya] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -47,6 +48,13 @@ const Associations = () => {
     }, [token]);
 
 
+    const openZapovnPolya = () => {
+        setShowZapovnPolya(true);
+    };
+
+    const closeZapovnPolya = () => {
+        setShowZapovnPolya(false);
+    };
     const isMember = (association) => {
         return association.users.some(member => member.id === user.id);
     };
@@ -101,6 +109,10 @@ const Associations = () => {
 
 
     const createAssociation= async (e) => {
+        if (!name || !place || !description) {
+            openZapovnPolya();
+            return;
+        }
         e.preventDefault();
         const association = {
             name: name,
@@ -121,7 +133,7 @@ const Associations = () => {
             closeModal();
             window.location.reload();
         } catch (error) {
-            console.error('Error updating user:', error);
+            console.error('Error adding association:', error);
         }
     };
 
@@ -146,6 +158,10 @@ const Associations = () => {
 
 
     const handleEdit = async (e) => {
+        if (!nameEdit || !placeEdit || !descriptionEdit) {
+            openZapovnPolya();
+            return;
+        }
         e.preventDefault();
         const userData = {
             id: idEdit,
@@ -258,6 +274,14 @@ const Associations = () => {
                     </div>
                 </div>
             )}
+            {showZapovnPolya && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <p className="confirmation">Ви повинні заповнити усі поля.</p>
+                        <button onClick={closeZapovnPolya}>Ок</button>
+                    </div>
+                </div>
+            )}
             {showModal && (
                 <div className="modalAssociation">
                     <div className="modal-contentAssociation">
@@ -270,8 +294,7 @@ const Associations = () => {
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 className="nameAssociationInput"
-                                required
-                                maxLength="50"
+                                maxLength="30"
                             />
                         </div>
                         <p className="placeAssociation">Місце:</p>
@@ -282,7 +305,6 @@ const Associations = () => {
                                 value={place}
                                 onChange={(e) => setPlace(e.target.value)}
                                 className="placeAssociationInput"
-                                required
                                 maxLength="21"
                             />
                         </div>
@@ -296,7 +318,6 @@ const Associations = () => {
                                 onChange={(e) => setDescription(e.target.value)}
                                 maxLength={133}
                                 className="descriptionAssociationInput"
-                                required
                             />
                         </div>
                         <button className="buttonAssociationYes" onClick={createAssociation}>Save</button>
@@ -316,8 +337,7 @@ const Associations = () => {
                                 value={nameEdit}
                                 onChange={(e) => setNameEdit(e.target.value)}
                                 className="nameAssociationInput"
-                                required
-                                maxLength="50"
+                                maxLength="30"
                             />
                         </div>
                         <p className="placeAssociation">Місце:</p>
@@ -328,7 +348,6 @@ const Associations = () => {
                                 value={placeEdit}
                                 onChange={(e) => setPlaceEdit(e.target.value)}
                                 className="placeAssociationInput"
-                                required
                                 maxLength="21"
                             />
                         </div>
@@ -342,7 +361,6 @@ const Associations = () => {
                                 maxLength={133}
                                 onChange={(e) => setDescriptionEdit(e.target.value)}
                                 className="descriptionAssociationInput"
-                                required
                             />
                         </div>
                         <button className="buttonAssociationYes" onClick={handleEdit}>Save</button>

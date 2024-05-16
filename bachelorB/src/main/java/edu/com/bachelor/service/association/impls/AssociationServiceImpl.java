@@ -50,11 +50,14 @@ public class AssociationServiceImpl implements IAssociationService {
         existingAssociation.setDescription(association.getDescription());
         existingAssociation.setPlace(association.getPlace());
         existingAssociation.setUsers(association.getUsers());
-        existingAssociation.setEvents(association.getEvents());
         existingAssociation.setUpdatedAt(LocalDateTime.now());
         return repository.save(existingAssociation);
     }
     public List<User> getUsersByAssociationId(Long associationId) {
         return repository.findUsersByAssociationId(associationId);
+    }
+
+    public List<Association> getAssociationsByOwnerId(Long ownerId) {
+        return repository.findByOwnerId(ownerId);
     }
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
+import users from "./Users";
 
 const EditUser = () => {
     const token = localStorage.getItem('token');
@@ -22,6 +23,7 @@ const EditUser = () => {
     const navigate = useNavigate();
     const [loginChanged, setLoginChanged] = useState(false);
     const [loginViewer, setLoginViewer] = useState("");
+    const [loginStart, setLoginStart] = useState("");
 
     useEffect(() => {
         const getUser = async () => {
@@ -52,6 +54,7 @@ const EditUser = () => {
                     }
                     setId(response.data.id);
                     setLogin(response.data.login);
+                    setLoginStart(response.data.login);
                     setEmail(response.data.email);
                     setFirstName(response.data.firstName);
                     setLastName(response.data.lastName);
@@ -96,7 +99,7 @@ const EditUser = () => {
             });
             console.log(loginChanged)
             console.log("Editing super");
-            if (loginChanged) {
+            if (loginChanged && loginStart!==login) {
                 localStorage.removeItem('token');
                 navigate('/');
             } else {

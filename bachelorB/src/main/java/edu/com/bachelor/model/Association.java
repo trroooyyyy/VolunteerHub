@@ -30,9 +30,6 @@ public class Association {
             joinColumns = @JoinColumn(name = "association_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> users = new ArrayList<>();
-    @OneToMany
-    @JoinColumn(name = "association_id")
-    private List<Event> events;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

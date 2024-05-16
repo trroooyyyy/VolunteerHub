@@ -12,4 +12,6 @@ public interface AssociationRepository extends JpaRepository<Association, Long> 
     @Query("SELECT au FROM Association a JOIN a.users au WHERE a.id = ?1")
     List<User> findUsersByAssociationId(Long associationId);
 
+    List<Association> findByOwnerId(Long ownerId);
+
 }

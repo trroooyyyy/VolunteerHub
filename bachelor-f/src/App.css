@@ -122,9 +122,17 @@ a{
 }
 .line1Associations{
     position: absolute;
-    width: 69px;
+    width: 68px;
     height: 0;
-    left: 974px;
+    left: 975px;
+    top: 105.5px;
+    border: 1px solid rgba(0, 0, 0, 0.34);
+}
+.line1Events{
+    position: absolute;
+    width: 72px;
+    height: 0;
+    left: 829px;
     top: 105.5px;
     border: 1px solid rgba(0, 0, 0, 0.34);
 }
@@ -140,6 +148,44 @@ a{
     font-family: Montserrat, sans-serif;
     font-size: 19px;
     font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.events:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.5s;
+}
+
+.events:hover:after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px;
+    background-color: black;
+    transition: width 0.5s;
+}
+.eventsP{
+    position: absolute;
+    width: 71.66px;
+    height: 23px;
+    left: 829.42px;
+    right: -30.08px;
+    top: 83px;
+    bottom: -59px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 600;
     line-height: 23px;
     text-align: left;
 }
@@ -1310,7 +1356,7 @@ a{
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 1000;
 }
 .modalAssociation {
     display: flex;
@@ -1334,6 +1380,7 @@ a{
     height: 153px;
     text-align: center;
     display: block;
+    z-index: 1000;
 
 }
 .modal-contentAssociation {
@@ -1361,7 +1408,7 @@ a{
 }
 .confirmationAssociation{
     position: absolute;
-    width: 186px;
+    width: 185px;
     height: 23px;
     color: rgb(0, 0, 0);
     font-family: Montserrat, sans-serif;
@@ -3152,4 +3199,258 @@ a{
     text-align: left;
     margin-top:230px;
     margin-left: 130px;
+}
+
+/* EVENTS --------------------------------------------- */
+
+
+.modalEvent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+.modal-contentEvent {
+    background-color: #fff;
+    border-radius: 35px;
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 0, 0);
+    width: 670px;
+    height: 719px;
+    text-align: center;
+    display: block;
+
+}
+.confirmationEvent{
+    position: absolute;
+    width: 186px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 23px;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 244px;
+}
+.nameEvent{
+    position: absolute;
+    width: 64px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-top: 102px;
+    margin-left: 303px;
+}
+.nameEventInput{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    margin-top: 135px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-left: -144px;
+}
+.placeEvent{
+    position: absolute;
+    width: 63px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-left: 303px;
+    margin-top: 186px;
+}
+.placeEventInput{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    margin-top: 219px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-left: -144px;
+
+}
+.descEvent{
+    position: absolute;
+    width: 57px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-left: 307px;
+    margin-top: 270px;
+}
+.descriptionEventInput{
+    position: absolute;
+    width: 581px;
+    height: 79px;
+    border-radius: 22px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background: rgb(217, 217, 217);
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-top: 303px;
+    margin-left: -290.5px;
+}
+.dateOfStartEvent{
+    position: absolute;
+    width: 133px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-left: 269px;
+    margin-top: 392px;
+}
+.dateOfStartEventInput{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    margin-top: 425px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-left: -144px;
+}
+.dateOfEndEvent{
+    position: absolute;
+    width: 109px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-left: 281px;
+    margin-top: 476px;
+}
+.dateOfEndEventInput{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    margin-top: 509px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-left: -144px;
+}
+.associationEvent{
+    position: absolute;
+    width: 70px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-left: 300px;
+    margin-top: 560px;
+}
+.associationEventInput{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    margin-top: 591px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-left: -142px;
+
+}
+
+.buttonEventYes{
+    position: absolute;
+    width: 85px;
+    border: none;
+    height: 26px;
+    border-radius: 84px;
+    box-shadow: 0 4px 35px 0 rgba(245, 62, 61, 0.51);
+    background: rgb(245, 62, 61);
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: -87.5px;
+    margin-top: 662px;
+}
+.buttonEventNo{
+    position: absolute;
+    width: 85px;
+    border: none;
+    height: 26px;
+    border-radius: 84px;
+    box-shadow: 0 4px 35px 0 rgba(245, 62, 61, 0.51);
+    background: rgb(245, 62, 61);
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: -82.5px;
+    margin-top: 662px;
+}
+.buttonEventYes:hover {
+    background-color: rgb(249, 168, 167);
+}
+.buttonEventNo:hover {
+    background-color: rgb(249, 168, 167);
 }

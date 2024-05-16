@@ -1,6 +1,9 @@
 package edu.com.bachelor.controller;
 
+import edu.com.bachelor.model.Association;
 import edu.com.bachelor.model.Event;
+import edu.com.bachelor.model.User;
+import edu.com.bachelor.service.association.impls.AssociationServiceImpl;
 import edu.com.bachelor.service.event.impls.EventServiceImpl;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -15,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 public class EventController {
     private final EventServiceImpl service;
+    private final AssociationServiceImpl associationService;
 
     @GetMapping("/")
     public ResponseEntity<List<Event>> getAllEvents() {
@@ -36,13 +40,21 @@ public class EventController {
     public ResponseEntity<Event> updateEvent(@Valid @RequestBody Event event) {
         return new ResponseEntity<>(service.update(event), HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @PostMapping("/")
     public ResponseEntity<Event> saveEvent(@RequestBody Event event)  {
+        Association association = event.getAssociation();
+
+        List<User> associationUsers = associationService.getUsersByAssociationId(association.getId());
+
+        event.getUsers().addAll(associationUsers);
+
         Event savedEvent = service.save(event);
+
         if(savedEvent==null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+
         return new ResponseEntity<>(savedEvent, HttpStatus.OK);
     }
 }

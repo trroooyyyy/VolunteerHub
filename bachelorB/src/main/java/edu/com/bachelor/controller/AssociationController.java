@@ -158,4 +158,11 @@ public class AssociationController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("/owner/{ownerId}")
+    public ResponseEntity<List<Association>> getAssociationsByOwnerId(@PathVariable Long ownerId) {
+        List<Association> associations = service.getAssociationsByOwnerId(ownerId);
+        return new ResponseEntity<>(associations, HttpStatus.OK);
+    }
+
+
 }
