@@ -65,7 +65,7 @@ const Events = () => {
     };
 
     const createEventProject= async (e) => {
-        if (!name || !place || !description || !dateStart || !associationForEvent) {
+        if (!name || !place || !description || !dateStart || !associationForEvent || !dateEnd) {
             openZapovnPolya();
             return;
         }
@@ -100,7 +100,7 @@ const Events = () => {
             {showZapovnPolya && (
                 <div className="modal">
                     <div className="modal-content">
-                        <p className="confirmation">Ви не заповнили одне із полів.</p>
+                        <p className="confirmation">Ви повинні заповнити усі поля.</p>
                         <button onClick={closeZapovnPolya}>Ок</button>
                     </div>
                 </div>
