@@ -14,6 +14,7 @@ const Events = () => {
     const [dateStart, setDateStart] = useState('');
     const [dateEnd, setDateEnd] = useState('');
     const [associationForEvent, setAssociationForEvent] = useState(0);
+    const [events, setEvents] = useState([]);
 
 
     useEffect(() => {
@@ -31,6 +32,14 @@ const Events = () => {
                         Authorization: `Bearer ${token}`
                     }
                 });
+                let eventsResponse
+                eventsResponse = await axios.get('http://localhost:8080/api/event/', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                setEvents(eventsResponse.data);
+                console.log(eventsResponse.data)
                 setViewer(userResponse.data);
                 setAssociations(associationResponse.data);
             } catch (error) {
@@ -96,7 +105,16 @@ const Events = () => {
     return (
         <div>
             <button className="buttonCreateAssociation" onClick={openModal}><span className="textOnCreateAssociation">Створити захід</span></button>
+            <div className="mainTableEvents">
+                {events.map(event => (
+                    <div key={event.id} className="relativeDivEvents">
+                        <img className="positionLocateEvents" src="/images/free-icon-location-pin-1201643.png" alt="Position" />
+                        <p className="positionEventsLocate">{event.place}</p>
+                    </div>
 
+
+                ))}
+            </div>
             {showZapovnPolya && (
                 <div className="modal">
                     <div className="modal-content">
