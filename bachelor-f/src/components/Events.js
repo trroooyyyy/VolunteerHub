@@ -127,13 +127,17 @@ const Events = () => {
                         <p className="positionEventsLocate">{event.place}</p>
                         <p className="eventsName">{event.name}</p>
                         <img className="dateEvents" src="/images/free-icon-time-and-date-26-9005122.png" alt="Date" />
-                        <p className="dateEventsText">{event.dateStart.slice(0,10)}</p>
+                        <p className="dateEventsText">{new Date(event.dateStart).toLocaleDateString('uk-UA')}</p>
                         <p className="associationNameEvent">{event.association.name}</p>
                         <img className="zaglushka" src="/images/Volunteer-with-us-banner.png" alt="Banner" />
                         </div>
                         {hoveredEvent === event.id && !isEventActive(event) && (
                             <>
-                                <p className="inActiveEventText">Натисніть, щоб залишити відгук</p>
+                                {event.users.some(user => user.id === viewer.id) ? (
+                                    <p className="inActiveEventText">Натисніть, щоб залишити відгук</p>
+                                ) : (
+                                    <p className="inActiveEventText">Переглянути відгуки</p>
+                                )}
                                 <img className="inActiveEventTextImage" src="/images/free-icon-customer-review-8824001.png" alt="Msg"/>
                             </>
                         )}

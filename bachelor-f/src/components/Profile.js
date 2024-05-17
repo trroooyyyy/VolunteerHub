@@ -131,7 +131,7 @@ const Profile = () => {
                         </div>
                     )}
                     <div className="dateOfReg">Дата реєстрації:</div>
-                    <div className="dateOfRegValue">{user.createdAt.slice(0,10)}</div>
+                    <div className="dateOfRegValue">{new Date(user.createdAt).toLocaleDateString('uk-UA')}</div>
                 </div>
             ) : (
                 <p className="loading">Loading...</p>

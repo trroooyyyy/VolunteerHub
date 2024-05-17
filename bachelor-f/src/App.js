@@ -13,6 +13,7 @@ import Users from "./components/Users";
 import EditUser from "./components/EditUser";
 import Associations from "./components/Associations";
 import Events from "./components/Events";
+import EventOne from "./components/EventOne";
 
 
 function App() {
@@ -35,11 +36,12 @@ function App() {
               <Route path="/register" element={token ? <Navigate to="/profile" /> : <Register />}></Route>
               <Route path="/profile" element={!token ? <Navigate to="/login" /> : <><Profile/><Header/><Footer/></>}></Route>
               <Route path="/profile/:userId" element={!token ? <Navigate to="/login" /> : <><Profile/><Header/><Footer/></>}></Route>
-              <Route path="/users" element={!token ? <Navigate to="/login" /> : <><Header/><Users/></>}></Route>
+              <Route path="/users" element={!token ? <Navigate to="/login" /> : <><Header/><Users/><Footer/></>}></Route>
               <Route path="/edit/:userId" element={!token ? <Navigate to="/login" /> : <EditUser/>}></Route>
               <Route path="/associations/" element={!token ? <Navigate to="/login" /> : <><Header/><Associations/></>}></Route>
               <Route path="/associations/:associationId/users" element={!token ? <Navigate to="/login" /> : <><Header/><Users/></>}></Route>
               <Route path="/events" element={!token ? <Navigate to="/login" /> : <><Header/><Events/></>}></Route>
+              <Route path="/events/:eventId" element={!token ? <Navigate to="/login" /> : <><Header/><EventOne/></>}></Route>
           </Routes>
       </Router>
   );

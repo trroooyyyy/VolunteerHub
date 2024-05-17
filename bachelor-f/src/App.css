@@ -27,6 +27,7 @@ a{
     z-index: -1;
 }
 
+
 /*Main Menu ----------------------------------------------------*/
 
 .rectangle3{
@@ -876,6 +877,7 @@ a{
 
 
 /*Footer -------------------------------------------------------------*/
+
 
 .footer{
     position: absolute;
@@ -2357,6 +2359,7 @@ a{
     border-radius: 38px;
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.55);
     background: rgb(255, 255, 255);
+    padding-bottom: 38px;
 }
 .lineUsers1{
     margin-top: 689px;
@@ -3611,4 +3614,153 @@ a{
 }
 .inActiveEventTextImage:hover{
     rotate: -15deg;
+}
+
+.inActiveEventTextForAn{
+    position: absolute;
+    width: 211px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 23px;
+    text-align: center;
+    margin-left: 230px;
+    margin-top: 96px;
+
+}
+.eventOneMainDiv{
+    position: absolute;
+    width: 970px;
+    height: 662px;
+    left: 50%;
+    margin-left: -485px;
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 21px;
+    box-shadow: 0 4px 46px 1px rgba(0, 0, 0, 0.37);
+    background: rgb(255, 255, 255);
+    top: 194px;
+}
+.eventOneMainText{
+    position: absolute;
+    width: 408px;
+    height: 92px;
+    left: 567px;
+    right: -567px;
+    top: 247px;
+    bottom: -159px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: left;
+}
+.eventOneMainDate{
+    position: absolute;
+    width: 355px;
+    height: 23px;
+    left: 567px;
+    right: -514px;
+    top: 362px;
+    bottom: -205px;
+    color: rgb(166, 153, 153);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.eventOneMainDateCreate{
+    position: absolute;
+    width: 210px;
+    height: 19px;
+    left: 567px;
+    right: -369px;
+    top: 408px;
+    bottom: -247px;
+    color: rgb(166, 153, 153);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+}
+.lineEventsOne{
+    position: absolute;
+    width: 408px;
+    height: 0;
+    left: 567px;
+    top: 448px;
+    border: 1px solid rgb(0, 0, 0);
+}
+.Organisators{
+    position: absolute;
+    width: 136px;
+    height: 23px;
+    left: 1158px;
+    right: 609px;
+    top: 362px;
+    bottom: 1977px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+.descriptionEventOne{
+    position: absolute;
+    width: 397px;
+    height: 226px;
+    left: 567px;
+    right: 939px;
+    top: 474px;
+    bottom: 1662px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+}
+.lineEventsTwo{
+    position: absolute;
+    width: 408px;
+    height: 0;
+    left: 567px;
+    top: 726px;
+    border: 1px solid rgb(0, 0, 0);
+}
+.placeOfEventOne{
+    position: absolute;
+    width: 193px;
+    height: 23px;
+    left: 567px;
+    right: 1143px;
+    top: 752px;
+    bottom: 1587px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: left;
+}
+.placeOfEventOneText{
+    position: absolute;
+    width: 37px;
+    height: 19px;
+    left: 567px;
+    right: 1299px;
+    top: 784px;
+    bottom: 1559px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
 }
