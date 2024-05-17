@@ -2414,6 +2414,51 @@ a{
     rotate: -30deg;
 
 }
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+.Pagesss{
+    position: absolute;
+    height: 23px;
+    top: 957px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 23px;
+    text-align: left;
+}
+.Butonsss1{
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    margin-right: 100px;
+    top: 946px;
+    transform: rotate(180.00deg);
+    cursor: pointer;
+    transform-origin: center center;
+}
+.Butonsss2{
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    margin-left: 100px;
+    top: 946px;
+    cursor: pointer;
+}
+.Butonsss1,
+.Butonsss2 {
+    transition: transform 0.3s ease;
+}
+.Butonsss1:hover {
+    transform: scale(1.1) rotate(180deg); /* увеличиваем и возвращаем угол вращения */
+}
+.Butonsss2:hover {
+    transform: scale(1.1);
+}
 
 .telegramUsers{
     position: absolute;
@@ -3860,4 +3905,32 @@ a{
 .buttonEventOneSecond:hover .textOnEventOneSecond{
     color: rgb(0, 0, 0);
 
+}
+.trashEventOne{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: 1350px;
+    right: 513px;
+    top: 774px;
+    bottom: 196px;
+    transition: .7s;
+    cursor: pointer;
+}
+.trashEventOne:hover{
+    rotate: -30deg;
+}
+.editEventOne{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: 1298px;
+    right: 565px;
+    top: 775px;
+    bottom: 195px;
+    transition: .7s;
+    cursor: pointer;
+}
+.editEventOne:hover{
+    rotate: -30deg;
 }

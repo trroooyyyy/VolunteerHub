@@ -6,6 +6,8 @@ const Users = () => {
     const [users, setUsers] = useState([]);
     const token = localStorage.getItem('token');
     const a = "—";
+    const [currentPage, setCurrentPage] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
     const { associationId } = useParams();
     const [association, setAssociation] = useState({});
     const [viewer, setViewer] = useState({});
@@ -33,7 +35,7 @@ const Users = () => {
 
                     setAssociation(responseAssociation.data);
                 } else {
-                    response = await axios.get('http://localhost:8080/api/user/', {
+                    response = await axios.get(`http://localhost:8080/api/user/?page=${currentPage}`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
@@ -45,7 +47,8 @@ const Users = () => {
                     }
                 });
                 setViewer(userResponse.data);
-                setUsers(response.data);
+                setUsers(response.data.content);
+                setTotalPages(response.data.totalPages);
             } catch (error) {
                 console.error('Помилка під час отримання користувача:', error);
             }
@@ -54,7 +57,7 @@ const Users = () => {
         if (token) {
             getUsers();
         }
-    }, [token, associationId]);
+    }, [token, associationId, currentPage]);
 
 
     const handleRedirect = userId => {
@@ -84,7 +87,16 @@ const Users = () => {
         }
     };
 
+    const handleNextPage = () => {
+        setCurrentPage(currentPage + 1);
+    };
+
+    const handlePrevPage = () => {
+        setCurrentPage(currentPage - 1);
+    };
+
     return (
+        <div>
         <div className="mainTableDiv">
             {users.map(user => (
                 <div key={user.id} className="relativeDiv">
@@ -92,14 +104,14 @@ const Users = () => {
                     <p className="phoneUsers123">Телефон:<br />{user.telephone ? user.telephone : a}</p>
                     <img className="imageUsers" src="/images/avatar_empty@2x.png" alt="" />
                     {associationId && association.owner.id===user.id &&(
-                        <a><img className="imageUsersIfNotOwner" src="/images/crown.png" alt="" /></a>
+                        <img className="imageUsersIfNotOwner" src="/images/crown.png" alt="123" />
                     )
                     }
                     {(associationId && (
                         (association.owner.id !== user.id && viewer.role === "ROLE_ADMIN") ||
                         (association.owner.id !== user.id && viewer.login === association.owner.login)
                     )) &&(
-                        <a><img onClick={() => openModalIfLeave(user.id)} className="imageUsersIfNotOwner" src="/images/3687412.png" alt="" /></a>
+                        <img onClick={() => openModalIfLeave(user.id)} className="imageUsersIfNotOwner" src="/images/3687412.png" alt="" />
                     )
                     }
                     <p onClick={() => handleRedirect(user.id)} className="loginUsers">{user.login}</p>
@@ -108,6 +120,7 @@ const Users = () => {
                     <a href={user.telegram}><img className="telegramUsers" src="/images/Telegram_alternative_logo.svg.png" alt="Telegram" /></a>
                 </div>
             ))}
+
             {showModalIfLeave && (
                 <div className="modal">
                     <div className="modal-content">
@@ -117,6 +130,16 @@ const Users = () => {
                     </div>
                 </div>
             )}
+        </div>
+            <div className="container">
+                {currentPage !== 0 && (
+                    <img onClick={handlePrevPage} className="Butonsss1" alt="left" src="/images/free-icon-arrow-right-5889819.png"/>
+                )}
+                <span className="Pagesss">{currentPage + 1} з {totalPages}</span>
+                {currentPage !== totalPages - 1 && (
+                    <img onClick={handleNextPage} className="Butonsss2" alt="right" src="/images/free-icon-arrow-right-5889819.png"/>
+                )}
+            </div>
         </div>
     );
 };

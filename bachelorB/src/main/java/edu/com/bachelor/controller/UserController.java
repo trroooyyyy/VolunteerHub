@@ -5,6 +5,9 @@ import edu.com.bachelor.service.user.impls.UserServiceImpl;
 import edu.com.bachelor.token.TokenService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,8 +23,9 @@ public class UserController {
     private final TokenService tokenService;
 
     @GetMapping("/")
-    public ResponseEntity<List<User>> getAllUsers() {
-        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+    public ResponseEntity<Page<User>> getAllUsers(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return new ResponseEntity<>(service.getAll(pageable), HttpStatus.OK);
     }
 
 
@@ -92,6 +96,7 @@ public class UserController {
         Optional<User> userOptional = tokenService.getUserByToken(jwt);
         return userOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
+
 
 
 

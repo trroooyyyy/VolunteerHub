@@ -4,6 +4,9 @@ import edu.com.bachelor.model.User;
 import edu.com.bachelor.repository.UserRepository;
 import edu.com.bachelor.service.user.IUserService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -56,8 +59,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public List<User> getAll() {
-        return repository.findAll();
+    public Page<User> getAll(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override

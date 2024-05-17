@@ -9,6 +9,9 @@ const EventOne = () => {
     const [association, setAssociation] = useState({});
     const [isEventStarted, setIsEventStarted] = useState(false);
     const [user, setUser] = useState({});
+    const [viewer, setViewer] = useState({});
+    const [isViewerMemberEvent, setIsViewerMemberEvent] = useState(false);
+    const [isViewerMemberAssociation, setIsViewerMemberAssociation] = useState(false);
 
 
     useEffect(() => {
@@ -17,6 +20,12 @@ const EventOne = () => {
                 let eventsResponse;
                 let associationResponse;
                 let userResponse;
+                let tokenResponse;
+                tokenResponse = await axios.get('http://localhost:8080/api/user/t', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
                 eventsResponse = await axios.get(`http://localhost:8080/api/event/${eventId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -32,12 +41,17 @@ const EventOne = () => {
                         Authorization: `Bearer ${token}`
                     }
                 });
+                setViewer(tokenResponse.data);
                 setAssociation(associationResponse.data);
                 setEvent(eventsResponse.data);
                 setUser(userResponse.data);
                 const eventStartTime = new Date(eventsResponse.data.dateStart).getTime();
                 const currentTime = new Date().getTime();
                 setIsEventStarted(currentTime >= eventStartTime);
+                const isViewerMemberEvent = eventsResponse.data.users.some(member => member.id === tokenResponse.data.id);
+                const isViewerMemberAssociation = associationResponse.data.users.some(members => members.id ===tokenResponse.data.id);
+                setIsViewerMemberEvent(isViewerMemberEvent);
+                setIsViewerMemberAssociation(isViewerMemberAssociation);
             } catch (error) {
                 console.error('Помилка під час отримання даних:', error);
             }
@@ -72,8 +86,11 @@ const EventOne = () => {
             <div className="SpilkPlace">{association.place}</div>
             <div className="KorTele">{user.telephone}</div>
             <div className="KorName">{user.lastName} {user.firstName}</div>
-            <button className="buttonEventOneFirst"><span className="textOnEventOneFirst">Долучитись</span></button>
-            <button className="buttonEventOneSecond"><span className="textOnEventOneSecond">Приєднатись</span></button>
+            <img className="editEventOne" src="/images/8862294.png" alt="Edit" />
+            <img className="trashEventOne" src="/images/3687412.png" alt="Trash" />
+
+            <button className="buttonEventOneFirst"><span className="textOnEventOneFirst">{isViewerMemberEvent ? "Не долучатись" : "Долучитись"}</span></button>
+            <button className="buttonEventOneSecond"><span className="textOnEventOneSecond">{isViewerMemberAssociation ? "Покинути" : "Приєднатись"}</span></button>
 
         </div>
     );
