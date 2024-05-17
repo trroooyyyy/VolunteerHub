@@ -15,6 +15,7 @@ const Events = () => {
     const [dateEnd, setDateEnd] = useState('');
     const [associationForEvent, setAssociationForEvent] = useState(0);
     const [events, setEvents] = useState([]);
+    const [hoveredEvent, setHoveredEvent] = useState(null);
 
 
     useEffect(() => {
@@ -102,17 +103,42 @@ const Events = () => {
         }
     };
 
+    const handleRedirect = eventId => {
+        window.location.href = `http://localhost:3000/events/${eventId}`;
+    };
+    const handleRedirectReview = eventId => {
+        window.location.href = `http://localhost:3000/review/event/${eventId}`;
+    };
+
+    const isEventActive = event => {
+        const eventStartDate = new Date(event.dateStart);
+        const currentDate = new Date();
+        return currentDate < eventStartDate;
+    };
+
     return (
         <div>
             <button className="buttonCreateAssociation" onClick={openModal}><span className="textOnCreateAssociation">Створити захід</span></button>
             <div className="mainTableEvents">
                 {events.map(event => (
-                    <div key={event.id} className="relativeDivEvents">
+                    <div key={event.id} onMouseEnter={() => setHoveredEvent(event.id)} onMouseLeave={() => setHoveredEvent(null)} className={isEventActive(event) ? 'relativeDivEvents' : 'relativeDivEventsInActive'} onClick={isEventActive(event) ? () => handleRedirect(event.id) : () => handleRedirectReview(event.id)}>
+                        <div>
                         <img className="positionLocateEvents" src="/images/free-icon-location-pin-1201643.png" alt="Position" />
                         <p className="positionEventsLocate">{event.place}</p>
+                        <p className="eventsName">{event.name}</p>
+                        <img className="dateEvents" src="/images/free-icon-time-and-date-26-9005122.png" alt="Date" />
+                        <p className="dateEventsText">{event.dateStart.slice(0,10)}</p>
+                        <p className="associationNameEvent">{event.association.name}</p>
+                        <img className="zaglushka" src="/images/Volunteer-with-us-banner.png" alt="Banner" />
+                        </div>
+                        {hoveredEvent === event.id && !isEventActive(event) && (
+                            <>
+                                <p className="inActiveEventText">Натисніть, щоб залишити відгук</p>
+                                <img className="inActiveEventTextImage" src="/images/free-icon-customer-review-8824001.png" alt="Msg"/>
+                            </>
+                        )}
+
                     </div>
-
-
                 ))}
             </div>
             {showZapovnPolya && (
@@ -123,6 +149,7 @@ const Events = () => {
                     </div>
                 </div>
             )}
+
 
             {showModal && (
                 <div className="modalEvent">
@@ -158,7 +185,7 @@ const Events = () => {
                                 name="description"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
-                                maxLength={300}
+                                maxLength={500}
                                 className="descriptionEventInput"
                             />
                         </div>
