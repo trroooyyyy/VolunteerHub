@@ -12,6 +12,7 @@ const Header = () => {
     const [isActiveUsers, setIsActiveUsers] = useState(false);
     const [isActiveAssociations, setIsActiveAssociations] = useState(false);
     const [isActiveEvents, setIsActiveEvents] = useState(false);
+    const [isActiveEventOne, setIsActiveEventOne] = useState(false);
 
     useEffect(() => {
         const isProfilePath = window.location.pathname.startsWith('/profile');
@@ -26,7 +27,12 @@ const Header = () => {
         setIsActiveAssociations(isProfilePath);
     }, []);
     useEffect(() => {
-        const isProfilePath = window.location.pathname.startsWith('/events');
+        const isProfilePath = window.location.pathname.startsWith(`/event`);
+        setIsActiveEventOne(isProfilePath);
+    }, []);
+
+    useEffect(() => {
+        const isProfilePath = window.location.pathname.startsWith('/all-events');
         setIsActiveEvents(isProfilePath);
     }, []);
 
@@ -55,6 +61,7 @@ const Header = () => {
                 setIsActiveProfile(false)
                 setIsActiveAssociations(false)
                 setIsActiveEvents(false)
+                setIsActiveEventOne(false)
                 console.log('Logout successful');
             })
             .catch(error => {
@@ -63,15 +70,15 @@ const Header = () => {
     };
     return (
         <div>
-            <div className = {isActiveProfile ? 'rectangle1Profile' : 'rectangle1'}></div>
+            <div className = {isActiveProfile ? 'rectangle1Profile' : isActiveUsers ?  'rectangle1Users' : isActiveEventOne ? 'rectangle1EventOne' : 'rectangle1'}></div>
             <div className="rectangle3"></div>
             <div className="logoText">V&amp;<span style={{ color: '#FFDAB9' }}>H</span></div>
             <div className="line3"></div>
             <div className="line2"></div>
-            <div className={isActiveProfile ? 'line1Profile' : isActiveUsers ? 'line1Users' : isActiveAssociations ? 'line1Associations' : isActiveEvents ? 'line1Events' : 'line1'}></div>
+            <div className={isActiveProfile ? 'line1Profile' : isActiveUsers ? 'line1Users' : isActiveAssociations ? 'line1Associations' : isActiveEvents || isActiveEventOne ? 'line1Events' : 'line1'}></div>
             <div className="logoName">VolunteerHub</div>
-            <div className={isActiveProfile ? 'mainProfileP' : isActiveUsers ? 'mainProfileP' : isActiveAssociations ? 'mainProfileP' : isActiveEvents ? 'mainProfileP' : 'mainP'}><a href="/">Головна</a></div>
-            <div className={isActiveEvents ? 'eventsP' : 'events'}><a href="/events">Заходи</a></div>
+            <div className={isActiveProfile ? 'mainProfileP' : isActiveUsers ? 'mainProfileP' : isActiveAssociations ? 'mainProfileP' : isActiveEvents || isActiveEventOne ? 'mainProfileP' : 'mainP'}><a href="/">Головна</a></div>
+            <div className={isActiveEvents || isActiveEventOne ? 'eventsP' : 'events'}><a href="/all-events">Заходи</a></div>
             <div className={isActiveAssociations ? 'associationsP' : 'associations'}><a href="/associations">Спілки</a></div>
             <div className="about">Про сервіс</div>
             <div className={isActiveUsers ? 'usersP' : 'users'}><a href="/users">Користувачі</a></div>

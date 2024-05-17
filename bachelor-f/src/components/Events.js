@@ -104,7 +104,7 @@ const Events = () => {
     };
 
     const handleRedirect = eventId => {
-        window.location.href = `http://localhost:3000/events/${eventId}`;
+        window.location.href = `http://localhost:3000/event/${eventId}`;
     };
     const handleRedirectReview = eventId => {
         window.location.href = `http://localhost:3000/review/event/${eventId}`;
@@ -126,6 +126,7 @@ const Events = () => {
                         <img className="positionLocateEvents" src="/images/free-icon-location-pin-1201643.png" alt="Position" />
                         <p className="positionEventsLocate">{event.place}</p>
                         <p className="eventsName">{event.name}</p>
+                            {!isEventActive(event) && <img className="flag" src="/images/free-icon-warning-12434856.png" alt="Flag" />}
                         <img className="dateEvents" src="/images/free-icon-time-and-date-26-9005122.png" alt="Date" />
                         <p className="dateEventsText">{new Date(event.dateStart).toLocaleDateString('uk-UA')}</p>
                         <p className="associationNameEvent">{event.association.name}</p>
@@ -141,6 +142,7 @@ const Events = () => {
                                 <img className="inActiveEventTextImage" src="/images/free-icon-customer-review-8824001.png" alt="Msg"/>
                             </>
                         )}
+
 
                     </div>
                 ))}
@@ -167,7 +169,7 @@ const Events = () => {
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 className="nameEventInput"
-                                maxLength="76"
+                                maxLength="69"
                             />
                         </div>
                         <p className="placeEvent">Місце:</p>

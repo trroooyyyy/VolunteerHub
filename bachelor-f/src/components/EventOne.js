@@ -1,23 +1,43 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {useParams} from "react-router-dom";
+import {Navigate, useParams} from "react-router-dom";
 
 const EventOne = () => {
     const token = localStorage.getItem('token');
     const { eventId } = useParams();
     const [event, setEvent] = useState({});
+    const [association, setAssociation] = useState({});
+    const [isEventStarted, setIsEventStarted] = useState(false);
+    const [user, setUser] = useState({});
+
 
     useEffect(() => {
         const getEvent = async () => {
             try {
                 let eventsResponse;
-
+                let associationResponse;
+                let userResponse;
                 eventsResponse = await axios.get(`http://localhost:8080/api/event/${eventId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
+                associationResponse = await axios.get(`http://localhost:8080/api/association/${eventsResponse.data.association.id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                userResponse = await axios.get(`http://localhost:8080/api/user/${associationResponse.data.owner.id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                setAssociation(associationResponse.data);
                 setEvent(eventsResponse.data);
+                setUser(userResponse.data);
+                const eventStartTime = new Date(eventsResponse.data.dateStart).getTime();
+                const currentTime = new Date().getTime();
+                setIsEventStarted(currentTime >= eventStartTime);
             } catch (error) {
                 console.error('Помилка під час отримання даних:', error);
             }
@@ -26,8 +46,14 @@ const EventOne = () => {
         if (token) {
             getEvent();
         }
-    }, [token]);
+    }, [token, eventId]);
 
+
+
+
+    if (isEventStarted) {
+        return <Navigate to={`/review/event/${eventId}`} />;
+    }
 
     return (
         <div>
@@ -41,6 +67,13 @@ const EventOne = () => {
             <div className="lineEventsTwo"></div>
             <div className="placeOfEventOne">Місце проведення:</div>
             <div className="placeOfEventOneText">{event.place}</div>
+            <div className="OrgBox"></div>
+            <div className="SpilkName">{association.name}</div>
+            <div className="SpilkPlace">{association.place}</div>
+            <div className="KorTele">{user.telephone}</div>
+            <div className="KorName">{user.lastName} {user.firstName}</div>
+            <button className="buttonEventOneFirst"><span className="textOnEventOneFirst">Долучитись</span></button>
+            <button className="buttonEventOneSecond"><span className="textOnEventOneSecond">Приєднатись</span></button>
 
         </div>
     );
