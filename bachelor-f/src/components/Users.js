@@ -53,16 +53,6 @@ const Users = () => {
         }
     };
 
-    useEffect(() => {
-        const scrollToTop = () => {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        };
-
-        scrollToTop();
-    }, [currentPage]);
 
     useEffect(() => {
         if (token) {

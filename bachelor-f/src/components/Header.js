@@ -82,11 +82,11 @@ const Header = () => {
             <div className="logoText">V&amp;<span style={{ color: '#FFDAB9' }}>H</span></div>
             <div className="line3"></div>
             <div className="line2"></div>
-            <div className={isActiveProfile ? 'line1Profile' : isActiveUsers ? 'line1Users' : isActiveAssociations ? 'line1Associations' : isActiveEvents || isActiveEventOne ? 'line1Events' : 'line1'}></div>
+            <div className={isActiveProfile ? 'line1Profile' : isActiveUsers ? 'line1Users' : isActiveAssociations || isActiveAssUsers ? 'line1Associations' : isActiveEvents || isActiveEventOne ? 'line1Events' : 'line1'}></div>
             <div className="logoName">VolunteerHub</div>
-            <div className={isActiveProfile ? 'mainProfileP' : isActiveUsers ? 'mainProfileP' : isActiveAssociations ? 'mainProfileP' : isActiveEvents || isActiveEventOne ? 'mainProfileP' : 'mainP'}><a href="/">Головна</a></div>
+            <div className={isActiveProfile ? 'mainProfileP' : isActiveUsers ? 'mainProfileP' : isActiveAssociations || isActiveAssUsers ? 'mainProfileP' : isActiveEvents || isActiveEventOne ? 'mainProfileP' : 'mainP'}><a href="/">Головна</a></div>
             <div className={isActiveEvents || isActiveEventOne ? 'eventsP' : 'events'}><a href="/all-events">Заходи</a></div>
-            <div className={isActiveAssociations ? 'associationsP' : 'associations'}><a href="/associations">Спілки</a></div>
+            <div className={isActiveAssociations || isActiveAssUsers ? 'associationsP' : 'associations'}><a href="/associations">Спілки</a></div>
             <div className="about">Про сервіс</div>
             <div className={isActiveUsers ? 'usersP' : 'users'}><a href="/users">Користувачі</a></div>
             {token ? (
