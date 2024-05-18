@@ -7,6 +7,9 @@ import edu.com.bachelor.service.user.impls.UserServiceImpl;
 import edu.com.bachelor.token.TokenService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,13 +26,20 @@ public class AssociationController {
     private final UserServiceImpl userService;
 
     @GetMapping("/")
-    public ResponseEntity<List<Association>> getAllAssociations() {
-        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+    public ResponseEntity<Page<Association>> getAllAssociations(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "6") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Association> associationsPage = service.getAll(pageable);
+        return new ResponseEntity<>(associationsPage, HttpStatus.OK);
     }
 
+
     @GetMapping("/{id}/users")
-    public ResponseEntity<List<User>> getUsersByAssociationId(@PathVariable("id") Long associationId) {
-        List<User> users = service.getUsersByAssociationId(associationId);
+    public ResponseEntity<Page<User>> getUsersByAssociationId(@PathVariable("id") Long associationId,
+                                                              @RequestParam(defaultValue = "0") int page,
+                                                              @RequestParam(defaultValue = "5") int size) {
+        Page<User> users = service.getUsersByAssociationIdPageble(associationId, page, size);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
@@ -122,7 +132,7 @@ public class AssociationController {
                 return new ResponseEntity<>(HttpStatus.OK);
             } else {
                 Association updatedAssociation = service.update(association);
-                return new ResponseEntity<>(updatedAssociation, HttpStatus.OK);
+                return new ResponseEntity<>(updatedAssociation, HttpStatus.ACCEPTED);
             }
         }
     }

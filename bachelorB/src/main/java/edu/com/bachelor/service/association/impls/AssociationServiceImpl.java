@@ -5,6 +5,9 @@ import edu.com.bachelor.model.User;
 import edu.com.bachelor.repository.AssociationRepository;
 import edu.com.bachelor.service.association.IAssociationService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -39,8 +42,8 @@ public class AssociationServiceImpl implements IAssociationService {
     }
 
     @Override
-    public List<Association> getAll() {
-        return repository.findAll();
+    public Page<Association> getAll(Pageable pageable) {
+        return repository.findAllByOrderByCreatedAt(pageable);
     }
 
     @Override
@@ -55,6 +58,11 @@ public class AssociationServiceImpl implements IAssociationService {
     }
     public List<User> getUsersByAssociationId(Long associationId) {
         return repository.findUsersByAssociationId(associationId);
+    }
+
+    public Page<User> getUsersByAssociationIdPageble(Long associationId, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return repository.findUsersByAssociationIdPageble(associationId, pageable);
     }
 
     public List<Association> getAssociationsByOwnerId(Long ownerId) {

@@ -15,6 +15,17 @@ a{
     background: linear-gradient(143.87deg, rgb(255, 218, 185) 4.09%,rgb(240, 172, 112) 95.45%);
     z-index: -1;
 }
+.rectangle1AssUsers{
+    position: absolute;
+    width: 1903px;
+    height: 997px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(143.87deg, rgb(255, 218, 185) 4.09%,rgb(240, 172, 112) 95.45%);
+    z-index: -1;
+}
 .rectangle1Profile{
     position: absolute;
     width: 1903px;
@@ -49,7 +60,18 @@ a{
     background: linear-gradient(143.87deg, rgb(255, 218, 185) 4.09%,rgb(240, 172, 112) 95.45%);
     z-index: -1;
 }
+.rectangle1Association{
+    position: absolute;
+    height: 2216px;
+    width: 1903px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(143.87deg, rgb(255, 218, 185) 4.09%,rgb(240, 172, 112) 95.45%);
+    z-index: -1;
 
+}
 
 /*Main Menu ----------------------------------------------------*/
 
@@ -910,6 +932,26 @@ a{
     left: 0;
     right: 0;
     top: 2252px;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+}
+.footerAssUsers{
+    position: absolute;
+    width: 1903px;
+    height: 110px;
+    left: 0;
+    right: 0;
+    top: 997px;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+}
+.footerAssociations{
+    position: absolute;
+    width: 1903px;
+    height: 110px;
+    left: 0;
+    right: 0;
+    top: 2216px;
     bottom: 0;
     background: rgb(0, 0, 0);
 }
@@ -2454,7 +2496,7 @@ a{
     transition: transform 0.3s ease;
 }
 .Butonsss1:hover {
-    transform: scale(1.1) rotate(180deg); /* увеличиваем и возвращаем угол вращения */
+    transform: scale(1.1) rotate(180deg);
 }
 .Butonsss2:hover {
     transform: scale(1.1);
@@ -3026,12 +3068,56 @@ a{
 .mainTableAssociations{
     position: absolute;
     width: 1170px;
-    height: 1853px;
+    height: auto;
     left: 50%;
     top: 284px;
     margin-left: -585px;
     box-sizing: border-box;
 }
+.container1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 43px;
+}
+.Pagesss1{
+    position: absolute;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 23px;
+    text-align: left;
+
+}
+.Butonsss12{
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    margin-right: 100px;
+    transform: rotate(180.00deg);
+    cursor: pointer;
+    transform-origin: center center;
+}
+.Butonsss22{
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    margin-left: 100px;
+    cursor: pointer;
+}
+.Butonsss12,
+.Butonsss22 {
+    transition: transform 0.3s ease;
+}
+.Butonsss12:hover {
+    transform: scale(1.1) rotate(180deg);
+}
+.Butonsss22:hover {
+    transform: scale(1.1);
+}
+
 .relativeDivAssociations{
     position: relative;
     width: 1168px;

@@ -20,32 +20,53 @@ const Associations = () => {
     const [descriptionEdit, setDescriptionEdit] = useState("");
     const [usersEdit, setUsersEdit] = useState([{}]);
     const [showZapovnPolya, setShowZapovnPolya] = useState(false);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
+
+    const fetchData = async () => {
+        try {
+            const associationResponse = await axios.get(`http://localhost:8080/api/association/?page=${currentPage}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            setAssociations(associationResponse.data.content);
+            setTotalPages(associationResponse.data.totalPages);
+            console.log("Getting");
+            const userResponse = await axios.get('http://localhost:8080/api/user/t', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            setUser(userResponse.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    const updateData = () => {
+        fetchData();
+    };
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const associationResponse = await axios.get('http://localhost:8080/api/association/', {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-                setAssociations(associationResponse.data);
-                console.log("Getting");
-                const userResponse = await axios.get('http://localhost:8080/api/user/t', {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-                setUser(userResponse.data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
         if (token) {
             fetchData();
         }
-    }, [token]);
+    }, [token, currentPage]);
+
+
+
+
+
+
+
+    const handleNextPage = () => {
+        setCurrentPage(currentPage + 1);
+    };
+
+    const handlePrevPage = () => {
+        setCurrentPage(currentPage - 1);
+    };
 
 
     const openZapovnPolya = () => {
@@ -82,6 +103,16 @@ const Associations = () => {
         setDescription('');
         setShowModal(true);
     };
+    useEffect(() => {
+        const scrollToTop = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        };
+
+        scrollToTop();
+    }, [currentPage]);
 
 
     const closeModalEdit = () => {
@@ -131,7 +162,11 @@ const Associations = () => {
                 }
             });
             closeModal();
-            window.location.reload();
+            if (associations.length === 6) {
+                setCurrentPage(currentPage + 1);
+            } else {
+                updateData();
+            }
         } catch (error) {
             console.error('Error adding association:', error);
         }
@@ -147,7 +182,12 @@ const Associations = () => {
                     }
                 });
                 console.log(response);
-                window.location.reload();
+                if (associations.length === 1 && currentPage > 0) {
+                    setCurrentPage(currentPage - 1);
+                } else {
+                    updateData();
+                }
+                closeModalDelete()
             } catch (error) {
                 console.error('Помилка при видаленні спілки:', error);
             }
@@ -178,7 +218,8 @@ const Associations = () => {
             });
             console.log("Editing super");
             setShowModalEdit(false);
-            window.location.reload();
+            updateData();
+            closeModalEdit();
         } catch (error) {
             console.error('Error updating associations:', error);
         }
@@ -194,7 +235,8 @@ const Associations = () => {
                     }
                 });
                 console.log(response)
-                window.location.reload();
+                updateData();
+
 
             } catch (error) {
                 console.error('Помилка при приєднанні до спілки:', error);
@@ -215,7 +257,13 @@ const Associations = () => {
                     }
                 });
                 console.log(response)
-                window.location.reload();
+                console.log(response.status)
+                if (associations.length === 1 && currentPage > 0 && response.status !== 202) {
+                    setCurrentPage(currentPage - 1);
+                } else {
+                    updateData();
+                }
+                closeModalExit()
 
             } catch (error) {
                 console.error('Помилка при виході зі спілки:', error);
@@ -242,7 +290,7 @@ const Associations = () => {
                     )}
                     <p className="creatorAssociation"><u style={{ fontWeight: 600 }}>Засновник:</u><br/><a className="ownerideffect" href={`/profile/${association.owner.id}`}>{association.owner.login}</a></p>
                     <p className="descriptionAssociation"><u style={{ fontWeight: 600 }}>Опис:</u><br/>{association.description}</p>
-                    <p className="userAssociation"><u style={{ fontWeight: 600 }}><a href={`/associations/${association.id}/users`}>Користувачі</a></u></p>
+                    <p className="userAssociation"><u style={{ fontWeight: 600 }}><a href={`/association/${association.id}/users`}>Користувачі</a></u></p>
                     <p className="eventAssociation"><u style={{ fontWeight: 600 }}>Заходи</u></p>
                     {isMember(association) ? (
                         <img onClick={user.id === association.owner.id ? () => openModalExit(association.id) : () => handleExit(association.id)} className="exitAssociation" src="/images/free-icon-remove-1828843.png" alt="Вийти" />
@@ -251,11 +299,23 @@ const Associations = () => {
                     )}
                     <img className="positionLocate" src="/images/free-icon-location-pin-1201684.png" alt="Position" />
                     <p className="positionAssociationLocate">{association.place}</p>
+
                 </div>
 
 
             ))}
+                <div className="container1">
+                    {currentPage !== 0 && (
+                        <img onClick={handlePrevPage} className="Butonsss12" alt="left" src="/images/free-icon-arrow-right-5889819.png"/>
+                    )}
+                    <span className="Pagesss1">{currentPage + 1} з {totalPages}</span>
+                    {currentPage !== totalPages - 1 && (
+                        <img onClick={handleNextPage} className="Butonsss22" alt="right" src="/images/free-icon-arrow-right-5889819.png"/>
+                    )}
+                </div>
+
             </div>
+
             {showModalDelete && (
                 <div className="modal">
                     <div className="modal-content">

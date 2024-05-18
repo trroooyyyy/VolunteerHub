@@ -4,6 +4,7 @@ import edu.com.bachelor.model.Event;
 import edu.com.bachelor.repository.EventRepository;
 import edu.com.bachelor.service.event.IEventService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -35,7 +36,7 @@ public class EventServiceImpl implements IEventService {
 
     @Override
     public List<Event> getAll() {
-        return repository.findAll();
+        return repository.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
     }
 
     @Override

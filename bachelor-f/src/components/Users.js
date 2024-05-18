@@ -14,46 +14,57 @@ const Users = () => {
     const [showModalIfLeave, setShowModalIfLeave] = useState(false);
     const [idToDeleteFromAssociation, setIdToDeleteFromAssociation] = useState(0);
 
-    useEffect(() => {
-        const getUsers = async () => {
-            try {
-                let response;
-                let responseAssociation;
-                let userResponse;
-                if (associationId) {
-                    response = await axios.get(`http://localhost:8080/api/association/${associationId}/users`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    });
-
-                    responseAssociation = await axios.get(`http://localhost:8080/api/association/${associationId}`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    });
-
-                    setAssociation(responseAssociation.data);
-                } else {
-                    response = await axios.get(`http://localhost:8080/api/user/?page=${currentPage}`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    });
-                }
-                userResponse = await axios.get('http://localhost:8080/api/user/t', {
+    const getUsers = async () => {
+        try {
+            let response;
+            let responseAssociation;
+            let userResponse;
+            if (associationId) {
+                response = await axios.get(`http://localhost:8080/api/association/${associationId}/users?page=${currentPage}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
-                setViewer(userResponse.data);
-                setUsers(response.data.content);
-                setTotalPages(response.data.totalPages);
-            } catch (error) {
-                console.error('Помилка під час отримання користувача:', error);
+
+                responseAssociation = await axios.get(`http://localhost:8080/api/association/${associationId}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+
+                setAssociation(responseAssociation.data);
+            } else {
+                response = await axios.get(`http://localhost:8080/api/user/?page=${currentPage}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
             }
+            userResponse = await axios.get('http://localhost:8080/api/user/t', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            setViewer(userResponse.data);
+            setUsers(response.data.content);
+            setTotalPages(response.data.totalPages);
+        } catch (error) {
+            console.error('Помилка під час отримання користувача:', error);
+        }
+    };
+
+    useEffect(() => {
+        const scrollToTop = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         };
 
+        scrollToTop();
+    }, [currentPage]);
+
+    useEffect(() => {
         if (token) {
             getUsers();
         }
@@ -80,7 +91,12 @@ const Users = () => {
                 }
             });
 
-            window.location.reload();
+            if (users.length === 1 && currentPage > 0) {
+                setCurrentPage(currentPage - 1);
+            } else {
+                getUsers();
+            }
+            closeModalIfLeave();
         } catch (error) {
             console.error('Помилка під час видалення користувача з асоціації:', error);
             console.log(associationId)

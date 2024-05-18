@@ -13,6 +13,7 @@ const Header = () => {
     const [isActiveAssociations, setIsActiveAssociations] = useState(false);
     const [isActiveEvents, setIsActiveEvents] = useState(false);
     const [isActiveEventOne, setIsActiveEventOne] = useState(false);
+    const [isActiveAssUsers, setIsActiveAssUsers] = useState(false);
 
     useEffect(() => {
         const isProfilePath = window.location.pathname.startsWith('/profile');
@@ -34,6 +35,11 @@ const Header = () => {
     useEffect(() => {
         const isProfilePath = window.location.pathname.startsWith('/all-events');
         setIsActiveEvents(isProfilePath);
+    }, []);
+
+    useEffect(() => {
+        const isProfilePath = window.location.pathname.startsWith('/association');
+        setIsActiveAssUsers(isProfilePath);
     }, []);
 
     const toggleMenu = () => {
@@ -70,7 +76,8 @@ const Header = () => {
     };
     return (
         <div>
-            <div className = {isActiveProfile ? 'rectangle1Profile' : isActiveUsers ?  'rectangle1Users' : isActiveEventOne ? 'rectangle1EventOne' : 'rectangle1'}></div>
+
+            <div className = {isActiveProfile ? 'rectangle1Profile' : isActiveUsers ?  'rectangle1Users' : isActiveEventOne ? 'rectangle1EventOne' : isActiveAssociations ? 'rectangle1Association' : isActiveAssUsers ? 'rectangle1AssUsers' : 'rectangle1'}></div>
             <div className="rectangle3"></div>
             <div className="logoText">V&amp;<span style={{ color: '#FFDAB9' }}>H</span></div>
             <div className="line3"></div>
