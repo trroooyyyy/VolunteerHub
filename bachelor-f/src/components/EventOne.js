@@ -90,7 +90,7 @@ const EventOne = () => {
             <img className="trashEventOne" src="/images/3687412.png" alt="Trash" />
 
             <button className="buttonEventOneFirst"><span className="textOnEventOneFirst">{isViewerMemberEvent ? "Не долучатись" : "Долучитись"}</span></button>
-            <button className="buttonEventOneSecond"><span className="textOnEventOneSecond">{isViewerMemberAssociation ? "Покинути" : "Приєднатись"}</span></button>
+            {!isViewerMemberAssociation && <button className="buttonEventOneSecond"><span className="textOnEventOneSecond">Приєднатись</span></button>}
 
         </div>
     );

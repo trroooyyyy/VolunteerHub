@@ -15,6 +15,17 @@ a{
     background: linear-gradient(143.87deg, rgb(255, 218, 185) 4.09%,rgb(240, 172, 112) 95.45%);
     z-index: -1;
 }
+.rectangle1Events{
+    position: absolute;
+    width: 1903px;
+    height: 2224px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(143.87deg, rgb(255, 218, 185) 4.09%,rgb(240, 172, 112) 95.45%);
+    z-index: -1;
+}
 .rectangle1AssUsers{
     position: absolute;
     width: 1903px;
@@ -932,6 +943,16 @@ a{
     left: 0;
     right: 0;
     top: 2252px;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+}
+.footerEvents{
+    position: absolute;
+    width: 1903px;
+    height: 110px;
+    left: 0;
+    right: 0;
+    top: 2224px;
     bottom: 0;
     background: rgb(0, 0, 0);
 }
@@ -3353,6 +3374,48 @@ a{
     text-align: center;
     margin-left: -144px;
 }
+.formForSearch1{
+    width: 200px;
+    position: absolute;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    top: 172px;
+    left: 596px;
+
+}
+.formForSearch2{
+    width: 200px;
+    position: absolute;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    top: 172px;
+    left: 851px;
+
+}
+.formForSearch3{
+    width: 200px;
+    position: absolute;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    top: 172px;
+    left: 1106px;
+
+}
 .placeEvent{
     position: absolute;
     width: 63px;
@@ -3692,6 +3755,17 @@ a{
     height: 40px;
     margin-top: 12px;
     margin-left: 619px;
+}
+.Participate{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    margin-top: 12px;
+    margin-left: 12px;
+    transition: .5s;
+}
+.Participate:hover{
+    rotate: -15deg;
 }
 .inActiveEventTextImage{
     position: absolute;

@@ -7,6 +7,9 @@ import edu.com.bachelor.service.association.impls.AssociationServiceImpl;
 import edu.com.bachelor.service.event.impls.EventServiceImpl;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,8 +24,9 @@ public class EventController {
     private final AssociationServiceImpl associationService;
 
     @GetMapping("/")
-    public ResponseEntity<List<Event>> getAllEvents() {
-        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+    public ResponseEntity<Page<Event>> getAllEvents(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "6") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return new ResponseEntity<>(service.getAll(pageable), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

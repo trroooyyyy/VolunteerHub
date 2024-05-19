@@ -60,10 +60,15 @@ public class AssociationServiceImpl implements IAssociationService {
         return repository.findUsersByAssociationId(associationId);
     }
 
-    public Page<User> getUsersByAssociationIdPageble(Long associationId, int page, int size) {
+    public Page<User> getUsersByAssociationIdPageble(Long associationId, String login, String email, String telephone, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return repository.findUsersByAssociationIdPageble(associationId, pageable);
+        if (login != null || email != null || telephone != null) {
+            return repository.findUsersByAssociationIdAndSearchParams(associationId, login, email, telephone, pageable);
+        } else {
+            return repository.findUsersByAssociationIdPageble(associationId, pageable);
+        }
     }
+
 
     public List<Association> getAssociationsByOwnerId(Long ownerId) {
         return repository.findByOwnerId(ownerId);

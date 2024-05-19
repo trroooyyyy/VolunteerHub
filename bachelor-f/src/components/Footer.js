@@ -6,6 +6,7 @@ const Footer = () => {
     const [isActiveEvent, setIsActiveEvent] = useState(false);
     const [isActiveAssociations, setIsActiveAssociations] = useState(false);
     const [isActiveAssUsers, setIsActiveAssUsers] = useState(false);
+    const [isActiveEvents, setIsActiveEvents] = useState(false);
 
     useEffect(() => {
         const isProfilePath = window.location.pathname.startsWith('/profile');
@@ -21,6 +22,10 @@ const Footer = () => {
         setIsActiveEvent(isProfilePath);
     }, []);
     useEffect(() => {
+        const isProfilePath = window.location.pathname.startsWith('/all-events');
+        setIsActiveEvents(isProfilePath);
+    }, []);
+    useEffect(() => {
         const isProfilePath = window.location.pathname.startsWith('/associations');
         setIsActiveAssociations(isProfilePath);
     }, []);
@@ -31,7 +36,7 @@ const Footer = () => {
 
     return (
         <div>
-            <div className={isActiveProfile ? 'footerProfile' : isActiveUsers ? 'footerUsers' : isActiveEvent ? 'footerEvent' : isActiveAssociations ? 'footerAssociations' : isActiveAssUsers ? 'footerAssUsers' : 'footer'}>
+            <div className={isActiveProfile ? 'footerProfile' : isActiveUsers ? 'footerUsers' : isActiveEvent ? 'footerEvent' : isActiveAssociations ? 'footerAssociations' : isActiveAssUsers ? 'footerAssUsers' : isActiveEvents ? 'footerEvents' : 'footer'}>
                 <div className={'footerLogoSquare'}>
                     <div className={'footerLogoSquareText'}>V&amp;<span style={{ color: '#FFDAB9' }}>H</span></div>
 

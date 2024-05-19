@@ -37,9 +37,12 @@ public class AssociationController {
 
     @GetMapping("/{id}/users")
     public ResponseEntity<Page<User>> getUsersByAssociationId(@PathVariable("id") Long associationId,
+                                                              @RequestParam(required = false) String login,
+                                                              @RequestParam(required = false) String email,
+                                                              @RequestParam(required = false) String telephone,
                                                               @RequestParam(defaultValue = "0") int page,
                                                               @RequestParam(defaultValue = "5") int size) {
-        Page<User> users = service.getUsersByAssociationIdPageble(associationId, page, size);
+        Page<User> users = service.getUsersByAssociationIdPageble(associationId, login, email, telephone, page, size);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 

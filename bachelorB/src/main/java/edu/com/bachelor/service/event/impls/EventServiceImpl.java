@@ -1,9 +1,12 @@
 package edu.com.bachelor.service.event.impls;
 
 import edu.com.bachelor.model.Event;
+import edu.com.bachelor.model.User;
 import edu.com.bachelor.repository.EventRepository;
 import edu.com.bachelor.service.event.IEventService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
@@ -33,10 +36,9 @@ public class EventServiceImpl implements IEventService {
     public Event getOneById(Long id) {
         return repository.findById(id).orElseThrow(NoSuchElementException::new);
     }
-
     @Override
-    public List<Event> getAll() {
-        return repository.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
+    public Page<Event> getAll(Pageable pageable) {
+        return repository.findAllByOrderByCreatedAtDesc(pageable);
     }
 
     @Override

@@ -21,4 +21,11 @@ public interface AssociationRepository extends JpaRepository<Association, Long> 
 
     Page<Association> findAllByOrderByCreatedAt(Pageable pageable);
 
+    @Query("SELECT au FROM Association a JOIN a.users au WHERE a.id = :associationId AND " +
+            "(LOWER(au.login) LIKE %:login% OR :login IS NULL OR :login = '') AND " +
+            "(LOWER(au.email) LIKE %:email% OR :email IS NULL OR :email = '') AND " +
+            "(LOWER(au.telephone) LIKE %:telephone% OR :telephone IS NULL OR :telephone = '')")
+    Page<User> findUsersByAssociationIdAndSearchParams(Long associationId, String login, String email, String telephone, Pageable pageable);
+
+
 }

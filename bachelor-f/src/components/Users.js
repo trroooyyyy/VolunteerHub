@@ -13,6 +13,11 @@ const Users = () => {
     const [viewer, setViewer] = useState({});
     const [showModalIfLeave, setShowModalIfLeave] = useState(false);
     const [idToDeleteFromAssociation, setIdToDeleteFromAssociation] = useState(0);
+    const [searchParams, setSearchParams] = useState({
+        login: '',
+        email: '',
+        telephone: ''
+    });
 
     const getUsers = async () => {
         try {
@@ -21,6 +26,9 @@ const Users = () => {
             let userResponse;
             if (associationId) {
                 response = await axios.get(`http://localhost:8080/api/association/${associationId}/users?page=${currentPage}`, {
+                    params: {
+                        ...searchParams
+                    },
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -35,6 +43,9 @@ const Users = () => {
                 setAssociation(responseAssociation.data);
             } else {
                 response = await axios.get(`http://localhost:8080/api/user/?page=${currentPage}`, {
+                    params: {
+                        ...searchParams
+                    },
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -58,8 +69,21 @@ const Users = () => {
         if (token) {
             getUsers();
         }
-    }, [token, associationId, currentPage]);
+    }, [token, associationId, currentPage, searchParams]);
 
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setSearchParams({
+            ...searchParams,
+            [name]: value
+        });
+    };
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        getUsers();
+    };
 
     const handleRedirect = userId => {
         window.location.href = `http://localhost:3000/profile/${userId}`;
@@ -137,7 +161,9 @@ const Users = () => {
                 </div>
             )}
         </div>
-            <div className="container">
+
+            {users.length > 0 && (
+                <div className="container">
                 {currentPage !== 0 && (
                     <img onClick={handlePrevPage} className="Butonsss1" alt="left" src="/images/free-icon-arrow-right-5889819.png"/>
                 )}
@@ -145,7 +171,37 @@ const Users = () => {
                 {currentPage !== totalPages - 1 && (
                     <img onClick={handleNextPage} className="Butonsss2" alt="right" src="/images/free-icon-arrow-right-5889819.png"/>
                 )}
-            </div>
+                </div>
+                )};
+            <form onSubmit={handleSubmit}>
+                <input
+                    className="formForSearch1"
+                    type="text"
+                    name="login"
+                    value={searchParams.login}
+                    onChange={handleInputChange}
+                    placeholder="Логін..."
+                    maxLength="50"
+                />
+                <input
+                    className="formForSearch2"
+                    type="email"
+                    name="email"
+                    value={searchParams.email}
+                    onChange={handleInputChange}
+                    placeholder="Email..."
+                    maxLength="50"
+                />
+                <input
+                    className="formForSearch3"
+                    type="tel"
+                    name="telephone"
+                    value={searchParams.telephone}
+                    onChange={handleInputChange}
+                    placeholder="Телефон..."
+                    maxLength="50"
+                />
+            </form>
         </div>
     );
 };

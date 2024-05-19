@@ -13,4 +13,17 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByEmail(String email);
 
+    Page<User> findByLoginContaining(String login, Pageable pageable);
+
+    Page<User> findByEmailContaining(String email, Pageable pageable);
+
+    Page<User> findByTelephoneContaining(String telephone, Pageable pageable);
+
+    Page<User> findByLoginContainingAndEmailContainingAndTelephoneContaining(String login, String email, String telephone, Pageable pageable);
+
+    Page<User> findByLoginContainingAndEmailContaining(String login, String email, Pageable pageable);
+
+    Page<User> findByLoginContainingAndTelephoneContaining(String login, String telephone, Pageable pageable);
+
+    Page<User> findByEmailContainingAndTelephoneContaining(String email, String telephone, Pageable pageable);
 }

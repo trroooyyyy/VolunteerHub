@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -23,9 +22,15 @@ public class UserController {
     private final TokenService tokenService;
 
     @GetMapping("/")
-    public ResponseEntity<Page<User>> getAllUsers(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
+    public ResponseEntity<Page<User>> getAllUsers(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(required = false) String login,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String telephone) {
         Pageable pageable = PageRequest.of(page, size);
-        return new ResponseEntity<>(service.getAll(pageable), HttpStatus.OK);
+        Page<User> users = service.searchUsers(login, email, telephone, pageable);
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
 

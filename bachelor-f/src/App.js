@@ -40,7 +40,7 @@ function App() {
               <Route path="/edit/:userId" element={!token ? <Navigate to="/login" /> : <EditUser/>}></Route>
               <Route path="/associations/" element={!token ? <Navigate to="/login" /> : <><Header/><Associations/><Footer/></>}></Route>
               <Route path="/association/:associationId/users" element={!token ? <Navigate to="/login" /> : <><Header/><Users/><Footer/></>}></Route>
-              <Route path="/all-events" element={!token ? <Navigate to="/login" /> : <><Header/><Events/></>}></Route>
+              <Route path="/all-events" element={!token ? <Navigate to="/login" /> : <><Header/><Events/><Footer/></>}></Route>
               <Route path="/event/:eventId" element={!token ? <Navigate to="/login" /> : <><Header/><EventOne/><Footer/></>}></Route>
           </Routes>
       </Router>

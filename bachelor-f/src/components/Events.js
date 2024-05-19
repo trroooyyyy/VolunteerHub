@@ -16,10 +16,10 @@ const Events = () => {
     const [associationForEvent, setAssociationForEvent] = useState(0);
     const [events, setEvents] = useState([]);
     const [hoveredEvent, setHoveredEvent] = useState(null);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
 
-
-    useEffect(() => {
-        const getAssociations = async () => {
+    const getAssociations = async () => {
             try {
                 let userResponse;
                 userResponse = await axios.get('http://localhost:8080/api/user/t', {
@@ -34,12 +34,13 @@ const Events = () => {
                     }
                 });
                 let eventsResponse
-                eventsResponse = await axios.get('http://localhost:8080/api/event/', {
+                eventsResponse = await axios.get(`http://localhost:8080/api/event/?page=${currentPage}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
-                setEvents(eventsResponse.data);
+                setTotalPages(eventsResponse.data.totalPages);
+                setEvents(eventsResponse.data.content);
                 console.log(eventsResponse.data)
                 setViewer(userResponse.data);
                 setAssociations(associationResponse.data);
@@ -48,14 +49,34 @@ const Events = () => {
             }
         };
 
-        if (token) {
-            getAssociations();
-        }
-    }, [token]);
+        useEffect(() => {
+            if (token) {
+                getAssociations();
+            }
+    }, [token, currentPage]);
 
     const openZapovnPolya = () => {
         setShowZapovnPolya(true);
     };
+
+    const handleNextPage = () => {
+        setCurrentPage(currentPage + 1);
+    };
+
+    const handlePrevPage = () => {
+        setCurrentPage(currentPage - 1);
+    };
+
+    useEffect(() => {
+        const scrollToTop = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        };
+
+        scrollToTop();
+    }, [currentPage]);
 
     const closeZapovnPolya = () => {
         setShowZapovnPolya(false);
@@ -96,8 +117,8 @@ const Events = () => {
                     Authorization: `Bearer ${token}`
                 }
             });
-            closeModal();
-            window.location.reload();
+            closeModal()
+            getAssociations();
         } catch (error) {
             console.error('Error adding event:', error);
         }
@@ -127,10 +148,12 @@ const Events = () => {
                         <p className="positionEventsLocate">{event.place}</p>
                         <p className="eventsName">{event.name}</p>
                             {!isEventActive(event) && <img className="flag" src="/images/free-icon-warning-12434856.png" alt="Flag" />}
+                            {event.users.some(user => user.id === viewer.id) && <img className="Participate" src="/images/free-icon-check-mark-5290058.png" alt="Prstp"/>}
                         <img className="dateEvents" src="/images/free-icon-time-and-date-26-9005122.png" alt="Date" />
                         <p className="dateEventsText">{new Date(event.dateStart).toLocaleDateString('uk-UA')}</p>
                         <p className="associationNameEvent">{event.association.name}</p>
                         <img className="zaglushka" src="/images/Volunteer-with-us-banner.png" alt="Banner" />
+
                         </div>
                         {hoveredEvent === event.id && !isEventActive(event) && (
                             <>
@@ -146,6 +169,15 @@ const Events = () => {
 
                     </div>
                 ))}
+                <div className="container1">
+                    {currentPage !== 0 && (
+                        <img onClick={handlePrevPage} className="Butonsss12" alt="left" src="/images/free-icon-arrow-right-5889819.png"/>
+                    )}
+                    <span className="Pagesss1">{currentPage + 1} з {totalPages}</span>
+                    {currentPage !== totalPages - 1 && (
+                        <img onClick={handleNextPage} className="Butonsss22" alt="right" src="/images/free-icon-arrow-right-5889819.png"/>
+                    )}
+                </div>
             </div>
             {showZapovnPolya && (
                 <div className="modal">

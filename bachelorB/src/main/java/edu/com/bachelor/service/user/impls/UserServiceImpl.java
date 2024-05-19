@@ -98,6 +98,26 @@ public class UserServiceImpl implements IUserService {
     public Optional<User> getUserByLogin(String login) throws UsernameNotFoundException {
         return repository.findByLogin(login);
     }
+    public Page<User> searchUsers(String login, String email, String telephone, Pageable pageable) {
+        if (login != null && !login.isEmpty() && email != null && !email.isEmpty() && telephone != null && !telephone.isEmpty()) {
+            return repository.findByLoginContainingAndEmailContainingAndTelephoneContaining(login, email, telephone, pageable);
+        } else if (login != null && !login.isEmpty() && email != null && !email.isEmpty()) {
+            return repository.findByLoginContainingAndEmailContaining(login, email, pageable);
+        } else if (login != null && !login.isEmpty() && telephone != null && !telephone.isEmpty()) {
+            return repository.findByLoginContainingAndTelephoneContaining(login, telephone, pageable);
+        } else if (email != null && !email.isEmpty() && telephone != null && !telephone.isEmpty()) {
+            return repository.findByEmailContainingAndTelephoneContaining(email, telephone, pageable);
+        } else if (login != null && !login.isEmpty()) {
+            return repository.findByLoginContaining(login, pageable);
+        } else if (email != null && !email.isEmpty()) {
+            return repository.findByEmailContaining(email, pageable);
+        } else if (telephone != null && !telephone.isEmpty()) {
+            return repository.findByTelephoneContaining(telephone, pageable);
+        } else {
+            return repository.findAll(pageable);
+        }
+    }
+
 
 }
 
