@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {useParams} from "react-router-dom";
 
 
 const Events = () => {
@@ -18,6 +19,7 @@ const Events = () => {
     const [hoveredEvent, setHoveredEvent] = useState(null);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
+    const { associationId } = useParams();
 
     const getAssociations = async () => {
             try {
@@ -34,14 +36,24 @@ const Events = () => {
                     }
                 });
                 let eventsResponse
-                eventsResponse = await axios.get(`http://localhost:8080/api/event/?page=${currentPage}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
+                console.log(associationId)
+                if(associationId){
+                    eventsResponse = await axios.get(`http://localhost:8080/api/event/events/association/${associationId}?page=${currentPage}`, {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
+
+                }
+                else{
+                    eventsResponse = await axios.get(`http://localhost:8080/api/event/?page=${currentPage}`, {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
+                }
                 setTotalPages(eventsResponse.data.totalPages);
                 setEvents(eventsResponse.data.content);
-                console.log(eventsResponse.data)
                 setViewer(userResponse.data);
                 setAssociations(associationResponse.data);
             } catch (error) {
@@ -169,7 +181,8 @@ const Events = () => {
 
                     </div>
                 ))}
-                <div className="container1">
+                {events.length>0 && (
+                    <div className="container1">
                     {currentPage !== 0 && (
                         <img onClick={handlePrevPage} className="Butonsss12" alt="left" src="/images/free-icon-arrow-right-5889819.png"/>
                     )}
@@ -177,7 +190,7 @@ const Events = () => {
                     {currentPage !== totalPages - 1 && (
                         <img onClick={handleNextPage} className="Butonsss22" alt="right" src="/images/free-icon-arrow-right-5889819.png"/>
                     )}
-                </div>
+                </div>)}
             </div>
             {showZapovnPolya && (
                 <div className="modal">

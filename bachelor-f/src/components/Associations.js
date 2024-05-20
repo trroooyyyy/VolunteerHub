@@ -23,6 +23,8 @@ const Associations = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
 
+
+
     const fetchData = async () => {
         try {
             const associationResponse = await axios.get(`http://localhost:8080/api/association/?page=${currentPage}`, {
@@ -290,7 +292,7 @@ const Associations = () => {
                     <p className="creatorAssociation"><u style={{ fontWeight: 600 }}>Засновник:</u><br/><a className="ownerideffect" href={`/profile/${association.owner.id}`}>{association.owner.login}</a></p>
                     <p className="descriptionAssociation"><u style={{ fontWeight: 600 }}>Опис:</u><br/>{association.description}</p>
                     <p className="userAssociation"><u style={{ fontWeight: 600 }}><a href={`/association/${association.id}/users`}>Користувачі</a></u></p>
-                    <p className="eventAssociation"><u style={{ fontWeight: 600 }}>Заходи</u></p>
+                    <p className="eventAssociation"><u style={{ fontWeight: 600 }}><a href={`/all-events/${association.id}`}>Заходи</a></u></p>
                     {isMember(association) ? (
                         <img onClick={user.id === association.owner.id ? () => openModalExit(association.id) : () => handleExit(association.id)} className="exitAssociation" src="/images/free-icon-remove-1828843.png" alt="Вийти" />
                     ) : (
@@ -303,7 +305,8 @@ const Associations = () => {
 
 
             ))}
-                <div className="container1">
+                {associations.length>0 &&(
+                    <div className="container1">
                     {currentPage !== 0 && (
                         <img onClick={handlePrevPage} className="Butonsss12" alt="left" src="/images/free-icon-arrow-right-5889819.png"/>
                     )}
@@ -311,7 +314,7 @@ const Associations = () => {
                     {currentPage !== totalPages - 1 && (
                         <img onClick={handleNextPage} className="Butonsss22" alt="right" src="/images/free-icon-arrow-right-5889819.png"/>
                     )}
-                </div>
+                </div>)}
 
             </div>
 

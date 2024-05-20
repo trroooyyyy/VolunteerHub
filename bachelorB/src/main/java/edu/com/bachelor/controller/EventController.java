@@ -36,9 +36,26 @@ public class EventController {
     public ResponseEntity<Event> getEventById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(service.getOneById(id), HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteEvent(@PathVariable("id") Long id) {
+    public ResponseEntity<HttpStatus> deleteEvent(@PathVariable Long id, @RequestHeader("Authorization") String tokenHeader) {
+        Optional<User> userOptional = tokenService.getUserByToken(tokenHeader.substring(7));
+
+        if (userOptional.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+        Event existingEvent = service.getOneById(id);
+        if (existingEvent == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        if (!userOptional.get().getRole().name().equals("ROLE_ADMIN")) {
+            if (!userOptional.get().getId().equals(existingEvent.getAssociation().getOwner().getId())) {
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
+        }
+
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -119,6 +136,13 @@ public class EventController {
             Event updatedEvent = service.update(event);
             return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
         }
+    }
+
+    @GetMapping("/events/association/{associationId}")
+    public ResponseEntity<Page<Event>> getAllEventsByAssociationId(@PathVariable Long associationId, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "6") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Event> events = service.getAllByAssociationId(associationId, pageable);
+        return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
 }

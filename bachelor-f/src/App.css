@@ -3254,6 +3254,11 @@ a{
     text-align: left;
     margin-left: 972px;
     margin-top: 167px;
+    transition: all 0.3s ease-in-out;
+}
+.eventAssociation:hover{
+    rotate: -5deg;
+
 }
 .joinAssociation{
     position: absolute;
@@ -4118,6 +4123,16 @@ a{
 .buttonEventOneSecond:hover .textOnEventOneSecond{
     color: rgb(0, 0, 0);
 
+}
+
+.btnAnimationFade {
+    animation: btnAnimationFade 2s linear forwards;
+}
+
+@keyframes btnAnimationFade {
+    100% {
+        opacity: 0;
+    }
 }
 
 .trashEventOne{

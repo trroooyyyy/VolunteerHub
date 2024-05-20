@@ -28,6 +28,13 @@ const EventOne = () => {
 
     const navigate = useNavigate();
 
+    const [showModalDelete, setShowModalDelete] = useState(false);
+    const [idDeleted, setIdDeleted] = useState(0);
+
+
+
+
+
     useEffect(() => {
         const getEvent = async () => {
             try {
@@ -78,6 +85,7 @@ const EventOne = () => {
     }, [token, eventId, viewer]);
 
 
+
     const openZapovnPolya = () => {
         setShowZapovnPolya(true);
     };
@@ -89,6 +97,37 @@ const EventOne = () => {
     const closeModalEdit = () => {
         setShowModalEdit(false);
     };
+
+
+    const openModalDelete = (idDeleted) => {
+        setShowModalDelete(true);
+        setIdDeleted(idDeleted)
+    };
+
+    const closeModalDelete = () => {
+        setShowModalDelete(false);
+    };
+
+    function handleDelete(eventId) {
+        const deleteEvent = async () => {
+            try {
+                const response = await axios.delete(`http://localhost:8080/api/event/${eventId}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                console.log(response);
+                closeModalDelete();
+                navigate("/all-events");
+                window.location.reload();
+            } catch (error) {
+                console.error('Помилка при видаленні івенту:', error);
+            }
+        };
+
+        deleteEvent();
+    }
+
 
 
     function handleJoin(associationId) {
@@ -181,10 +220,11 @@ const EventOne = () => {
 
     function handleExitEvent(eventId) {
         if (numUsers===1){
-            alert("Ви останній користувач івенту, він буде видалений")
+            alert("Ви останній користувач цього заходу. Він буде видалений")
             navigate("/all-events")
             window.location.reload();
         }
+
 
         const exitEvent = async () => {
             try {
@@ -224,7 +264,7 @@ const EventOne = () => {
                 <img onClick={() => openModalEdit(event)} className="editEventOne" src="/images/8862294.png" alt="Edit" />
             )}
             {(user.id===viewer.id || viewer.role==="ROLE_ADMIN") && (
-                <img className="trashEventOne" src="/images/3687412.png" alt="Trash" />
+                <img onClick={() => openModalDelete(event.id)} className="trashEventOne" src="/images/3687412.png" alt="Trash" />
             )}
 
 
@@ -236,6 +276,16 @@ const EventOne = () => {
                     <div className="modal-content">
                         <p className="confirmation">Ви повинні заповнити усі поля.</p>
                         <button onClick={closeZapovnPolya}>Ок</button>
+                    </div>
+                </div>
+            )}
+
+            {showModalDelete && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <p className="confirmation">Ви впевнені, що хочете видалити цей івент?</p>
+                        <button onClick={() => handleDelete(idDeleted)}>Так</button>
+                        <button onClick={closeModalDelete}>Ні</button>
                     </div>
                 </div>
             )}

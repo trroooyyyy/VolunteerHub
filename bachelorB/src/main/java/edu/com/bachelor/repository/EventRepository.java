@@ -9,4 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface EventRepository extends JpaRepository<Event, Long> {
 
     Page<Event> findAllByOrderByCreatedAtDesc(Pageable pageable);
+
+    Page<Event> findAllByAssociationIdOrderByCreatedAtDesc(Long associationId, Pageable pageable);
 }

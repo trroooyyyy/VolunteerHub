@@ -52,4 +52,9 @@ public class EventServiceImpl implements IEventService {
         existingEvent.setUpdatedAt(LocalDateTime.now());
         return repository.save(existingEvent);
     }
+
+    @Override
+    public Page<Event> getAllByAssociationId(Long associationId, Pageable pageable) {
+        return repository.findAllByAssociationIdOrderByCreatedAtDesc(associationId, pageable);
+    }
 }

@@ -12,4 +12,6 @@ public interface IEventService {
     Event getOneById(Long id);
     Page<Event> getAll(Pageable pageble);
     Event update(Event event);
+
+    Page<Event> getAllByAssociationId(Long associationId, Pageable pageable);
 }
