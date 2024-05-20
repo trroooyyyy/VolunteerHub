@@ -217,7 +217,6 @@ const Associations = () => {
                 }
             });
             console.log("Editing super");
-            setShowModalEdit(false);
             updateData();
             closeModalEdit();
         } catch (error) {

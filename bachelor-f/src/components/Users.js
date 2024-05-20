@@ -172,7 +172,7 @@ const Users = () => {
                     <img onClick={handleNextPage} className="Butonsss2" alt="right" src="/images/free-icon-arrow-right-5889819.png"/>
                 )}
                 </div>
-                )};
+                )}
             <form onSubmit={handleSubmit}>
                 <input
                     className="formForSearch1"

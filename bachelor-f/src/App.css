@@ -3333,6 +3333,17 @@ a{
     display: block;
 
 }
+.modal-contentEvent1 {
+    background-color: #fff;
+    border-radius: 35px;
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 0, 0);
+    width: 670px;
+    height: 635px;
+    text-align: center;
+    display: block;
+
+}
 .confirmationEvent{
     position: absolute;
     width: 186px;
@@ -3578,6 +3589,24 @@ a{
     margin-left: -87.5px;
     margin-top: 662px;
 }
+.buttonEventYes1{
+    position: absolute;
+    width: 85px;
+    border: none;
+    height: 26px;
+    border-radius: 84px;
+    box-shadow: 0 4px 35px 0 rgba(245, 62, 61, 0.51);
+    background: rgb(245, 62, 61);
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: -87.5px;
+    margin-top: 579px;
+}
 .buttonEventNo{
     position: absolute;
     width: 85px;
@@ -3596,10 +3625,34 @@ a{
     margin-right: -82.5px;
     margin-top: 662px;
 }
+.buttonEventNo1{
+    position: absolute;
+    width: 85px;
+    border: none;
+    height: 26px;
+    border-radius: 84px;
+    box-shadow: 0 4px 35px 0 rgba(245, 62, 61, 0.51);
+    background: rgb(245, 62, 61);
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: -82.5px;
+    margin-top: 579px;
+}
 .buttonEventYes:hover {
     background-color: rgb(249, 168, 167);
 }
 .buttonEventNo:hover {
+    background-color: rgb(249, 168, 167);
+}
+.buttonEventYes1:hover {
+    background-color: rgb(249, 168, 167);
+}
+.buttonEventNo1:hover {
     background-color: rgb(249, 168, 167);
 }
 
@@ -4066,6 +4119,7 @@ a{
     color: rgb(0, 0, 0);
 
 }
+
 .trashEventOne{
     position: absolute;
     width: 40px;

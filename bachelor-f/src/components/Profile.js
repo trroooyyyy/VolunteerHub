@@ -43,6 +43,7 @@ const Profile = () => {
                     }
                 });
                 setViewer(response.data);
+
             } catch (error) {
                 console.error('Error fetching user:', error);
             }

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Navigate, useParams} from "react-router-dom";
+import { Navigate, useParams, useNavigate } from "react-router-dom";
 
 const EventOne = () => {
     const token = localStorage.getItem('token');
@@ -12,7 +12,21 @@ const EventOne = () => {
     const [viewer, setViewer] = useState({});
     const [isViewerMemberEvent, setIsViewerMemberEvent] = useState(false);
     const [isViewerMemberAssociation, setIsViewerMemberAssociation] = useState(false);
+    const [showModalEdit, setShowModalEdit] = useState(false);
 
+    const [showZapovnPolya, setShowZapovnPolya] = useState(false);
+
+    const [idEdit, setIdEdit] = useState(0);
+    const [nameEdit, setNameEdit] = useState('');
+    const [descriptionEdit, setDescriptionEdit] = useState('');
+    const [placeEdit, setPlaceEdit] = useState('');
+    const [dataStartEdit, setDataStartEdit] = useState('');
+    const [dataEndEdit, setDataEndEdit] = useState('');
+    const [associationForEdit, setAssociationForEdit] = useState({});
+    const [usersForEdit, setUsersForEdit] = useState([{}]);
+    const [numUsers, setNumUsers] = useState(0);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getEvent = async () => {
@@ -52,6 +66,7 @@ const EventOne = () => {
                 const isViewerMemberAssociation = associationResponse.data.users.some(members => members.id ===tokenResponse.data.id);
                 setIsViewerMemberEvent(isViewerMemberEvent);
                 setIsViewerMemberAssociation(isViewerMemberAssociation);
+                setNumUsers(eventsResponse.data.users.length);
             } catch (error) {
                 console.error('Помилка під час отримання даних:', error);
             }
@@ -60,13 +75,132 @@ const EventOne = () => {
         if (token) {
             getEvent();
         }
-    }, [token, eventId]);
+    }, [token, eventId, viewer]);
 
 
+    const openZapovnPolya = () => {
+        setShowZapovnPolya(true);
+    };
 
+    const closeZapovnPolya = () => {
+        setShowZapovnPolya(false);
+    };
+
+    const closeModalEdit = () => {
+        setShowModalEdit(false);
+    };
+
+
+    function handleJoin(associationId) {
+        const joinAssociation = async () => {
+            try {
+                const response = await axios.post(`http://localhost:8080/api/association/${associationId}/join`, {id: viewer.id, login: viewer.login, role: viewer.role}, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                console.log(response)
+
+            } catch (error) {
+                console.error('Помилка при приєднанні до спілки:', error);
+            }
+        };
+
+        joinAssociation();
+    }
+
+    const openModalEdit = (event) => {
+        setIdEdit(event.id);
+        setNameEdit(event.name);
+        setPlaceEdit(event.place);
+        setDescriptionEdit(event.description);
+        setDataStartEdit(event.dateStart.slice(0,10));
+        setDataEndEdit(event.dateEnd.slice(0,10));
+        setAssociationForEdit({id: event.association.id,
+        name: event.association.name});
+        setUsersForEdit(event.users.map(user => ({
+            id: user.id,
+            login: user.login,
+            role: user.role
+        })));
+        setShowModalEdit(true);
+    };
 
     if (isEventStarted) {
         return <Navigate to={`/review/event/${eventId}`} />;
+    }
+
+    const handleEdit = async (e) => {
+        if (!nameEdit || !placeEdit || !descriptionEdit || !dataStartEdit || !dataEndEdit) {
+            openZapovnPolya();
+            return;
+        }
+        e.preventDefault();
+        const eventData = {
+            id: idEdit,
+            name: nameEdit,
+            place: placeEdit,
+            dateStart: dataStartEdit,
+            dateEnd: dataEndEdit,
+            description: descriptionEdit,
+            association: associationForEdit,
+            users: usersForEdit
+        };
+        try {
+            await axios.put(`http://localhost:8080/api/event/${idEdit}`, eventData, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            console.log("Editing super");
+            closeModalEdit();
+        } catch (error) {
+            console.error('Error updating associations:', error);
+        }
+    };
+
+    function handleJoinEvent(eventId) {
+        const joinEvent = async () => {
+            try {
+                const response = await axios.post(`http://localhost:8080/api/event/${eventId}/join`, {id: viewer.id, login: viewer.login, role: viewer.role}, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                console.log(response)
+
+            } catch (error) {
+                console.error('Помилка при приєднанні до івенту:', error);
+            }
+        };
+
+        joinEvent();
+    }
+
+
+
+    function handleExitEvent(eventId) {
+        if (numUsers===1){
+            alert("Ви останній користувач івенту, він буде видалений")
+            navigate("/all-events")
+            window.location.reload();
+        }
+
+        const exitEvent = async () => {
+            try {
+                const response = await axios.post(`http://localhost:8080/api/event/${eventId}/exit`, {id: viewer.id, login: viewer.login, role: viewer.role}, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                console.log(response)
+
+            } catch (error) {
+                console.error('Помилка при виході з івенту:', error);
+            }
+        };
+
+        exitEvent();
     }
 
     return (
@@ -86,11 +220,102 @@ const EventOne = () => {
             <div className="SpilkPlace">{association.place}</div>
             <div className="KorTele">{user.telephone}</div>
             <div className="KorName">{user.lastName} {user.firstName}</div>
-            <img className="editEventOne" src="/images/8862294.png" alt="Edit" />
-            <img className="trashEventOne" src="/images/3687412.png" alt="Trash" />
+            {(user.id===viewer.id || viewer.role==="ROLE_ADMIN") && (
+                <img onClick={() => openModalEdit(event)} className="editEventOne" src="/images/8862294.png" alt="Edit" />
+            )}
+            {(user.id===viewer.id || viewer.role==="ROLE_ADMIN") && (
+                <img className="trashEventOne" src="/images/3687412.png" alt="Trash" />
+            )}
 
-            <button className="buttonEventOneFirst"><span className="textOnEventOneFirst">{isViewerMemberEvent ? "Не долучатись" : "Долучитись"}</span></button>
-            {!isViewerMemberAssociation && <button className="buttonEventOneSecond"><span className="textOnEventOneSecond">Приєднатись</span></button>}
+
+            <button onClick={isViewerMemberEvent ? () => handleExitEvent(event.id) : () => handleJoinEvent(event.id)} className="buttonEventOneFirst"><span className="textOnEventOneFirst">{isViewerMemberEvent ? "Не долучатись" : "Долучитись"}</span></button>
+            {!isViewerMemberAssociation && <button onClick={() => handleJoin(association.id)} className="buttonEventOneSecond"><span className="textOnEventOneSecond">Приєднатись</span></button>}
+
+            {showZapovnPolya && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <p className="confirmation">Ви повинні заповнити усі поля.</p>
+                        <button onClick={closeZapovnPolya}>Ок</button>
+                    </div>
+                </div>
+            )}
+
+            {showModalEdit && (
+                <div className="modalEvent">
+                    <div className="modal-contentEvent1">
+                        <p className="confirmationEvent">Редагування заходу</p>
+                        <p className="nameEvent">Назва:</p>
+                        <div>
+                            <input
+                                type="text"
+                                id="name"
+                                value={nameEdit}
+                                onChange={(e) => setNameEdit(e.target.value)}
+                                className="nameEventInput"
+                                maxLength="69"
+                            />
+                        </div>
+                        <p className="placeEvent">Місце:</p>
+                        <div>
+                            <input
+                                type="text"
+                                id="place"
+                                value={placeEdit}
+                                onChange={(e) => setPlaceEdit(e.target.value)}
+                                className="placeEventInput"
+                                maxLength="21"
+                            />
+                        </div>
+                        <p className="descEvent">Опис:</p>
+                        <div>
+                            <input
+                                type="text"
+                                id="description"
+                                name="description"
+                                value={descriptionEdit}
+                                onChange={(e) => setDescriptionEdit(e.target.value)}
+                                maxLength={500}
+                                className="descriptionEventInput"
+                            />
+                        </div>
+                        <p className="dateOfStartEvent">Дата початку:</p>
+                        <div>
+                            <input
+                                type="date"
+                                id="dateStart"
+                                name="dateStart"
+                                value={dataStartEdit}
+                                onChange={(e) => {
+                                    setDataStartEdit(e.target.value);
+                                    if (e.target.value > dataEndEdit) {
+                                        setDataEndEdit(e.target.value);
+                                    }
+                                }}
+                                className="dateOfStartEventInput"
+                            />
+                        </div>
+                        <p className="dateOfEndEvent">Дата кінця:</p>
+                        <div>
+                            <input
+                                type="date"
+                                id="dateEnd"
+                                name="dateEnd"
+                                value={dataEndEdit}
+                                onChange={(e) => {
+                                    if (e.target.value >= dataStartEdit) {
+                                        setDataEndEdit(e.target.value);
+                                    } else {
+                                        setDataEndEdit(dataStartEdit);
+                                    }
+                                }}
+                                className="dateOfEndEventInput"
+                            />
+                        </div>
+                        <button className="buttonEventYes1" onClick={handleEdit}>Save</button>
+                        <button className="buttonEventNo1" onClick={closeModalEdit}>Exit</button>
+                    </div>
+                </div>
+            )}
 
         </div>
     );
