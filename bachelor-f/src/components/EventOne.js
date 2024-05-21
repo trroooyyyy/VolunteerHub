@@ -192,6 +192,7 @@ const EventOne = () => {
                 }
             });
             console.log("Editing super");
+            window.location.reload();
             closeModalEdit();
         } catch (error) {
             console.error('Error updating associations:', error);
@@ -259,7 +260,7 @@ const EventOne = () => {
             <div className="SpilkName">{association.name}</div>
             <div className="SpilkPlace">{association.place}</div>
             <div className="KorTele">{user.telephone}</div>
-            <div className="KorName">{user.lastName} {user.firstName}</div>
+            <div className="KorName"><a className="ownerideffect" href={`/profile/${user.id}`}>{user.lastName} {user.firstName}</a></div>
             {(user.id===viewer.id || viewer.role==="ROLE_ADMIN") && (
                 <img onClick={() => openModalEdit(event)} className="editEventOne" src="/images/8862294.png" alt="Edit" />
             )}

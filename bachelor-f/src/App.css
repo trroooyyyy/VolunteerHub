@@ -15,6 +15,17 @@ a{
     background: linear-gradient(143.87deg, rgb(255, 218, 185) 4.09%,rgb(240, 172, 112) 95.45%);
     z-index: -1;
 }
+.rectangle1Review{
+    position: absolute;
+    width: 1903px;
+    height: 2246px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(143.87deg, rgb(255, 218, 185) 4.09%,rgb(240, 172, 112) 95.45%);
+    z-index: -1;
+}
 .rectangle1Events{
     position: absolute;
     width: 1903px;
@@ -946,6 +957,17 @@ a{
     bottom: 0;
     background: rgb(0, 0, 0);
 }
+.footerReview{
+    position: absolute;
+    width: 1903px;
+    height: 110px;
+    left: 0;
+    right: 0;
+    top: 2246px;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+}
+
 .footerEvents{
     position: absolute;
     width: 1903px;
@@ -2076,6 +2098,28 @@ a{
     bottom: 497px;
     border-radius: 48px;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.avatarDefaultComment{
+    position: absolute;
+    width: 99px;
+    height: 99px;
+    margin-left: 38px;
+    margin-top: 40px;
+    border-radius: 48px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.ratingPic{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    margin-left: 493px;
+    margin-top: 10px;
+    border-radius: 25px;
+    transition: .5s ease;
+}
+.ratingPic:hover{
+    rotate: -15deg;
 }
 .profileLogin{
     position: absolute;
@@ -3338,6 +3382,17 @@ a{
     display: block;
 
 }
+.modal-contentComment {
+    background-color: #fff;
+    border-radius: 35px;
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 0, 0);
+    width: 670px;
+    height: 384px;
+    text-align: center;
+    display: block;
+
+}
 .modal-contentEvent1 {
     background-color: #fff;
     border-radius: 35px;
@@ -3474,6 +3529,32 @@ a{
     margin-left: 307px;
     margin-top: 270px;
 }
+.descRatio{
+    position: absolute;
+    width: 57px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-left: 292px;
+    margin-top: 224px;
+}
+.descComment{
+    position: absolute;
+    width: 57px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-left: 307px;
+    margin-top: 102px;
+}
 .descriptionEventInput{
     position: absolute;
     width: 581px;
@@ -3489,6 +3570,38 @@ a{
     text-align: center;
     margin-top: 303px;
     margin-left: -290.5px;
+}
+.descriptionCommentInput{
+    position: absolute;
+    width: 581px;
+    height: 79px;
+    border-radius: 22px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background: rgb(217, 217, 217);
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-top: 135px;
+    margin-left: -290.5px;
+}
+.input7Comment{
+    position: absolute;
+    width: 288px;
+    height: 41px;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background: rgb(217, 217, 217);
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    margin-top: 257px;
+    margin-left: -144px;
 }
 .dateOfStartEvent{
     position: absolute;
@@ -3594,6 +3707,24 @@ a{
     margin-left: -87.5px;
     margin-top: 662px;
 }
+.buttonEventYesComment{
+    position: absolute;
+    width: 85px;
+    border: none;
+    height: 26px;
+    border-radius: 84px;
+    box-shadow: 0 4px 35px 0 rgba(245, 62, 61, 0.51);
+    background: rgb(245, 62, 61);
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: -87.5px;
+    margin-top: 328px;
+}
 .buttonEventYes1{
     position: absolute;
     width: 85px;
@@ -3630,6 +3761,24 @@ a{
     margin-right: -82.5px;
     margin-top: 662px;
 }
+.buttonEventNoComment{
+    position: absolute;
+    width: 85px;
+    border: none;
+    height: 26px;
+    border-radius: 84px;
+    box-shadow: 0 4px 35px 0 rgba(245, 62, 61, 0.51);
+    background: rgb(245, 62, 61);
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: -82.5px;
+    margin-top: 328px;
+}
 .buttonEventNo1{
     position: absolute;
     width: 85px;
@@ -3658,6 +3807,12 @@ a{
     background-color: rgb(249, 168, 167);
 }
 .buttonEventNo1:hover {
+    background-color: rgb(249, 168, 167);
+}
+.buttonEventYesComment:hover {
+    background-color: rgb(249, 168, 167);
+}
+.buttonEventNoComment:hover {
     background-color: rgb(249, 168, 167);
 }
 
@@ -3972,7 +4127,7 @@ a{
 }
 .placeOfEventOneText{
     position: absolute;
-    width: 37px;
+    width: 200px;
     height: 19px;
     left: 567px;
     right: 1299px;
@@ -4044,7 +4199,7 @@ a{
 }
 .KorName{
     position: absolute;
-    width: 150px;
+    width: 162px;
     height: 19px;
     left: 1090px;
     right: 681px;
@@ -4162,4 +4317,117 @@ a{
 }
 .editEventOne:hover{
     rotate: -30deg;
+}
+
+/* -------------------------------------- REVIEW */
+
+.buttonComment{
+    position: absolute;
+    width: 122px;
+    height: 42px;
+    left: 891px;
+    right: 890px;
+    top: 903px;
+    bottom: 1304px;
+    border-radius: 84px;
+    box-shadow: 0 4px 35px 0 rgba(245, 62, 61, 0.51);
+    background: rgb(245, 62, 61);
+    border: 0;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.buttonComment:hover{
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(245, 62, 61);
+}
+
+.buttonComment:hover .textOnEventOneFirst{
+    color: rgb(245, 62, 61);
+
+}
+
+.mainTableComments{
+    position: absolute;
+    width: 772px;
+    height: 1161px;
+    left: 50%;
+    top: 996px;
+    margin-left: -386.5px;
+    box-sizing: border-box;
+}
+.relativeDivComments{
+    position: relative;
+    width: 771px;
+    height: 179px;
+    box-sizing: border-box;
+    border-radius: 21px;
+    border: 1px solid rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
+    margin-bottom: 59px;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.55);
+    transition: .5s ease;
+    cursor: pointer;
+}
+.loginComment{
+    position: absolute;
+    width: 102px;
+    height: 23px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 23px;
+    text-align: left;
+    margin-left: 147px;
+    margin-top: 40px;
+}
+.eventOneMainDateCreateComment{
+    position: absolute;
+    width: 210px;
+    height: 19px;
+    color: rgb(166, 153, 153);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    margin-left: 551px;
+    margin-top: 11px;
+}
+.profileDescBoxComment{
+    position: absolute;
+    width: 586px;
+    height: 99px;
+    border-radius: 27px;
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.25);
+    background: rgb(255, 255, 255);
+    margin-left: 147px;
+    margin-top: 70px;
+}
+.contentComment1{
+    position: absolute;
+    width: 473px;
+    height: 80px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.nocommm{
+    position: absolute;
+    width: 336px;
+    height: 44px;
+    left: 50%;
+    margin-left: -163.5px;
+    margin-top: 68px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 44px;
+    text-align: left;
 }

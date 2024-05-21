@@ -20,6 +20,7 @@ const Events = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const { associationId } = useParams();
+    const [markedEvents, setMarkedEvents] = useState([]);
 
     const getAssociations = async () => {
             try {
@@ -52,10 +53,17 @@ const Events = () => {
                         }
                     });
                 }
+                let markedEventsResponse;
+                markedEventsResponse = await axios.get(`http://localhost:8080/api/review/events/${userResponse.data.id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
                 setTotalPages(eventsResponse.data.totalPages);
                 setEvents(eventsResponse.data.content);
                 setViewer(userResponse.data);
                 setAssociations(associationResponse.data);
+                setMarkedEvents(markedEventsResponse.data);
             } catch (error) {
                 console.error('Помилка під час отримання даних:', error);
             }
@@ -107,6 +115,7 @@ const Events = () => {
         setShowModal(false);
     };
 
+
     const createEventProject= async (e) => {
         if (!name || !place || !description || !dateStart || !associationForEvent || !dateEnd) {
             openZapovnPolya();
@@ -149,6 +158,8 @@ const Events = () => {
         return currentDate < eventStartDate;
     };
 
+
+
     return (
         <div>
             <button className="buttonCreateAssociation" onClick={openModal}><span className="textOnCreateAssociation">Створити захід</span></button>
@@ -165,12 +176,11 @@ const Events = () => {
                         <p className="dateEventsText">{new Date(event.dateStart).toLocaleDateString('uk-UA')}</p>
                         <p className="associationNameEvent">{event.association.name}</p>
                         <img className="zaglushka" src="/images/Volunteer-with-us-banner.png" alt="Banner" />
-
                         </div>
                         {hoveredEvent === event.id && !isEventActive(event) && (
                             <>
                                 {event.users.some(user => user.id === viewer.id) ? (
-                                    <p className="inActiveEventText">Натисніть, щоб залишити відгук</p>
+                                    <p className="inActiveEventText">{markedEvents.some(markEvent => markEvent === event.id) ? "Ви вже залишили відгук" : "Натисніть, щоб залишити відгук"}</p>
                                 ) : (
                                     <p className="inActiveEventText">Переглянути відгуки</p>
                                 )}
