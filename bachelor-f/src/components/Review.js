@@ -28,6 +28,18 @@ const Review = () => {
     const [idDeleted, setIdDeleted] = useState(0);
     const navigate = useNavigate();
 
+    const [showModalDeleteReview, setShowModalDeleteReview] = useState(false)
+    const [idDeletedReview, setIdDeletedReview] = useState(0);
+
+    const [showModalEdit, setShowModalEdit] = useState(false);
+
+    const [idEdit, setIdEdit] = useState(0);
+    const [contentEdit, setContentEdit] = useState('');
+    const [ratingEdit, setRatingEdit] = useState(0);
+    const [userForEdit, setUserForEdit] = useState({});
+    const [eventForEdit, setEventForEdit] = useState({});
+
+
     let imageUrl;
 
     useEffect(() => {
@@ -108,6 +120,24 @@ const Review = () => {
     };
 
 
+    const openModalEdit = (review) => {
+        setIdEdit(review.id);
+        setContentEdit(review.content);
+        setRatingEdit(review.rating);
+        setUserForEdit({id: review.user.id,
+        login: review.user.login,
+        role: review.user.role});
+        setEventForEdit({
+            id: review.event.id
+        })
+        setShowModalEdit(true);
+    };
+
+    const closeModalEdit = () => {
+        setShowModalEdit(false);
+    };
+
+
     function handleJoin(associationId) {
         const joinAssociation = async () => {
             try {
@@ -141,6 +171,15 @@ const Review = () => {
 
     const closeModalDelete = () => {
         setShowModalDelete(false);
+    };
+
+    const openModalDeleteReview = (idDeletedReview) => {
+        setShowModalDeleteReview(true);
+        setIdDeletedReview(idDeletedReview)
+    };
+
+    const closeModalDeleteReview = () => {
+        setShowModalDeleteReview(false);
     };
 
     function handleDelete(eventId) {
@@ -208,6 +247,54 @@ const Review = () => {
         }
     };
 
+    function handleDeleteReview(reviewId) {
+        const deleteReview = async () => {
+            try {
+                const response = await axios.delete(`http://localhost:8080/api/review/${reviewId}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                console.log(response);
+                if (reviews.length === 1 && currentPage > 0) {
+                    setCurrentPage(currentPage - 1);
+                }
+                closeModalDeleteReview()
+            } catch (error) {
+                console.error('Помилка при видаленні коментаря:', error);
+            }
+        };
+
+        deleteReview();
+    }
+
+
+    const handleEditReview = async (e) => {
+        if (!contentEdit || !ratingEdit) {
+            openZapovnPolya();
+            return;
+        }
+
+        e.preventDefault();
+        const reviewData = {
+            id: idEdit,
+            content: contentEdit,
+            rating: ratingEdit,
+            user: userForEdit,
+            event: eventForEdit
+        };
+        try {
+            await axios.put(`http://localhost:8080/api/review/${idEdit}`, reviewData, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            console.log("Editing super");
+            closeModalEdit();
+        } catch (error) {
+            console.error('Error updating reviews:', error);
+        }
+    };
     return (
         <div>
             <div className="eventOneMainDiv"></div>
@@ -255,13 +342,19 @@ const Review = () => {
                             <div className="eventOneMainDateCreateComment">Опубліковано: {new Date(event.createdAt).toLocaleDateString('uk-UA')}</div>
                             <div className="profileDescBoxComment">
                                 <div className="contentComment1">{review.content}</div>
-                                {/* Используем imageUrl здесь */}
+                                {}
                                 <img
                                     className="ratingPic"
                                     src={imageUrl}
                                     alt="rating"
                                 />
                             </div>
+                            {(viewer.role==="ROLE_ADMIN" || viewer.id===review.user.id) && (
+                                <div>
+                                <img onClick={() => openModalEdit(review)} className="editComment" src="/images/free-icon-edit-tools-9781874.png" alt="" />
+                                <img onClick={() => openModalDeleteReview(review.id)} className="deleteComment" src="/images/free-icon-delete-7104075.png" alt="" />
+                                </div>
+                            )}
                         </div>
                     );
                 })}
@@ -290,6 +383,16 @@ const Review = () => {
                         <button onClick={closeModalDelete}>Ні</button>
                     </div>
                 </div>
+            )}
+
+            {showModalDeleteReview && (
+            <div className="modal">
+                <div className="modal-content">
+                    <p className="confirmation">Ви впевнені, що хочете видалити цей коментар?</p>
+                    <button onClick={() => handleDeleteReview(idDeletedReview)}>Так</button>
+                    <button onClick={closeModalDeleteReview}>Ні</button>
+                </div>
+            </div>
             )}
 
             {showZapovnPolya && (
@@ -331,6 +434,41 @@ const Review = () => {
 
                         <button className="buttonEventYesComment" onClick={createCommentProject}>Save</button>
                         <button className="buttonEventNoComment" onClick={closeModal}>Exit</button>
+                    </div>
+                </div>
+            )}
+
+            {showModalEdit && (
+                <div className="modalEvent">
+                    <div className="modal-contentComment">
+                        <p className="confirmationEvent">Редагування</p>
+                        <p className="descComment">Опис:</p>
+                        <div>
+                            <input
+                                type="text"
+                                id="content"
+                                name="content"
+                                value={contentEdit}
+                                onChange={(e) => setContentEdit(e.target.value)}
+                                maxLength={194}
+                                className="descriptionCommentInput"
+                            />
+                        </div>
+                        <p className="descRatio">Рейтинг:</p>
+                        <div>
+                            <input
+                                type="number"
+                                id="rating"
+                                value={ratingEdit}
+                                onChange={(e) => setRatingEdit(e.target.value)}
+                                className="input7Comment"
+                                min={0}
+                                max={10}
+                            />
+                        </div>
+
+                        <button className="buttonEventYesComment" onClick={handleEditReview}>Save</button>
+                        <button className="buttonEventNoComment" onClick={closeModalEdit}>Exit</button>
                     </div>
                 </div>
             )}

@@ -174,6 +174,13 @@ const EventOne = () => {
             openZapovnPolya();
             return;
         }
+
+        const currentDate = new Date();
+        const eventStartDate = new Date(dataStartEdit);
+        if (eventStartDate < currentDate) {
+            alert("Дата початку події не може бути раніше поточної дати.");
+            return;
+        }
         e.preventDefault();
         const eventData = {
             id: idEdit,
@@ -192,6 +199,7 @@ const EventOne = () => {
                 }
             });
             console.log("Editing super");
+            window.location.reload();
             window.location.reload();
             closeModalEdit();
         } catch (error) {

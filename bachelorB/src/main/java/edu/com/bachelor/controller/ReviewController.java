@@ -1,8 +1,10 @@
 package edu.com.bachelor.controller;
 
-import edu.com.bachelor.model.Event;
+
 import edu.com.bachelor.model.Review;
+import edu.com.bachelor.model.User;
 import edu.com.bachelor.service.review.impls.ReviewServiceImpl;
+import edu.com.bachelor.token.TokenService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -13,12 +15,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/review")
 @AllArgsConstructor
 public class ReviewController {
     private final ReviewServiceImpl service;
+    private final TokenService tokenService;
 
     @GetMapping("/")
     public ResponseEntity<List<Review>> getAllReviews() {
@@ -29,16 +33,58 @@ public class ReviewController {
     public ResponseEntity<Review> getReviewById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(service.getOneById(id), HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteReview(@PathVariable("id") Long id) {
+    public ResponseEntity<HttpStatus> deleteReview(@PathVariable Long id, @RequestHeader("Authorization") String tokenHeader) {
+        String jwt = tokenHeader.substring(7);
+
+        Optional<User> userOptional = tokenService.getUserByToken(jwt);
+        if (userOptional.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+        Review existingReview = service.getOneById(id);
+        if (existingReview == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        if (!userOptional.get().getRole().name().equals("ROLE_ADMIN")) {
+            if (!userOptional.get().getId().equals(existingReview.getUser().getId())) {
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
+        }
+
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/")
-    public ResponseEntity<Review> updateReview(@Valid @RequestBody Review review) {
-        return new ResponseEntity<>(service.update(review), HttpStatus.OK);
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Review> updateReview(@PathVariable Long id, @Valid @RequestBody Review review, @RequestHeader("Authorization") String tokenHeader) {
+        String jwt = tokenHeader.substring(7);
+
+        Optional<User> userOptional = tokenService.getUserByToken(jwt);
+        if (userOptional.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+        Review existingReview = service.getOneById(id);
+        if (existingReview == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        User currentUser = userOptional.get();
+        if (!currentUser.getRole().name().equals("ROLE_ADMIN")) {
+            if (!currentUser.getId().equals(existingReview.getUser().getId())) {
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
+        }
+
+        review.setId(id);
+        Review updatedReview = service.update(review);
+        if (updatedReview != null) {
+            return new ResponseEntity<>(updatedReview, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @PostMapping("/")
