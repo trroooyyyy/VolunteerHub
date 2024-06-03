@@ -171,6 +171,13 @@ const Events = () => {
                         <p className="positionEventsLocate">{event.place}</p>
                         <p className="eventsName">{event.name}</p>
                             {!isEventActive(event) && <img className="flag" src="/images/free-icon-warning-12434856.png" alt="Flag" />}
+                            {event.reviewCount >= 1 && (
+                                <>
+                                    {!isEventActive(event) && <img className="CommentCount" src="/images/free-icon-comment-4991361.png" alt="Comment" />}
+                                    {!isEventActive(event) && <p className="commentCountText">{event.reviewCount}</p>}
+                                </>
+                            )}
+
                             {event.users.some(user => user.id === viewer.id) && <img className="Participate" src="/images/free-icon-check-mark-5290058.png" alt="Prstp"/>}
                         <img className="dateEvents" src="/images/free-icon-time-and-date-26-9005122.png" alt="Date" />
                         <p className="dateEventsText">{new Date(event.dateStart).toLocaleDateString('uk-UA')}</p>

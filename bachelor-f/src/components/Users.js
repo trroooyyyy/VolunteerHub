@@ -80,10 +80,6 @@ const Users = () => {
     };
 
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        getUsers();
-    };
 
     const handleRedirect = userId => {
         window.location.href = `http://localhost:3000/profile/${userId}`;
@@ -173,7 +169,7 @@ const Users = () => {
                 )}
                 </div>
                 )}
-            <form onSubmit={handleSubmit}>
+            <form>
                 <input
                     className="formForSearch1"
                     type="text"

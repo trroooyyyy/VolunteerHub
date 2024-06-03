@@ -5,6 +5,7 @@ import edu.com.bachelor.model.Event;
 import edu.com.bachelor.model.User;
 import edu.com.bachelor.service.association.impls.AssociationServiceImpl;
 import edu.com.bachelor.service.event.impls.EventServiceImpl;
+import edu.com.bachelor.service.review.impls.ReviewServiceImpl;
 import edu.com.bachelor.token.TokenService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -25,11 +26,20 @@ public class EventController {
     private final EventServiceImpl service;
     private final AssociationServiceImpl associationService;
     private final TokenService tokenService;
+    private final ReviewServiceImpl reviewService;
 
     @GetMapping("/")
     public ResponseEntity<Page<Event>> getAllEvents(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "6") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return new ResponseEntity<>(service.getAll(pageable), HttpStatus.OK);
+        Page<Event> events = service.getAll(pageable);
+
+
+        events.forEach(event -> {
+            int reviewCount = reviewService.findByEventId(event.getId(), PageRequest.of(0, Integer.MAX_VALUE)).getContent().size();
+            event.setReviewCount(reviewCount);
+        });
+
+        return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

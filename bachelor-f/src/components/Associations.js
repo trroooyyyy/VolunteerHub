@@ -22,12 +22,18 @@ const Associations = () => {
     const [showZapovnPolya, setShowZapovnPolya] = useState(false);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
-
+    const [searchParams, setSearchParams] = useState({
+        name: '',
+        place: ''
+    });
 
 
     const fetchData = async () => {
         try {
             const associationResponse = await axios.get(`http://localhost:8080/api/association/?page=${currentPage}`, {
+                params: {
+                    ...searchParams
+                },
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -54,8 +60,16 @@ const Associations = () => {
         if (token) {
             fetchData();
         }
-    }, [token, currentPage]);
+    }, [token, currentPage, searchParams]);
 
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setSearchParams({
+            ...searchParams,
+            [name]: value
+        });
+    };
 
 
 
@@ -316,6 +330,9 @@ const Associations = () => {
                     )}
                 </div>)}
 
+
+
+
             </div>
 
             {showModalDelete && (
@@ -430,6 +447,27 @@ const Associations = () => {
                     </div>
                 </div>
             )}
+
+            <form>
+                <input
+                    className="formForSearch1Ass"
+                    type="text"
+                    name="name"
+                    value={searchParams.name}
+                    onChange={handleInputChange}
+                    placeholder="Назва..."
+                    maxLength="50"
+                />
+                <input
+                    className="formForSearch3Ass"
+                    type="text"
+                    name="place"
+                    value={searchParams.place}
+                    onChange={handleInputChange}
+                    placeholder="Місце..."
+                    maxLength="50"
+                />
+            </form>
 
 
         </div>

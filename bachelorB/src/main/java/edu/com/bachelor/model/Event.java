@@ -36,4 +36,7 @@ public class Event {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    @Transient
+    private int reviewCount;
+
 }

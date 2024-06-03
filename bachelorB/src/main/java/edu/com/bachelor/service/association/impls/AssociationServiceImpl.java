@@ -73,4 +73,17 @@ public class AssociationServiceImpl implements IAssociationService {
     public List<Association> getAssociationsByOwnerId(Long ownerId) {
         return repository.findByOwnerId(ownerId);
     }
+
+
+    public Page<Association> findAssociationsByName(String name, Pageable pageable) {
+        return repository.findByNameContainingIgnoreCase(name, pageable);
+    }
+
+    public Page<Association> findAssociationsByPlace(String place, Pageable pageable) {
+        return repository.findByPlaceContainingIgnoreCase(place, pageable);
+    }
+
+    public Page<Association> findAssociationsByNameAndPlace(String name, String place, Pageable pageable) {
+        return repository.findByNameContainingIgnoreCaseAndPlaceContainingIgnoreCase(name, place, pageable);
+    }
 }

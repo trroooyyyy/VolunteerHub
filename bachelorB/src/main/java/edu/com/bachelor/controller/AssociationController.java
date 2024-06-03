@@ -27,12 +27,26 @@ public class AssociationController {
 
     @GetMapping("/")
     public ResponseEntity<Page<Association>> getAllAssociations(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String place,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "6") int size) {
+        Page<Association> associationsPage;
         Pageable pageable = PageRequest.of(page, size);
-        Page<Association> associationsPage = service.getAll(pageable);
+
+        if (name != null && place != null) {
+            associationsPage = service.findAssociationsByNameAndPlace(name, place, pageable);
+        } else if (name != null) {
+            associationsPage = service.findAssociationsByName(name, pageable);
+        } else if (place != null) {
+            associationsPage = service.findAssociationsByPlace(place, pageable);
+        } else {
+            associationsPage = service.getAll(pageable);
+        }
+
         return new ResponseEntity<>(associationsPage, HttpStatus.OK);
     }
+
 
 
     @GetMapping("/{id}/users")

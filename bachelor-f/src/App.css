@@ -3459,6 +3459,20 @@ a{
     left: 596px;
 
 }
+.formForSearch1Ass{
+    width: 200px;
+    position: absolute;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    top: 202px;
+    left: 596px;
+
+}
 .formForSearch2{
     width: 200px;
     position: absolute;
@@ -3484,6 +3498,20 @@ a{
     line-height: 23px;
     text-align: left;
     top: 172px;
+    left: 1106px;
+
+}
+.formForSearch3Ass{
+    width: 200px;
+    position: absolute;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    top: 202px;
     left: 1106px;
 
 }
@@ -3926,6 +3954,19 @@ a{
     margin-left: 448px;
     margin-top: 154px;
 }
+.commentCountText{
+    position: absolute;
+    width: 40px;
+    height: 15px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+    margin-left: 619px;
+    margin-top: 228px
+}
 .associationNameEvent{
     position: absolute;
     width: 319px;
@@ -3947,6 +3988,13 @@ a{
     margin-top: 47px;
     margin-left: 51px;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.CommentCount{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    margin-left: 619px;
+    margin-top: 221px;
 }
 .inActiveEventText{
     position: absolute;

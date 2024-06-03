@@ -26,6 +26,12 @@ public interface AssociationRepository extends JpaRepository<Association, Long> 
             "(LOWER(au.email) LIKE %:email% OR :email IS NULL OR :email = '') AND " +
             "(LOWER(au.telephone) LIKE %:telephone% OR :telephone IS NULL OR :telephone = '')")
     Page<User> findUsersByAssociationIdAndSearchParams(Long associationId, String login, String email, String telephone, Pageable pageable);
+    
 
 
+    Page<Association> findByNameContainingIgnoreCase(String name, Pageable pageable);
+
+    Page<Association> findByPlaceContainingIgnoreCase(String place, Pageable pageable);
+
+    Page<Association> findByNameContainingIgnoreCaseAndPlaceContainingIgnoreCase(String name, String place, Pageable pageable);
 }
