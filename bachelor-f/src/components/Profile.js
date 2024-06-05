@@ -79,6 +79,7 @@ const Profile = () => {
                 navigate('/')
                 setUser(null);
             }
+            window.location.reload();
         } catch (error) {
             console.error('Error deleting user:', error);
         }

@@ -34,4 +34,6 @@ public interface AssociationRepository extends JpaRepository<Association, Long> 
     Page<Association> findByPlaceContainingIgnoreCase(String place, Pageable pageable);
 
     Page<Association> findByNameContainingIgnoreCaseAndPlaceContainingIgnoreCase(String name, String place, Pageable pageable);
+
+    void deleteByOwnerId(Long id);
 }

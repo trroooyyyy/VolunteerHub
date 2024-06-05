@@ -1,6 +1,8 @@
 package edu.com.bachelor.controller;
 
 import edu.com.bachelor.model.User;
+import edu.com.bachelor.service.association.impls.AssociationServiceImpl;
+import edu.com.bachelor.service.review.impls.ReviewServiceImpl;
 import edu.com.bachelor.service.user.impls.UserServiceImpl;
 import edu.com.bachelor.token.TokenService;
 import jakarta.validation.Valid;
@@ -20,6 +22,8 @@ import java.util.Optional;
 public class UserController {
     private final UserServiceImpl service;
     private final TokenService tokenService;
+    private final AssociationServiceImpl associationService;
+    private final ReviewServiceImpl reviewService;
 
     @GetMapping("/")
     public ResponseEntity<Page<User>> getAllUsers(
@@ -41,7 +45,6 @@ public class UserController {
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") Long id) {
-        tokenService.deleteAllTokensByUser(id);
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

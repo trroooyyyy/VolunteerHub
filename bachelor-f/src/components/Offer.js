@@ -3,16 +3,15 @@ import React from 'react';
 
 const Offer = () => {
 
-    /*const [counter, setCount] = useState(0);
-    const alert = () => {
-        setCount(counter+1)
-    }*/
+    const handleRedirectEvents = () => {
+        window.location.href = `http://localhost:3000/all-events`;
+    };
+
     return (
         <div>
             <div className="offer">Твій новий шлях до зміни світу!</div>
             <div className="descriptor">Онлайн платформа для волонтерів</div>
-            <div className="button"></div>
-            <div className="textOnButton">Перейти до заходів</div>
+            <button className="button" onClick={handleRedirectEvents}><span className="textOnButton">Перейти до заходів</span></button>
             <img className="offerPic" src="/images/Volunteer-Pic.png" alt="" />
         </div>
     );

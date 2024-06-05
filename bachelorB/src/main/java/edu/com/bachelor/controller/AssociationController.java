@@ -3,6 +3,7 @@ package edu.com.bachelor.controller;
 import edu.com.bachelor.model.Association;
 import edu.com.bachelor.model.User;
 import edu.com.bachelor.service.association.impls.AssociationServiceImpl;
+import edu.com.bachelor.service.event.impls.EventServiceImpl;
 import edu.com.bachelor.service.user.impls.UserServiceImpl;
 import edu.com.bachelor.token.TokenService;
 import jakarta.validation.Valid;
@@ -24,6 +25,7 @@ public class AssociationController {
     private final AssociationServiceImpl service;
     private final TokenService tokenService;
     private final UserServiceImpl userService;
+    private final EventServiceImpl eventService;
 
     @GetMapping("/")
     public ResponseEntity<Page<Association>> getAllAssociations(

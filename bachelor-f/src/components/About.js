@@ -15,7 +15,7 @@ const About = () => {
 
                 Приєднуйтесь до VolunteerHub, долучайтеся до обговорень, знаходьте інспірацію та спільників по ідеях, і разом ми зможемо досягти більшого і покращити світ навколо нас!<br/><br/>
 
-                <span style={{ color: "#FF0000", fontWeight: '900'}}>Читати більше →</span></div>
+                <a href={"/about-service"}><span style={{ color: "#FF0000", fontWeight: '900'}}>Читати більше →</span></a></div>
             <img className="aboutP2" src="/images/5-Organizations-Offering-Excellent-Volunteer-Opportunities-for-College-Students.jpg" alt="" />
         </div>
     );

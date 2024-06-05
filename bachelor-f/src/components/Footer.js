@@ -8,6 +8,7 @@ const Footer = () => {
     const [isActiveAssUsers, setIsActiveAssUsers] = useState(false);
     const [isActiveEvents, setIsActiveEvents] = useState(false);
     const [isActiveReview, setIsActiveReview] = useState(false);
+    const [isActiveAboutService, setIsActiveAboutService] = useState(false);
 
     useEffect(() => {
         const isProfilePath = window.location.pathname.startsWith('/profile');
@@ -37,6 +38,10 @@ const Footer = () => {
     useEffect(() => {
         const isProfilePath = window.location.pathname.startsWith('/review');
         setIsActiveReview(isProfilePath);
+    }, []);
+    useEffect(() => {
+        const isProfilePath = window.location.pathname.startsWith('/about-service');
+        setIsActiveAboutService(isProfilePath);
     }, []);
 
     return (

@@ -3,12 +3,15 @@ package edu.com.bachelor.service.association.impls;
 import edu.com.bachelor.model.Association;
 import edu.com.bachelor.model.User;
 import edu.com.bachelor.repository.AssociationRepository;
+import edu.com.bachelor.repository.EventRepository;
 import edu.com.bachelor.service.association.IAssociationService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -17,6 +20,7 @@ import java.util.NoSuchElementException;
 @AllArgsConstructor
 public class AssociationServiceImpl implements IAssociationService {
     private AssociationRepository repository;
+    private EventRepository eventRepository;
 
     @Override
     public Association save(Association association) {
@@ -86,4 +90,5 @@ public class AssociationServiceImpl implements IAssociationService {
     public Page<Association> findAssociationsByNameAndPlace(String name, String place, Pageable pageable) {
         return repository.findByNameContainingIgnoreCaseAndPlaceContainingIgnoreCase(name, place, pageable);
     }
+
 }

@@ -204,6 +204,14 @@ a{
     top: 105.5px;
     border: 1px solid rgba(0, 0, 0, 0.34);
 }
+.line1AboutService{
+    position: absolute;
+    width: 110px;
+    height: 0;
+    left: 1117px;
+    top: 106px;
+    border: 1px solid rgba(0, 0, 0, 0.34);
+}
 .events{
     position: absolute;
     width: 71.66px;
@@ -323,9 +331,47 @@ a{
     font-size: 19px;
     font-weight: 400;
     line-height: 23px;
-
     text-align: left;
 }
+.aboutPageFirst{
+    position: absolute;
+    width: 112.01px;
+    height: 23px;
+    left: 1117.06px;
+    right: -356.08px;
+    top: 83px;
+    bottom: -59px;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat,sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 23px;
+    text-align: left;
+}
+.about:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.5s;
+}
+
+.about:hover:after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px;
+    background-color: black;
+    transition: width 0.5s;
+}
+
 .users{
     position: absolute;
     width: 122.12px;
@@ -439,16 +485,15 @@ a{
     bottom: -584px;
     border-radius: 50px;
     box-shadow: 0 4px 35px 0 rgb(242, 61, 64);
-    background: linear-gradient(142.05deg, rgb(246, 61, 61) 11.253%,rgb(112, 120, 47) 91.02%);
+    background: linear-gradient(to left, rgb(246, 61, 61),rgb(112, 120, 47),rgb(246, 61, 61));
+    border: 0;
+    cursor: pointer;
+    transition: 0.5s;
+    background-size: 200%;
 }
 .textOnButton{
-    position: absolute;
     width: 211px;
     height: 23px;
-    left: 420px;
-    right: -331px;
-    top: 613px;
-    bottom: -554px;
     color: rgb(255, 255, 255);
     font-family: Montserrat B, sans-serif;
     font-size: 19px;
@@ -456,6 +501,11 @@ a{
     line-height: 23px;
     text-align: left;
 }
+.button:hover{
+    background-position: right;
+
+}
+
 .offerPic{
     position: absolute;
     width: 871px;
@@ -826,6 +876,7 @@ a{
     font-weight: 400;
     text-align: left;
 }
+
 .aboutP2{
     position: absolute;
     width: 570px;
@@ -839,42 +890,6 @@ a{
 
 /* Add menu bar------------------------------------------------------------- */
 
-.eventsBar{
-    position: absolute;
-    width: 245px;
-    height: 67px;
-    left: 375px;
-    right: 425px;
-    top: 2117px;
-    bottom: -2117px;
-    border-radius: 50px;
-    box-shadow: 0 4px 20px 0 rgb(0, 0, 0);
-    background: rgb(0, 0, 0);
-}
-.associationsBar{
-    position: absolute;
-    width: 245px;
-    height: 67px;
-    left: 775px;
-    right: 25px;
-    top: 2117px;
-    bottom: -2117px;
-    border-radius: 50px;
-    box-shadow: 0 4px 20px 0 rgb(0, 0, 0);
-    background: rgb(0, 0, 0);
-}
-.usersBar{
-    position: absolute;
-    width: 245px;
-    height: 67px;
-    left: 1175px;
-    right: -375px;
-    top: 2117px;
-    bottom: -2117px;
-    border-radius: 50px;
-    box-shadow: 0 4px 20px 0 rgb(0, 0, 0);
-    background: rgb(0, 0, 0);
-}
 .arrowBar{
     position: absolute;
     width: 71px;
@@ -886,6 +901,11 @@ a{
     border-radius: 13px;
     box-shadow: 0 4px 20px 0 rgb(0, 0, 0);
     background: rgb(0, 0, 0);
+    transition: .5s ease;
+    cursor: pointer;
+}
+.arrowBar:hover{
+    rotate: -15deg;
 }
 .arrow {
     position: absolute;
@@ -896,14 +916,40 @@ a{
     transform: translate(-50%, -50%);
     box-sizing: border-box;
 }
-.eventsText{
+
+.buttonAssociationsText{
     position: absolute;
+    width: 245px;
+    height: 67px;
+    left: 775px;
+    right: 25px;
+    top: 2117px;
+    bottom: -2117px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px 0 rgb(0, 0, 0);
+    background: rgb(0, 0, 0);
+    transition: .5s ease;
+    cursor: pointer;
+}
+
+.buttonEventsText{
+    position: absolute;
+    width: 245px;
+    height: 67px;
+    left: 375px;
+    right: 425px;
+    top: 2117px;
+    bottom: -2117px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px 0 rgb(0, 0, 0);
+    background: rgb(0, 0, 0);
+    transition: .5s ease;
+    cursor: pointer;
+
+}
+.eventsText{
     width: 102px;
     height: 30px;
-    left: 447px;
-    right: 497px;
-    top: 2136px;
-    bottom: -2099px;
     color: rgb(255, 255, 255);
     font-family: Montserrat B,sans-serif;
     font-size: 25px;
@@ -911,14 +957,47 @@ a{
     line-height: 30px;
     text-align: left;
 }
-.associationsText{
+.buttonUsersText{
     position: absolute;
+    width: 245px;
+    height: 67px;
+    left: 1175px;
+    right: -375px;
+    top: 2117px;
+    bottom: -2117px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px 0 rgb(0, 0, 0);
+    background: rgb(0, 0, 0);
+    transition: .5s ease;
+    cursor: pointer;
+}
+
+.buttonUsersText:hover{
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.64);
+    background: rgb(255, 255, 255);
+}
+.buttonUsersText:hover .usersText {
+    color: black;
+}
+
+.buttonEventsText:hover{
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.64);
+    background: rgb(255, 255, 255);
+}
+.buttonEventsText:hover .eventsText {
+    color: black;
+}
+.buttonAssociationsText:hover{
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.64);
+    background: rgb(255, 255, 255);
+}
+.buttonAssociationsText:hover .associationsText {
+    color: black;
+}
+
+.associationsText{
     width: 98px;
     height: 30px;
-    left: 850px;
-    right: 98px;
-    top: 2136px;
-    bottom: -2099px;
     color: rgb(255, 255, 255);
     font-family: Montserrat B, sans-serif;
     font-size: 25px;
@@ -927,13 +1006,8 @@ a{
     text-align: left;
 }
 .usersText{
-    position: absolute;
     width: 174px;
     height: 30px;
-    left: 1212px;
-    right: -340px;
-    top: 2136px;
-    bottom: -2099px;
     color: rgb(255, 255, 255);
     font-family: Montserrat B, sans-serif;
     font-size: 25px;

@@ -29,18 +29,33 @@ public class EventController {
     private final ReviewServiceImpl reviewService;
 
     @GetMapping("/")
-    public ResponseEntity<Page<Event>> getAllEvents(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "6") int size) {
+    public ResponseEntity<Page<Event>> getAllEvents(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String place,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "6") int size) {
+
         Pageable pageable = PageRequest.of(page, size);
-        Page<Event> events = service.getAll(pageable);
+        Page<Event> eventsPage;
 
+        if (name != null && place != null) {
+            eventsPage = service.findEventsByNameAndPlace(name, place, pageable);
+        } else if (name != null) {
+            eventsPage = service.findEventsByName(name, pageable);
+        } else if (place != null) {
+            eventsPage = service.findEventsByPlace(place, pageable);
+        } else {
+            eventsPage = service.getAll(pageable);
+        }
 
-        events.forEach(event -> {
+        eventsPage.forEach(event -> {
             int reviewCount = reviewService.findByEventId(event.getId(), PageRequest.of(0, Integer.MAX_VALUE)).getContent().size();
             event.setReviewCount(reviewCount);
         });
 
-        return new ResponseEntity<>(events, HttpStatus.OK);
+        return new ResponseEntity<>(eventsPage, HttpStatus.OK);
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Event> getEventById(@PathVariable("id") Long id) {
@@ -149,9 +164,20 @@ public class EventController {
     }
 
     @GetMapping("/events/association/{associationId}")
-    public ResponseEntity<Page<Event>> getAllEventsByAssociationId(@PathVariable Long associationId, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "6") int size) {
+    public ResponseEntity<Page<Event>> getAllEventsByAssociationId(@PathVariable Long associationId, @RequestParam(required = false) String name,
+                                                                   @RequestParam(required = false) String place, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "6") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Event> events = service.getAllByAssociationId(associationId, pageable);
+        Page<Event> events;
+        if (name != null && place != null) {
+            events = service.findEventsByAssociationIdAndNameAndPlace(associationId, name, place, pageable);
+        } else if (name != null) {
+            events = service.findEventsByAssociationIdAndName(associationId, name, pageable);
+        } else if (place != null) {
+            events = service.findEventsByAssociationIdAndPlace(associationId, place, pageable);
+        } else {
+            events = service.getAllByAssociationId(associationId, pageable);
+        }
+
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
 

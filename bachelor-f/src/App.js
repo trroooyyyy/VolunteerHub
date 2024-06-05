@@ -15,6 +15,7 @@ import Associations from "./components/Associations";
 import Events from "./components/Events";
 import EventOne from "./components/EventOne";
 import Review from "./components/Review";
+import AboutService from "./components/AboutService";
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
               <Route path="/all-events/:associationId" element={!token ? <Navigate to="/login" /> : <><Header/><Events/><Footer/></>}></Route>
               <Route path="/event/:eventId" element={!token ? <Navigate to="/login" /> : <><Header/><EventOne/><Footer/></>}></Route>
               <Route path="/review/event/:eventId" element={!token ? <Navigate to="/login" /> : <><Header/><Review/><Footer/></>}></Route>
+              <Route path="/about-service" element={<><Header/><AboutService/><Footer/></>}></Route>
           </Routes>
       </Router>
   );

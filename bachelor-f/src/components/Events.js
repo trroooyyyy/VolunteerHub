@@ -21,6 +21,10 @@ const Events = () => {
     const [totalPages, setTotalPages] = useState(0);
     const { associationId } = useParams();
     const [markedEvents, setMarkedEvents] = useState([]);
+    const [searchParams, setSearchParams] = useState({
+        name: '',
+        place: ''
+    });
 
     const getAssociations = async () => {
             try {
@@ -40,6 +44,9 @@ const Events = () => {
                 console.log(associationId)
                 if(associationId){
                     eventsResponse = await axios.get(`http://localhost:8080/api/event/events/association/${associationId}?page=${currentPage}`, {
+                        params: {
+                            ...searchParams
+                        },
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
@@ -48,6 +55,9 @@ const Events = () => {
                 }
                 else{
                     eventsResponse = await axios.get(`http://localhost:8080/api/event/?page=${currentPage}`, {
+                        params: {
+                            ...searchParams
+                        },
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
@@ -73,7 +83,7 @@ const Events = () => {
             if (token) {
                 getAssociations();
             }
-    }, [token, currentPage]);
+    }, [token, currentPage, searchParams]);
 
     const openZapovnPolya = () => {
         setShowZapovnPolya(true);
@@ -85,6 +95,14 @@ const Events = () => {
 
     const handlePrevPage = () => {
         setCurrentPage(currentPage - 1);
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setSearchParams({
+            ...searchParams,
+            [name]: value
+        });
     };
 
     useEffect(() => {
@@ -121,6 +139,13 @@ const Events = () => {
             openZapovnPolya();
             return;
         }
+        const currentDate = new Date();
+        const eventStartDate = new Date(dateStart);
+        if (eventStartDate < currentDate) {
+            alert("Дата початку події не може бути раніше поточної дати.");
+            return;
+        }
+
         e.preventDefault();
         const event = {
             name: name,
@@ -305,6 +330,27 @@ const Events = () => {
                     </div>
                 </div>
             )}
+            <form>
+                <input
+                    className="formForSearch1Ass"
+                    type="text"
+                    name="name"
+                    value={searchParams.name}
+                    onChange={handleInputChange}
+                    placeholder="Назва..."
+                    maxLength="50"
+                />
+                <input
+                    className="formForSearch3Ass"
+                    type="text"
+                    name="place"
+                    value={searchParams.place}
+                    onChange={handleInputChange}
+                    placeholder="Місце..."
+                    maxLength="50"
+                />
+            </form>
+
         </div>
     );
 };
