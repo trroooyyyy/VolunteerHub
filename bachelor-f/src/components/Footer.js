@@ -46,7 +46,7 @@ const Footer = () => {
 
     return (
         <div>
-            <div className={isActiveProfile ? 'footerProfile' : isActiveUsers ? 'footerUsers' : isActiveEvent ? 'footerEvent' : isActiveAssociations ? 'footerAssociations' : isActiveAssUsers ? 'footerAssUsers' : isActiveEvents ? 'footerEvents' : isActiveReview ? 'footerReview' : 'footer'}>
+            <div className={isActiveProfile ? 'footerProfile' : isActiveUsers ? 'footerUsers' : isActiveEvent ? 'footerEvent' : isActiveAssociations ? 'footerAssociations' : isActiveAssUsers ? 'footerAssUsers' : isActiveEvents ? 'footerEvents' : isActiveReview ? 'footerReview' : isActiveAboutService ? 'footerAboutService' : 'footer'}>
                 <div className={'footerLogoSquare'}>
                     <div className={'footerLogoSquareText'}>V&amp;<span style={{ color: '#FFDAB9' }}>H</span></div>
 
