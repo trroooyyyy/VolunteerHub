@@ -12,8 +12,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.swing.text.html.Option;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -67,7 +70,6 @@ public class UserServiceImpl implements IUserService {
     public User update(User user) {
         User existingUser = repository.findById(user.getId()).orElseThrow(NoSuchElementException::new);
 
-
         if (!existingUser.getLogin().equals(user.getLogin()) && isLoginPresent(user.getLogin())) {
             throw new IllegalArgumentException("Login is already in use");
         }
@@ -116,6 +118,15 @@ public class UserServiceImpl implements IUserService {
         } else {
             return repository.findAll(pageable);
         }
+    }
+
+    @Transactional
+    public void uploadAvatar(Long userId, MultipartFile file) throws IOException {
+        User user = repository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+
+        user.setAvatarUrl(file.getBytes());
+        repository.save(user);
     }
 
 

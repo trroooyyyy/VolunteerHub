@@ -11,7 +11,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -89,4 +91,12 @@ public class EventServiceImpl implements IEventService {
         return repository.findByAssociationIdAndPlaceContainingIgnoreCase(associationId, place, pageable);
     }
 
+    @Transactional
+    public void uploadAvatar(Long eventId, MultipartFile file) throws IOException {
+        Event event = repository.findById(eventId)
+                .orElseThrow(() -> new RuntimeException("Event not found with id: " + eventId));
+
+        event.setAvatarUrl(file.getBytes());
+        repository.save(event);
+    }
 }

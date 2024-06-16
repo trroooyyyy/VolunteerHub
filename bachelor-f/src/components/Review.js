@@ -295,6 +295,15 @@ const Review = () => {
             console.error('Error updating reviews:', error);
         }
     };
+
+    const renderAvatar = (user) => {
+        if (user.avatarUrl) {
+            const base64Image = `data:image/jpeg;base64,${user.avatarUrl}`;
+            return <img className="avatarDefaultComment" src={base64Image} alt="Avatar" />;
+        } else {
+            return <img className="avatarDefaultComment" src="/images/avatar_empty@2x.png" alt="Avatar" />;
+        }
+    };
     return (
         <div>
             <div className="eventOneMainDiv"></div>
@@ -338,7 +347,7 @@ const Review = () => {
                     return (
                         <div key={review.id} className={'relativeDivComments'}>
                             <div className="loginComment"><a className="ownerideffect" href={`/profile/${review.user.id}`}>{review.user.login}</a></div>
-                            <img className="avatarDefaultComment" src="/images/avatar_empty@2x.png" alt="" />
+                            {renderAvatar(user)}
                             <div className="eventOneMainDateCreateComment">Опубліковано: {new Date(event.createdAt).toLocaleDateString('uk-UA')}</div>
                             <div className="profileDescBoxComment">
                                 <div className="contentComment1">{review.content}</div>

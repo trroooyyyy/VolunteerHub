@@ -89,12 +89,21 @@ const Profile = () => {
     }
 
 
+    const renderAvatar = () => {
+        if (user.avatarUrl) {
+            const base64Image = `data:image/jpeg;base64,${user.avatarUrl}`;
+            return <img className="avatarDefault" src={base64Image} alt="Avatar" />;
+        } else {
+            return <img className="avatarDefault" src="/images/avatar_empty@2x.png" alt="Avatar" />;
+        }
+    };
+
     return (
         <div>
             {user ? (
                 <div>
                     <div className="profileBox"></div>
-                    <img className="avatarDefault" src="/images/avatar_empty@2x.png" alt="" />
+                    {renderAvatar()}
                     <div className="profileLogin">{user.login}</div>
                     <div className="profileFirstName">Ім'я: {user.firstName ? user.firstName : a}</div>
                     <div className="profileLastName">Прізвище: {user.lastName ? user.lastName : a}</div>

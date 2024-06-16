@@ -2004,6 +2004,20 @@ a{
     line-height: 23px;
     text-align: left;
 }
+.error-message{
+    position: absolute;
+    width: 794px;
+    height: 18px;
+    left: 50%;
+    top: 652px;
+    margin-left: -402px;
+    color: rgb(233, 87, 87);
+    font-family: Montserrat, sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 23px;
+    text-align: center;
+}
 .input8Re{
     position: absolute;
     width: 288px;

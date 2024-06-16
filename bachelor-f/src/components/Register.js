@@ -11,12 +11,77 @@ const Register = () => {
     const [country, setCountry] = useState('');
     const [age, setAge] = useState('');
     const [telephone, setTelephone] = useState('');
+    const [error, setError] = useState('');
 
     const navigate = useNavigate();
 
+    const nameRegex = /^[a-zA-Z\s]*$/;
+    const phoneRegex = /^\+\d{12}$/;
+
+    const validateForm = () => {
+        if (!login.trim()) {
+            setError('Username is required');
+            return false;
+        }
+        if (login.length < 6) {
+            setError('Username should be at least 6 characters long');
+            return false;
+        }
+        if (!password) {
+            setError('Password is required');
+            return false;
+        } else if (password.length < 6) {
+            setError('Password should be at least 6 characters long');
+            return false;
+        }
+        if (!email) {
+            setError('Email is required');
+            return false;
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            setError('Email is invalid');
+            return false;
+        }
+        if (!age) {
+            setError('Age is required');
+            return false;
+        } else if (age < 0 || age > 100) {
+            setError('Age must be between 0 and 100');
+            return false;
+        }
+
+        if (firstName.trim() && !nameRegex.test(firstName.trim())) {
+            setError('First name should contain only letters');
+            return false;
+        }
+
+        if (lastName.trim() && !nameRegex.test(lastName.trim())) {
+            setError('Last name should contain only letters');
+            return false;
+        }
+
+        if (!country.trim()) {
+            setError('Country is required');
+            return false;
+        } else if (!nameRegex.test(country.trim())) {
+            setError('Country should contain only letters');
+            return false;
+        }
+
+        if (telephone.trim() && (!phoneRegex.test(telephone.trim()) || telephone.trim().length !== 13)) {
+            setError('Phone number should start with + and contain only digits');
+            return false;
+        }
+
+        setError('');
+        return true;
+    };
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        if (!validateForm()) {
+            return;
+        }
         try {
             const response = await axios.post('http://localhost:8080/api/auth/register', {
                 login,
@@ -28,15 +93,14 @@ const Register = () => {
                 country,
                 telephone
             });
-            localStorage.setItem('token', response.data.token)
+            localStorage.setItem('token', response.data.token);
             console.log('Registration successful:', response.data);
             navigate('/');
         } catch (error) {
             console.error('Registration failed:', error.response.data);
+            setError(error.response.data);
         }
     };
-
-
 
     return (
         <div>
@@ -67,7 +131,6 @@ const Register = () => {
                         value={login}
                         onChange={(e) => setLogin(e.target.value)}
                         className="input1Re"
-                        required
                         maxLength="27"
                     />
                 </div>
@@ -78,18 +141,16 @@ const Register = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         className="input2Re"
-                        required
                         maxLength="27"
                     />
                 </div>
                 <div>
                     <input
-                        type="email"
+                        type="text"
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="input3Re"
-                        required
                         maxLength="24"
                     />
                 </div>
@@ -101,8 +162,6 @@ const Register = () => {
                         onChange={(e) => setAge(e.target.value)}
                         className="input7Re"
                         maxLength="27"
-                        required
-                        min={0}
                         max={100}
                     />
                 </div>
@@ -134,7 +193,6 @@ const Register = () => {
                         onChange={(e) => setCountry(e.target.value)}
                         className="input6Re"
                         maxLength="27"
-                        required
                     />
                 </div>
                 <div>
@@ -144,10 +202,11 @@ const Register = () => {
                         value={telephone}
                         onChange={(e) => setTelephone(e.target.value)}
                         className="input8Re"
-                        maxLength="14"
+                        maxLength="13"
                     />
                 </div>
                 <button type="submit" className="buttonloginRe"><span className="textOnButtonLogin">Реєстрація</span></button>
+                {error && <div className="error-message">{error}</div>}
             </form>
         </div>
     );

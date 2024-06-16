@@ -30,7 +30,7 @@ public class User implements UserDetails {
     private Role role;
     private String firstName;
     private String lastName;
-    private String avatarUrl;
+    private byte[] avatarUrl;
     private String country;
     private String description;
     private Integer age;

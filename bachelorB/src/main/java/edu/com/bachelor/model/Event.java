@@ -26,7 +26,7 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "association_id")
     private Association association;
-    private String avatarUrl;
+    private byte[] avatarUrl;
     @ManyToMany
     @JoinTable(
             name = "event_user",

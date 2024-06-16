@@ -121,6 +121,16 @@ const Users = () => {
         setCurrentPage(currentPage - 1);
     };
 
+    const renderAvatar = (user) => {
+        if (user.avatarUrl) {
+            const base64Image = `data:image/jpeg;base64,${user.avatarUrl}`;
+            return <img className="imageUsers" src={base64Image} alt="Avatar" />;
+        } else {
+            return <img className="imageUsers" src="/images/avatar_empty@2x.png" alt="Avatar" />;
+        }
+    };
+
+
     return (
         <div>
         <div className="mainTableDiv">
@@ -128,7 +138,7 @@ const Users = () => {
                 <div key={user.id} className="relativeDiv">
                     <p className="emailUsers">Email:<br />{user.email}</p>
                     <p className="phoneUsers123">Телефон:<br />{user.telephone ? user.telephone : a}</p>
-                    <img className="imageUsers" src="/images/avatar_empty@2x.png" alt="" />
+                    {renderAvatar(user)}
                     {associationId && association.owner.id===user.id &&(
                         <img className="imageUsersIfNotOwner" src="/images/crown.png" alt="123" />
                     )

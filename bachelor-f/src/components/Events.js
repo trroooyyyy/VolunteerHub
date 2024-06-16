@@ -184,6 +184,15 @@ const Events = () => {
     };
 
 
+    const renderAvatar = (event) => {
+        if (event.avatarUrl) {
+            const base64Image = `data:image/jpeg;base64,${event.avatarUrl}`;
+            return <img className="zaglushka" src={base64Image} alt="Avatar" />;
+        } else {
+            return <img className="zaglushka" src="/images/Volunteer-with-us-banner.png" alt="Avatar" />;
+        }
+    };
+
 
     return (
         <div>
@@ -207,7 +216,7 @@ const Events = () => {
                         <img className="dateEvents" src="/images/free-icon-time-and-date-26-9005122.png" alt="Date" />
                         <p className="dateEventsText">{new Date(event.dateStart).toLocaleDateString('uk-UA')}</p>
                         <p className="associationNameEvent">{event.association.name}</p>
-                        <img className="zaglushka" src="/images/Volunteer-with-us-banner.png" alt="Banner" />
+                            {renderAvatar(event)}
                         </div>
                         {hoveredEvent === event.id && !isEventActive(event) && (
                             <>

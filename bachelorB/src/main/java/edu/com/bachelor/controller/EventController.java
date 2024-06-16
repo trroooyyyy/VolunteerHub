@@ -16,6 +16,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -179,6 +182,20 @@ public class EventController {
         }
 
         return new ResponseEntity<>(events, HttpStatus.OK);
+    }
+
+    @PostMapping("/{eventId}/uploadAvatar")
+    public ResponseEntity<String> uploadAvatar(
+            @PathVariable Long eventId,
+            @RequestParam("file") MultipartFile file) {
+
+        try {
+            service.uploadAvatar(eventId, file);
+            return ResponseEntity.ok("Avatar uploaded successfully");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to upload avatar: " + e.getMessage());
+        }
     }
 
 }

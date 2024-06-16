@@ -14,6 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.Optional;
 
 @RestController
@@ -105,7 +108,19 @@ public class UserController {
         return userOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @PostMapping("/{userId}/uploadAvatar")
+    public ResponseEntity<String> uploadAvatar(
+            @PathVariable Long userId,
+            @RequestParam("file") MultipartFile file) {
 
+        try {
+            service.uploadAvatar(userId, file);
+            return ResponseEntity.ok("Avatar uploaded successfully");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to upload avatar: " + e.getMessage());
+        }
+    }
 
 
 }
